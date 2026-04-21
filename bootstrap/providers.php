@@ -9,6 +9,7 @@ use Modules\Package\Providers\PackageServiceProvider;
 use Modules\Payment\Providers\PaymentServiceProvider;
 use Modules\Product\Providers\ProductServiceProvider;
 use Modules\Referral\Providers\ReferralServiceProvider;
+use Modules\Settings\Providers\SettingsServiceProvider;
 use Modules\Subscription\Providers\SubscriptionServiceProvider;
 use Modules\SubscriptionRequest\Providers\SubscriptionRequestServiceProvider;
 use Modules\Ticket\Providers\TicketServiceProvider;
@@ -28,4 +29,5 @@ return [
     VerificationServiceProvider::class,
     ProductServiceProvider::class,
     CurrencyServiceProvider::class,
+    SettingsServiceProvider::class,
 ];
