@@ -1,4 +1,5 @@
 <?php
+
 // Currency/Http/Actions/UpdateCurrencySettingsAction.php
 
 declare(strict_types=1);

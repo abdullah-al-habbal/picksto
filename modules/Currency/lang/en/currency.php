@@ -1,4 +1,5 @@
 <?php
+
 // Currency/lang/en/currency.php
 
 declare(strict_types=1);

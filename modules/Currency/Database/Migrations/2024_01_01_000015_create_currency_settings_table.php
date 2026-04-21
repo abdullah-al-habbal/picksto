@@ -1,4 +1,5 @@
 <?php
+
 // Currency/Database/Migrations/2024_01_01_000015_create_currency_settings_table.php
 
 declare(strict_types=1);

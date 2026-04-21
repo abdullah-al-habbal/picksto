@@ -1,4 +1,5 @@
 <?php
+
 // Currency/Models/CurrencySettingModel.php
 
 declare(strict_types=1);

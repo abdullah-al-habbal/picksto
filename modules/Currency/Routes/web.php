@@ -1,4 +1,5 @@
 <?php
+
 // Currency/Routes/web.php
 
 declare(strict_types=1);

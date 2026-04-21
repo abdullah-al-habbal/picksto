@@ -4,6 +4,7 @@
 
 use App\Providers\ApplicationServiceProvider;
 use App\Providers\ScrambleServiceProvider;
+use Modules\Currency\Providers\CurrencyServiceProvider;
 use Modules\Package\Providers\PackageServiceProvider;
 use Modules\Payment\Providers\PaymentServiceProvider;
 use Modules\Product\Providers\ProductServiceProvider;
@@ -26,4 +27,5 @@ return [
     ReferralServiceProvider::class,
     VerificationServiceProvider::class,
     ProductServiceProvider::class,
+    CurrencyServiceProvider::class,
 ];

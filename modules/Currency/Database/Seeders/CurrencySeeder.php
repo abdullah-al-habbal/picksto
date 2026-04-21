@@ -1,4 +1,5 @@
 <?php
+
 // Currency/Database/Seeders/CurrencySeeder.php
 
 declare(strict_types=1);

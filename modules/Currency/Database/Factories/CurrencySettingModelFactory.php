@@ -1,4 +1,5 @@
 <?php
+
 // Currency/Database/Factories/CurrencySettingModelFactory.php
 
 declare(strict_types=1);

@@ -1,4 +1,5 @@
 <?php
+
 // Currency/Presenters/CurrencyPresenter.php
 
 declare(strict_types=1);

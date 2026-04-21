@@ -1,4 +1,5 @@
 <?php
+
 // Currency/Repositories/CurrencyRepository.php
 
 declare(strict_types=1);

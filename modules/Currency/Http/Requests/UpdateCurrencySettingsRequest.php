@@ -1,4 +1,5 @@
 <?php
+
 // Currency/Http/Requests/UpdateCurrencySettingsRequest.php
 
 declare(strict_types=1);
