@@ -1,9 +1,10 @@
-﻿<?php
-// Payment/Database/Factories/SubscriptionRequestModelFactory.php
+<?php
+
+// SubscriptionRequest/Database/Factories/SubscriptionRequestModelFactory.php
 
 declare(strict_types=1);
 
-namespace Modules\Payment\Database\Factories;
+namespace Modules\SubscriptionRequest\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Package\Models\PackageModel;

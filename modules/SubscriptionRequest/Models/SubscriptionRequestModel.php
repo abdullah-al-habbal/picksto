@@ -1,9 +1,10 @@
-﻿<?php
-// Payment/Models/SubscriptionRequestModel.php
+<?php
+
+// SubscriptionRequest/Models/SubscriptionRequestModel.php
 
 declare(strict_types=1);
 
-namespace Modules\Payment\Models;
+namespace Modules\SubscriptionRequest\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,7 +12,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 use Modules\Package\Models\PackageModel;
-use Modules\Payment\Database\Factories\SubscriptionRequestModelFactory;
+use Modules\Payment\Models\PaymentGatewayModel;
+use Modules\SubscriptionRequest\Database\Factories\SubscriptionRequestModelFactory;
 use Modules\User\Models\UserModel;
 
 /**

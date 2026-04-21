@@ -1,20 +1,21 @@
-﻿<?php
+<?php
+
 // Payment/Routes/web.php
 
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use Modules\Payment\Http\Actions\GetActiveGatewaysAction;
-use Modules\Payment\Http\Actions\RequestSubscriptionAction;
-use Modules\Payment\Http\Actions\GetAllGatewaysAction;
-use Modules\Payment\Http\Actions\CreateGatewayAction;
-use Modules\Payment\Http\Actions\UpdateGatewayAction;
-use Modules\Payment\Http\Actions\DeleteGatewayAction;
-use Modules\Payment\Http\Actions\GetAllRequestsAction;
 use Modules\Payment\Http\Actions\ApproveRequestAction;
+use Modules\Payment\Http\Actions\CreateGatewayAction;
+use Modules\Payment\Http\Actions\DeleteGatewayAction;
+use Modules\Payment\Http\Actions\GetActiveGatewaysAction;
+use Modules\Payment\Http\Actions\GetAllGatewaysAction;
+use Modules\Payment\Http\Actions\GetAllRequestsAction;
 use Modules\Payment\Http\Actions\RejectRequestAction;
+use Modules\Payment\Http\Actions\RequestSubscriptionAction;
+use Modules\Payment\Http\Actions\UpdateGatewayAction;
 
-// Public routes (no auth needed for viewing active gateways)
+// Public routes
 Route::get('payment/gateways', GetActiveGatewaysAction::class)->name('payment.gateways');
 
 // Protected user routes

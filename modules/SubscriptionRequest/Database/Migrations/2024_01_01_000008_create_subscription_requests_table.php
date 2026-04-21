@@ -1,5 +1,6 @@
-﻿<?php
-// Payment/Database/Migrations/2024_01_01_000008_create_subscription_requests_table.php
+<?php
+
+// SubscriptionRequest/Database/Migrations/2024_01_01_000008_create_subscription_requests_table.php
 
 declare(strict_types=1);
 
@@ -7,7 +8,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up(): void
     {
         Schema::create('subscription_requests', static function (Blueprint $table): void {

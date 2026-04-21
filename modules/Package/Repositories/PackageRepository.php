@@ -1,4 +1,5 @@
 <?php
+
 // modules/Package/Repositories/PackageRepository.php
 
 declare(strict_types=1);
@@ -6,8 +7,9 @@ declare(strict_types=1);
 namespace Modules\Package\Repositories;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Modules\Package\Models\PackageModel;
 use Illuminate\Database\Eloquent\Collection;
+use Modules\Package\Models\PackageModel;
+
 final class PackageRepository
 {
     public function __construct(
@@ -42,6 +44,13 @@ final class PackageRepository
     public function findById(int $id): ?PackageModel
     {
         return $this->model->newQuery()->findOrFail($id);
+    }
+
+    public function getPrice(int $packageId): float
+    {
+        $package = $this->findById($packageId);
+
+        return $package->price ?? 0.0;
     }
 
     public function create(array $data): PackageModel
@@ -100,5 +109,10 @@ final class PackageRepository
         }
 
         return $query->exists();
+    }
+
+    public function getAllActive(): Collection
+    {
+        return $this->model->newQuery()->where('is_active', true)->get();
     }
 }

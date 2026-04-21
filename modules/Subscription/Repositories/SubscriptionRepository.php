@@ -1,4 +1,5 @@
 <?php
+
 // modules/Subscription/Repositories/SubscriptionRepository.php
 
 declare(strict_types=1);
@@ -17,6 +18,11 @@ final class SubscriptionRepository
         private readonly PackageModel $packageModel,
         private readonly UserModel $userModel,
     ) {}
+
+    public function create(array $data): SubscriptionModel
+    {
+        return $this->model->newQuery()->create($data);
+    }
 
     public function purchasePackage(int $userId, int $packageId): array
     {

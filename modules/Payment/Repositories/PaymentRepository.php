@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Payment/Repositories/PaymentRepository.php
 
 declare(strict_types=1);
@@ -6,73 +7,56 @@ declare(strict_types=1);
 namespace Modules\Payment\Repositories;
 
 use Illuminate\Database\Eloquent\Collection;
-use Modules\Package\Models\PackageModel;
+use Modules\Package\Repositories\PackageRepository;
 use Modules\Payment\Models\PaymentGatewayModel;
-use Modules\Payment\Models\SubscriptionRequestModel;
-use Modules\Subscription\Models\SubscriptionModel;
+use Modules\Subscription\Repositories\SubscriptionRepository;
+use Modules\SubscriptionRequest\Models\SubscriptionRequestModel;
+use Modules\SubscriptionRequest\Repositories\SubscriptionRequestRepository;
 
 final class PaymentRepository
 {
     public function __construct(
-        private readonly PaymentGatewayModel $gatewayModel,
-        private readonly SubscriptionRequestModel $requestModel,
-        private readonly PackageModel $packageModel,
-        private readonly SubscriptionModel $subscriptionModel,
+        private readonly PaymentGatewayRepository $gatewayRepo,
+        private readonly SubscriptionRequestRepository $subscriptionRequestRepo,
+        private readonly PackageRepository $packageRepo,
+        private readonly SubscriptionRepository $subscriptionRepo,
     ) {}
 
     public function getActiveGateways(): Collection
     {
-        return $this->gatewayModel->newQuery()->active()->get();
+        return $this->gatewayRepo->getActiveGateways();
     }
 
     public function getAllGateways(): Collection
     {
-        return $this->gatewayModel->newQuery()->orderBy('sort_order')->get();
+        return $this->gatewayRepo->getAllGateways();
     }
 
     public function createGateway(array $data): PaymentGatewayModel
     {
-        return $this->gatewayModel->newQuery()->create([
-            'name' => $data['name'],
-            'type' => $data['type'],
-            'description' => $data['description'] ?? null,
-            'config' => $data['config'] ?? null,
-            'is_active' => $data['isActive'] ?? true,
-            'sort_order' => $data['sortOrder'] ?? 0,
-        ]);
+        return $this->gatewayRepo->createGateway($data);
     }
 
-    public function updateGateway(int $id, array $data): PaymentGatewayModel
+    public function updateGateway(int $id, array $data): ?PaymentGatewayModel
     {
-        $gateway = $this->gatewayModel->newQuery()->findOrFail($id);
-
-        $updateData = array_filter([
-            'name' => $data['name'] ?? null,
-            'type' => $data['type'] ?? null,
-            'description' => $data['description'] ?? null,
-            'config' => $data['config'] ?? null,
-            'is_active' => $data['isActive'] ?? null,
-            'sort_order' => $data['sortOrder'] ?? null,
-        ], static fn ($value) => $value !== null);
-
-        $gateway->update($updateData);
-
-        return $gateway->fresh();
+        return $this->gatewayRepo->updateGateway($id, $data);
     }
 
     public function deleteGateway(int $id): bool
     {
-        return $this->gatewayModel->newQuery()->where('id', $id)->delete();
+        return $this->gatewayRepo->deleteGateway($id);
     }
 
     public function requestSubscription(int $userId, array $data): SubscriptionRequestModel
     {
-        return $this->requestModel->newQuery()->create([
+        $packagePrice = $this->packageRepo->getPrice($data['packageId']);
+
+        return $this->subscriptionRequestRepo->create([
             'user_id' => $userId,
             'package_id' => $data['packageId'],
             'gateway_id' => $data['gatewayId'] ?? null,
             'status' => 'pending',
-            'amount' => $this->packageModel->newQuery()->findOrFail($data['packageId'])->price,
+            'amount' => $packagePrice,
             'currency' => 'SAR',
             'user_notes' => $data['userNotes'] ?? null,
         ]);
@@ -80,65 +64,38 @@ final class PaymentRepository
 
     public function getAllRequests(?string $status = null): Collection
     {
-        $query = $this->requestModel->newQuery()
-            ->with(['user:id,name,email', 'package:id,name_ar,price', 'gateway:id,name']);
-
-        if ($status) {
-            $query->where('status', $status);
-        }
-
-        return $query->orderBy('created_at', 'desc')->get();
+        return $this->subscriptionRequestRepo->getAllByStatus($status);
     }
 
     public function approveRequest(int $requestId, int $adminId): SubscriptionRequestModel
     {
-        $request = $this->requestModel->newQuery()->findOrFail($requestId);
+        $this->subscriptionRequestRepo->updateStatus($requestId, 'completed', $adminId);
 
-        $request->update([
-            'status' => 'completed',
-            'approved_at' => now(),
-            'approved_by' => $adminId,
-        ]);
+        $request = $this->subscriptionRequestRepo->findById($requestId);
 
-        $this->subscriptionModel->newQuery()->create([
-            'user_id' => $request->user_id,
-            'package_id' => $request->package_id,
-            'status' => 'active',
-            'start_date' => now(),
-            'end_date' => now()->addDays($request->package->duration_days),
-            'downloads_today' => 0,
-            'downloads_month' => 0,
-            'payment_method' => $request->gateway?->type ?? 'manual',
-            'transaction_id' => $request->transaction_id,
-        ]);
+        if ($request) {
+            $package = $this->packageRepo->findById($request->package_id);
 
-        return $request->fresh();
+            $this->subscriptionRepo->create([
+                'user_id' => $request->user_id,
+                'package_id' => $request->package_id,
+                'status' => 'active',
+                'start_date' => now(),
+                'end_date' => now()->addDays($package->duration_days ?? 30),
+                'downloads_today' => 0,
+                'downloads_month' => 0,
+                'payment_method' => $request->gateway?->type ?? 'manual',
+                'transaction_id' => $request->transaction_id,
+            ]);
+        }
+
+        return $request;
     }
 
     public function rejectRequest(int $requestId, int $adminId): SubscriptionRequestModel
     {
-        $request = $this->requestModel->newQuery()->findOrFail($requestId);
+        $this->subscriptionRequestRepo->updateStatus($requestId, 'rejected', $adminId);
 
-        $request->update([
-            'status' => 'rejected',
-            'approved_at' => now(),
-            'approved_by' => $adminId,
-        ]);
-
-        return $request->fresh();
-    }
-
-    public function getPendingCount(): int
-    {
-        return $this->requestModel->newQuery()->pending()->count();
-    }
-
-    public function getUserRequests(int $userId): Collection
-    {
-        return $this->requestModel->newQuery()
-            ->byUser($userId)
-            ->with('package')
-            ->orderBy('created_at', 'desc')
-            ->get();
+        return $this->subscriptionRequestRepo->findById($requestId);
     }
 }
