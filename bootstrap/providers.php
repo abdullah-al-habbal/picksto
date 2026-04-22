@@ -5,6 +5,7 @@
 use App\Providers\ApplicationServiceProvider;
 use App\Providers\ScrambleServiceProvider;
 use Modules\Currency\Providers\CurrencyServiceProvider;
+use Modules\LemonSqueezy\Providers\LemonSqueezyServiceProvider;
 use Modules\Package\Providers\PackageServiceProvider;
 use Modules\Payment\Providers\PaymentServiceProvider;
 use Modules\Product\Providers\ProductServiceProvider;
@@ -30,4 +31,5 @@ return [
     ProductServiceProvider::class,
     CurrencyServiceProvider::class,
     SettingsServiceProvider::class,
+    LemonSqueezyServiceProvider::class,
 ];
