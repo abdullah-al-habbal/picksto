@@ -11,13 +11,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Modules\Product\Database\Factories\ProductModelFactory;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * @property int $id
- * @property string $name_ar
- * @property string|null $name_en
- * @property string|null $description_ar
- * @property string|null $description_en
+ * @property array<string, string> $name
+ * @property array<string, string>|null $description
  * @property float $price
  * @property string $currency
  * @property string|null $image_url
@@ -29,12 +28,11 @@ use Modules\Product\Database\Factories\ProductModelFactory;
 final class ProductModel extends Model
 {
     use HasFactory;
+    use HasTranslations;
 
     protected $fillable = [
-        'name_ar',
-        'name_en',
-        'description_ar',
-        'description_en',
+        'name',
+        'description',
         'price',
         'currency',
         'image_url',
@@ -42,9 +40,16 @@ final class ProductModel extends Model
         'sort_order',
     ];
 
+    public array $translatable = [
+        'name',
+        'description',
+    ];
+
     protected function casts(): array
     {
         return [
+            'name' => 'array',
+            'description' => 'array',
             'price' => 'decimal:2',
             'is_active' => 'boolean',
             'sort_order' => 'integer',
@@ -59,19 +64,5 @@ final class ProductModel extends Model
     public function scopeActive(Builder $query): Builder
     {
         return $query->where('is_active', true)->orderBy('sort_order');
-    }
-
-    public function getNameAttribute(): string
-    {
-        return app()->getLocale() === 'ar' && $this->name_ar
-            ? $this->name_ar
-            : ($this->name_en ?? $this->name_ar);
-    }
-
-    public function getDescriptionAttribute(): ?string
-    {
-        return app()->getLocale() === 'ar' && $this->description_ar
-            ? $this->description_ar
-            : ($this->description_en ?? $this->description_ar);
     }
 }

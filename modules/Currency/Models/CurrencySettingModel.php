@@ -37,11 +37,14 @@ final class CurrencySettingModel extends Model
         'space_between',
     ];
 
-    protected $casts = [
-        'decimal_places' => 'integer',
-        'symbol_position' => 'boolean',
-        'space_between' => 'boolean',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'decimal_places' => 'integer',
+            'symbol_position' => 'boolean',
+            'space_between' => 'boolean',
+        ];
+    }
 
     public function format(float $amount): string
     {

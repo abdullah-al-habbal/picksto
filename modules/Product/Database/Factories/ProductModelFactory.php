@@ -13,10 +13,14 @@ final class ProductModelFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_ar' => fake()->words(3, true),
-            'name_en' => fake()->optional()->words(3, true),
-            'description_ar' => fake()->paragraph(),
-            'description_en' => fake()->optional()->paragraph(),
+            'name' => [
+                'ar' => fake('ar_SA')->words(3, true),
+                'en' => fake()->words(3, true),
+            ],
+            'description' => [
+                'ar' => fake('ar_SA')->optional(0.7)->paragraph(),
+                'en' => fake()->optional(0.7)->paragraph(),
+            ],
             'price' => fake()->randomFloat(2, 10, 1000),
             'currency' => 'SAR',
             'image_url' => fake()->optional()->imageUrl(640, 480, 'products'),
@@ -27,11 +31,11 @@ final class ProductModelFactory extends Factory
 
     public function active(): static
     {
-        return $this->state(fn (array $attributes): array => ['is_active' => true]);
+        return $this->state(fn(array $attributes): array => ['is_active' => true]);
     }
 
     public function inactive(): static
     {
-        return $this->state(fn (array $attributes): array => ['is_active' => false]);
+        return $this->state(fn(array $attributes): array => ['is_active' => false]);
     }
 }

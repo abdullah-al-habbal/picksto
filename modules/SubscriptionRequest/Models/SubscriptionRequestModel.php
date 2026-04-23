@@ -54,10 +54,13 @@ final class SubscriptionRequestModel extends Model
         'approved_by',
     ];
 
-    protected $casts = [
-        'amount' => 'decimal:2',
-        'approved_at' => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'amount' => 'decimal:2',
+            'approved_at' => 'datetime',
+        ];
+    }
 
     protected static function newFactory(): SubscriptionRequestModelFactory
     {

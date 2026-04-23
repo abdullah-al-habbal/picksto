@@ -14,10 +14,8 @@ return new class extends Migration
     {
         Schema::create('packages', static function (Blueprint $table): void {
             $table->id();
-            $table->string('name_ar');
-            $table->string('name_en')->nullable();
-            $table->text('description_ar')->nullable();
-            $table->text('description_en')->nullable();
+            $table->json('name');
+            $table->json('description')->nullable();
             $table->decimal('price', 10, 2);
             $table->string('currency')->default('SAR');
             $table->integer('daily_limit')->default(10);

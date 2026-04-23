@@ -36,11 +36,14 @@ final class PaymentGatewayModel extends Model
         'sort_order',
     ];
 
-    protected $casts = [
-        'config' => 'array',
-        'is_active' => 'boolean',
-        'sort_order' => 'integer',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'config' => 'array',
+            'is_active' => 'boolean',
+            'sort_order' => 'integer',
+        ];
+    }
 
     protected static function newFactory(): PaymentGatewayModelFactory
     {

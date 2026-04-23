@@ -49,13 +49,16 @@ final class SubscriptionModel extends Model
         'transaction_id',
     ];
 
-    protected $casts = [
-        'start_date' => 'datetime',
-        'end_date' => 'datetime',
-        'last_download_date' => 'datetime',
-        'downloads_today' => 'integer',
-        'downloads_month' => 'integer',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'start_date' => 'datetime',
+            'end_date' => 'datetime',
+            'last_download_date' => 'datetime',
+            'downloads_today' => 'integer',
+            'downloads_month' => 'integer',
+        ];
+    }
 
     protected static function newFactory(): SubscriptionModelFactory
     {

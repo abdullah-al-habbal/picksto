@@ -15,10 +15,14 @@ final class PackageSeeder extends Seeder
     {
         $packages = [
             [
-                'name_ar' => 'باقة المبتدئين',
-                'name_en' => 'Starter Package',
-                'description_ar' => 'مثالية للمبتدئين الذين يبدأون رحلتهم',
-                'description_en' => 'Perfect for beginners starting their journey',
+                'name' => [
+                    'ar' => 'باقة المبتدئين',
+                    'en' => 'Starter Package',
+                ],
+                'description' => [
+                    'ar' => 'مثالية للمبتدئين الذين يبدأون رحلتهم',
+                    'en' => 'Perfect for beginners starting their journey',
+                ],
                 'price' => 49.00,
                 'currency' => 'SAR',
                 'daily_limit' => 5,
@@ -28,10 +32,14 @@ final class PackageSeeder extends Seeder
                 'is_active' => true,
             ],
             [
-                'name_ar' => 'باقة المحترفين',
-                'name_en' => 'Professional Package',
-                'description_ar' => 'للمحترفين الذين يحتاجون إلى المزيد من الميزات',
-                'description_en' => 'For professionals who need more features',
+                'name' => [
+                    'ar' => 'باقة المحترفين',
+                    'en' => 'Professional Package',
+                ],
+                'description' => [
+                    'ar' => 'للمحترفين الذين يحتاجون إلى المزيد من الميزات',
+                    'en' => 'For professionals who need more features',
+                ],
                 'price' => 149.00,
                 'currency' => 'SAR',
                 'daily_limit' => 20,
@@ -41,10 +49,14 @@ final class PackageSeeder extends Seeder
                 'is_active' => true,
             ],
             [
-                'name_ar' => 'باقة الشركات',
-                'name_en' => 'Enterprise Package',
-                'description_ar' => 'للفرق والشركات التي تحتاج إلى وصول غير محدود',
-                'description_en' => 'For teams and businesses needing unlimited access',
+                'name' => [
+                    'ar' => 'باقة الشركات',
+                    'en' => 'Enterprise Package',
+                ],
+                'description' => [
+                    'ar' => 'للفرق والشركات التي تحتاج إلى وصول غير محدود',
+                    'en' => 'For teams and businesses needing unlimited access',
+                ],
                 'price' => 499.00,
                 'currency' => 'SAR',
                 'daily_limit' => 50,
@@ -57,7 +69,7 @@ final class PackageSeeder extends Seeder
 
         foreach ($packages as $package) {
             PackageModel::updateOrCreate(
-                ['name_ar' => $package['name_ar']],
+                ['name->ar' => $package['name']['ar']],
                 $package
             );
         }

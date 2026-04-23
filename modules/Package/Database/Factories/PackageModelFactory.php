@@ -13,10 +13,14 @@ final class PackageModelFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_ar' => fake()->words(2, true),
-            'name_en' => fake()->optional()->words(2, true),
-            'description_ar' => fake()->optional()->paragraph(),
-            'description_en' => fake()->optional()->paragraph(),
+            'name' => [
+                'ar' => fake('ar_SA')->words(2, true),
+                'en' => fake()->words(2, true),
+            ],
+            'description' => [
+                'ar' => fake('ar_SA')->optional(0.7)->paragraph(),
+                'en' => fake()->optional(0.7)->paragraph(),
+            ],
             'price' => fake()->randomFloat(2, 10, 500),
             'currency' => fake()->randomElement(['SAR', 'USD', 'EUR']),
             'daily_limit' => fake()->randomElement([5, 10, 20, 50]),

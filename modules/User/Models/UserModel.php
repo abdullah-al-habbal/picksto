@@ -69,13 +69,16 @@ final class UserModel extends Authenticatable
         'remember_token',
     ];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'last_login_at' => 'datetime',
-        'phone_verified' => 'boolean',
-        'email_verified' => 'boolean',
-        'is_banned' => 'boolean',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'last_login_at' => 'datetime',
+            'phone_verified' => 'boolean',
+            'email_verified' => 'boolean',
+            'is_banned' => 'boolean',
+        ];
+    }
 
     protected static function newFactory(): UserModelFactory
     {

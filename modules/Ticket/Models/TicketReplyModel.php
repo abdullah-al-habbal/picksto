@@ -31,9 +31,12 @@ final class TicketReplyModel extends Model
         'is_admin',
     ];
 
-    protected $casts = [
-        'is_admin' => 'boolean',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'is_admin' => 'boolean',
+        ];
+    }
 
     public function ticket(): BelongsTo
     {

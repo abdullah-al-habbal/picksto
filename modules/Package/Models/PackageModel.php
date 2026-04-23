@@ -6,19 +6,19 @@ declare(strict_types=1);
 
 namespace Modules\Package\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Modules\Package\Database\Factories\PackageModelFactory;
 use Modules\Subscription\Models\SubscriptionModel;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * @property int $id
- * @property string $name_ar
- * @property string|null $name_en
- * @property string|null $description_ar
- * @property string|null $description_en
+ * @property array<string, string> $name
+ * @property array<string, string>|null $description
  * @property float $price
  * @property string $currency
  * @property int $daily_limit
@@ -26,19 +26,18 @@ use Modules\Subscription\Models\SubscriptionModel;
  * @property array|null $allowed_sites
  * @property int $duration_days
  * @property bool $is_active
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property-read HasMany<SubscriptionModel, int> $subscriptions
  */
 final class PackageModel extends Model
 {
     use HasFactory;
+    use HasTranslations;
 
     protected $fillable = [
-        'name_ar',
-        'name_en',
-        'description_ar',
-        'description_en',
+        'name',
+        'description',
         'price',
         'currency',
         'daily_limit',
@@ -48,14 +47,24 @@ final class PackageModel extends Model
         'is_active',
     ];
 
-    protected $casts = [
-        'price' => 'decimal:2',
-        'daily_limit' => 'integer',
-        'monthly_limit' => 'integer',
-        'allowed_sites' => 'array',
-        'duration_days' => 'integer',
-        'is_active' => 'boolean',
+    public array $translatable = [
+        'name',
+        'description',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'name' => 'array',
+            'description' => 'array',
+            'price' => 'decimal:2',
+            'daily_limit' => 'integer',
+            'monthly_limit' => 'integer',
+            'allowed_sites' => 'array',
+            'duration_days' => 'integer',
+            'is_active' => 'boolean',
+        ];
+    }
 
     protected static function newFactory(): PackageModelFactory
     {
@@ -90,19 +99,5 @@ final class PackageModel extends Model
         $allowed = $this->allowed_sites ?? [];
 
         return in_array('All', $allowed, true) || in_array($site, $allowed, true);
-    }
-
-    public function getNameAttribute(): string
-    {
-        return app()->getLocale() === 'ar' && $this->name_ar
-            ? $this->name_ar
-            : ($this->name_en ?? $this->name_ar);
-    }
-
-    public function getDescriptionAttribute(): ?string
-    {
-        return app()->getLocale() === 'ar' && $this->description_ar
-            ? $this->description_ar
-            : ($this->description_en ?? $this->description_ar);
     }
 }

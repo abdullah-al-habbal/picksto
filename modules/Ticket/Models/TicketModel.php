@@ -40,9 +40,12 @@ final class TicketModel extends Model
         'priority',
     ];
 
-    protected $casts = [
-        'is_admin' => 'boolean',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'is_admin' => 'boolean',
+        ];
+    }
 
     protected static function newFactory(): TicketModelFactory
     {

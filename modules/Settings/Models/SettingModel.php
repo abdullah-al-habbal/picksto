@@ -29,9 +29,12 @@ final class SettingModel extends Model
         'description',
     ];
 
-    protected $casts = [
-        'value' => 'array',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'value' => 'array',
+        ];
+    }
 
     public static function get(string $key, mixed $default = null): mixed
     {
