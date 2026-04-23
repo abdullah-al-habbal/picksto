@@ -6,7 +6,7 @@ declare(strict_types=1);
 
 return [
     'validation' => [
-        'name_ar' => [
+        'name.ar' => [
             'required' => 'Product name in Arabic is required',
         ],
         'price' => [

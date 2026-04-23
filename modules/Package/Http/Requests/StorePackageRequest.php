@@ -18,10 +18,10 @@ final class StorePackageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_ar' => ['required', 'string', 'max:100'],
-            'name_en' => ['nullable', 'string', 'max:100'],
-            'description_ar' => ['nullable', 'string', 'max:500'],
-            'description_en' => ['nullable', 'string', 'max:500'],
+            'name.ar' => ['required', 'string', 'max:100'],
+            'name.en' => ['nullable', 'string', 'max:100'],
+            'description.ar' => ['nullable', 'string', 'max:500'],
+            'description.en' => ['nullable', 'string', 'max:500'],
             'price' => ['required', 'numeric', 'min:0', 'max:999999.99'],
             'currency' => ['required', 'string', 'in:SAR,USD,EUR'],
             'daily_limit' => ['required', 'integer', 'min:1', 'max:1000'],
@@ -36,7 +36,7 @@ final class StorePackageRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name_ar.required' => __('package::validation.name_ar.required'),
+            'name.ar.required' => __('package::validation.name.ar.required'),
             'price.required' => __('package::validation.price.required'),
             'price.numeric' => __('package::validation.price.numeric'),
             'currency.in' => __('package::validation.currency.in'),

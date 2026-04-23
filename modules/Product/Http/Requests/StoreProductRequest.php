@@ -18,10 +18,10 @@ final class StoreProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_ar' => ['required', 'string', 'max:255'],
-            'name_en' => ['nullable', 'string', 'max:255'],
-            'description_ar' => ['nullable', 'string'],
-            'description_en' => ['nullable', 'string'],
+            'name.ar' => ['required', 'string', 'max:255'],
+            'name.en' => ['nullable', 'string', 'max:255'],
+            'description.ar' => ['nullable', 'string'],
+            'description.en' => ['nullable', 'string'],
             'price' => ['required', 'numeric', 'min:0'],
             'currency' => ['sometimes', 'string', 'max:3'],
             'image_url' => ['nullable', 'url', 'max:2048'],
@@ -33,7 +33,7 @@ final class StoreProductRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name_ar.required' => __('product::validation.name_ar.required'),
+            'name.ar.required' => __('product::validation.name.ar.required'),
             'price.required' => __('product::validation.price.required'),
             'price.numeric' => __('product::validation.price.numeric'),
         ];

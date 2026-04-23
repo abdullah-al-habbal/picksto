@@ -19,10 +19,10 @@ final class UpdatePackageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_ar' => ['sometimes', 'string', 'max:100'],
-            'name_en' => ['nullable', 'string', 'max:100'],
-            'description_ar' => ['nullable', 'string', 'max:500'],
-            'description_en' => ['nullable', 'string', 'max:500'],
+            'name.ar' => ['sometimes', 'string', 'max:100'],
+            'name.en' => ['nullable', 'string', 'max:100'],
+            'description.ar' => ['nullable', 'string', 'max:500'],
+            'description.en' => ['nullable', 'string', 'max:500'],
             'price' => ['sometimes', 'numeric', 'min:0', 'max:999999.99'],
             'currency' => ['sometimes', 'string', Rule::in(['SAR', 'USD', 'EUR'])],
             'daily_limit' => ['sometimes', 'integer', 'min:1', 'max:1000'],
@@ -37,7 +37,7 @@ final class UpdatePackageRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name_ar.sometimes' => __('package::validation.name_ar.sometimes'),
+            'name.ar.sometimes' => __('package::validation.name.ar.sometimes'),
             'price.numeric' => __('package::validation.price.numeric'),
             'currency.in' => __('package::validation.currency.in'),
             'allowed_sites.array' => __('package::validation.allowed_sites.array'),

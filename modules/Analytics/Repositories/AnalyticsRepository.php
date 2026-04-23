@@ -17,7 +17,8 @@ final class AnalyticsRepository
         private readonly SubscriptionModel $subscriptionModel,
         private readonly DownloadModel $downloadModel,
         private readonly PackageModel $packageModel,
-    ) {}
+    ) {
+    }
 
     public function getOverviewStats(): array
     {
@@ -39,31 +40,27 @@ final class AnalyticsRepository
             ->join('packages', 'subscriptions.package_id', '=', 'packages.id')
             ->sum('packages.price');
 
-        // Traffic sources (mocked - replace with real analytics integration)
         $trafficSources = [
             ['source' => 'Direct', 'count' => rand(100, 500)],
             ['source' => 'Google', 'count' => rand(200, 800)],
             ['source' => 'Social', 'count' => rand(50, 300)],
         ];
 
-        // Top countries (mocked)
         $topCountries = [
             ['country' => 'Saudi Arabia', 'count' => rand(300, 1000)],
             ['country' => 'Egypt', 'count' => rand(100, 400)],
             ['country' => 'UAE', 'count' => rand(50, 200)],
         ];
 
-        // Package performance
         $packagePerformance = $this->subscriptionModel->newQuery()
-            ->select('packages.name_ar as name', DB::raw('COUNT(*) as count'))
+            ->select('packages.name->ar as name', DB::raw('COUNT(*) as count'))
             ->join('packages', 'subscriptions.package_id', '=', 'packages.id')
-            ->groupBy('packages.name_ar')
+            ->groupBy('packages.name->ar')
             ->orderByDesc('count')
             ->limit(5)
             ->get()
             ->toArray();
 
-        // Daily visits (last 7 days - mocked)
         $dailyVisits = [];
         for ($i = 6; $i >= 0; $i--) {
             $date = now()->subDays($i)->format('Y-m-d');
@@ -99,7 +96,7 @@ final class AnalyticsRepository
             ->groupBy('date')
             ->orderBy('date')
             ->get()
-            ->map(fn ($item) => [
+            ->map(fn($item) => [
                 'date' => $item->date,
                 'amount' => (float) $item->total,
             ])

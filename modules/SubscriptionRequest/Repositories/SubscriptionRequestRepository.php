@@ -27,7 +27,7 @@ final class SubscriptionRequestRepository
 
     public function getAllByStatus(?string $status = null): Collection
     {
-        $query = $this->model->newQuery()->with(['user:id,name,email', 'package:id,name_ar,price', 'gateway:id,name']);
+        $query = $this->model->newQuery()->with(['user:id,name,email', 'package:id,name,price', 'gateway:id,name']);
 
         if ($status) {
             $query->where('status', $status);

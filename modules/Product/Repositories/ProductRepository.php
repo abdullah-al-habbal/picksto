@@ -23,10 +23,8 @@ final class ProductRepository
     public function create(array $data): ProductModel
     {
         return $this->model->newQuery()->create([
-            'name_ar' => $data['name_ar'],
-            'name_en' => $data['name_en'] ?? null,
-            'description_ar' => $data['description_ar'] ?? null,
-            'description_en' => $data['description_en'] ?? null,
+            'name' => $data['name'],
+            'description' => $data['description'] ?? null,
             'price' => $data['price'],
             'currency' => $data['currency'] ?? 'SAR',
             'image_url' => $data['image_url'] ?? null,
@@ -40,10 +38,8 @@ final class ProductRepository
         $product = $this->model->newQuery()->findOrFail($id);
 
         $updateData = array_filter([
-            'name_ar' => $data['name_ar'] ?? null,
-            'name_en' => $data['name_en'] ?? null,
-            'description_ar' => $data['description_ar'] ?? null,
-            'description_en' => $data['description_en'] ?? null,
+            'name' => $data['name'] ?? null,
+            'description' => $data['description'] ?? null,
             'price' => $data['price'] ?? null,
             'currency' => $data['currency'] ?? null,
             'image_url' => $data['image_url'] ?? null,

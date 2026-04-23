@@ -6,7 +6,7 @@ declare(strict_types=1);
 
 return [
     'validation' => [
-        'name_ar' => [
+        'name.ar' => [
             'required' => 'Package name in Arabic is required',
             'sometimes' => 'Package name in Arabic is invalid',
         ],
@@ -40,10 +40,10 @@ return [
         'not_found' => 'Package not found',
     ],
     'labels' => [
-        'name_ar' => 'Package Name (Arabic)',
-        'name_en' => 'Package Name (English)',
-        'description_ar' => 'Description (Arabic)',
-        'description_en' => 'Description (English)',
+        'name.ar' => 'Package Name (Arabic)',
+        'name.en' => 'Package Name (English)',
+        'description.ar' => 'Description (Arabic)',
+        'description.en' => 'Description (English)',
         'price' => 'Price',
         'currency' => 'Currency',
         'daily_limit' => 'Daily Download Limit',

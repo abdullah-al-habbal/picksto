@@ -6,7 +6,7 @@ declare(strict_types=1);
 
 return [
     'validation' => [
-        'name_ar' => [
+        'name.ar' => [
             'required' => 'اسم الباقة بالعربية مطلوب',
             'sometimes' => 'اسم الباقة بالعربية غير صالح',
         ],
@@ -40,10 +40,10 @@ return [
         'not_found' => 'الباقة غير موجودة',
     ],
     'labels' => [
-        'name_ar' => 'اسم الباقة (عربي)',
-        'name_en' => 'اسم الباقة (إنجليزي)',
-        'description_ar' => 'الوصف (عربي)',
-        'description_en' => 'الوصف (إنجليزي)',
+        'name.ar' => 'اسم الباقة (عربي)',
+        'name.en' => 'اسم الباقة (إنجليزي)',
+        'description.ar' => 'الوصف (عربي)',
+        'description.en' => 'الوصف (إنجليزي)',
         'price' => 'السعر',
         'currency' => 'العملة',
         'daily_limit' => 'الحد اليومي للتنزيلات',

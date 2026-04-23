@@ -1,8 +1,9 @@
 <?php
-
-// bootstrap/providers.php
+// picksto-laravel-service\bootstrap\providers.php
+declare(strict_types=1);
 
 use App\Providers\ApplicationServiceProvider;
+use App\Providers\Filament\AdminPanelProvider;
 use App\Providers\ScrambleServiceProvider;
 use Modules\Analytics\Providers\AnalyticsServiceProvider;
 use Modules\Currency\Providers\CurrencyServiceProvider;
@@ -12,8 +13,8 @@ use Modules\Payment\Providers\PaymentServiceProvider;
 use Modules\Product\Providers\ProductServiceProvider;
 use Modules\Referral\Providers\ReferralServiceProvider;
 use Modules\Settings\Providers\SettingsServiceProvider;
-use Modules\Subscription\Providers\SubscriptionServiceProvider;
 use Modules\SubscriptionRequest\Providers\SubscriptionRequestServiceProvider;
+use Modules\Subscription\Providers\SubscriptionServiceProvider;
 use Modules\TestProvider\Providers\TestProviderServiceProvider;
 use Modules\Ticket\Providers\TicketServiceProvider;
 use Modules\Upload\Providers\UploadServiceProvider;
@@ -22,20 +23,21 @@ use Modules\Verification\Providers\VerificationServiceProvider;
 
 return [
     ApplicationServiceProvider::class,
+    AdminPanelProvider::class,
     ScrambleServiceProvider::class,
-    UserServiceProvider::class,
-    PackageServiceProvider::class,
-    SubscriptionServiceProvider::class,
-    TicketServiceProvider::class,
-    PaymentServiceProvider::class,
-    SubscriptionRequestServiceProvider::class,
-    ReferralServiceProvider::class,
-    VerificationServiceProvider::class,
-    ProductServiceProvider::class,
     AnalyticsServiceProvider::class,
     CurrencyServiceProvider::class,
-    SettingsServiceProvider::class,
     LemonSqueezyServiceProvider::class,
-    UploadServiceProvider::class,
+    PackageServiceProvider::class,
+    PaymentServiceProvider::class,
+    ProductServiceProvider::class,
+    ReferralServiceProvider::class,
+    SettingsServiceProvider::class,
+    SubscriptionRequestServiceProvider::class,
+    SubscriptionServiceProvider::class,
     TestProviderServiceProvider::class,
+    TicketServiceProvider::class,
+    UploadServiceProvider::class,
+    UserServiceProvider::class,
+    VerificationServiceProvider::class,
 ];

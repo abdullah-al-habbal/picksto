@@ -29,12 +29,11 @@ final class PackageRepository
         $query = $this->model->newQuery();
 
         if ($search) {
-            // fix: use the whereAny
             $query->where(static function ($q) use ($search): void {
-                $q->where('name_ar', 'like', "%{$search}%")
-                    ->orWhere('name_en', 'like', "%{$search}%")
-                    ->orWhere('description_ar', 'like', "%{$search}%")
-                    ->orWhere('description_en', 'like', "%{$search}%");
+                $q->where('name->ar', 'like', "%{$search}%")
+                    ->orWhere('name->en', 'like', "%{$search}%")
+                    ->orWhere('description->ar', 'like', "%{$search}%")
+                    ->orWhere('description->en', 'like', "%{$search}%");
             });
         }
 
@@ -56,10 +55,8 @@ final class PackageRepository
     public function create(array $data): PackageModel
     {
         return $this->model->newQuery()->create([
-            'name_ar' => $data['name_ar'],
-            'name_en' => $data['name_en'] ?? null,
-            'description_ar' => $data['description_ar'] ?? null,
-            'description_en' => $data['description_en'] ?? null,
+            'name' => $data['name'],
+            'description' => $data['description'] ?? null,
             'price' => $data['price'],
             'currency' => $data['currency'],
             'daily_limit' => $data['daily_limit'],
@@ -75,10 +72,8 @@ final class PackageRepository
         $package = $this->findById($id);
 
         $updateData = array_filter([
-            'name_ar' => $data['name_ar'] ?? null,
-            'name_en' => $data['name_en'] ?? null,
-            'description_ar' => $data['description_ar'] ?? null,
-            'description_en' => $data['description_en'] ?? null,
+            'name' => $data['name'] ?? null,
+            'description' => $data['description'] ?? null,
             'price' => $data['price'] ?? null,
             'currency' => $data['currency'] ?? null,
             'daily_limit' => $data['daily_limit'] ?? null,
@@ -102,7 +97,7 @@ final class PackageRepository
 
     public function existsByNameAr(string $nameAr, ?int $excludeId = null): bool
     {
-        $query = $this->model->newQuery()->where('name_ar', $nameAr);
+        $query = $this->model->newQuery()->where('name->ar', $nameAr);
 
         if ($excludeId) {
             $query->where('id', '!=', $excludeId);

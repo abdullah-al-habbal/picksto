@@ -18,10 +18,10 @@ final class UpdateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_ar' => ['sometimes', 'string', 'max:255'],
-            'name_en' => ['nullable', 'string', 'max:255'],
-            'description_ar' => ['nullable', 'string'],
-            'description_en' => ['nullable', 'string'],
+            'name.ar' => ['sometimes', 'string', 'max:255'],
+            'name.en' => ['nullable', 'string', 'max:255'],
+            'description.ar' => ['nullable', 'string'],
+            'description.en' => ['nullable', 'string'],
             'price' => ['sometimes', 'numeric', 'min:0'],
             'currency' => ['sometimes', 'string', 'max:3'],
             'image_url' => ['nullable', 'url', 'max:2048'],

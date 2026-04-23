@@ -15,7 +15,7 @@ final class SubscriptionPresenter
         return [
             'id' => $subscription->id,
             'packageName' => $subscription->package->name,
-            'packageNameAr' => $subscription->package->name_ar,
+            'packageNameAr' => $subscription->package->getTranslation('name', 'ar', false),
             'status' => $subscription->status,
             'statusLabel' => $this->getStatusLabel($subscription->status),
             'startDate' => $subscription->start_date?->format('Y-m-d'),
