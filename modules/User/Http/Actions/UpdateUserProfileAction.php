@@ -1,4 +1,5 @@
 <?php
+
 // modules/User/Http/Actions/UpdateUserProfileAction.php
 
 declare(strict_types=1);

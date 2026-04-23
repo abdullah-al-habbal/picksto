@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Ticket/Models/TicketReplyModel.php
 
 declare(strict_types=1);

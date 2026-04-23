@@ -1,4 +1,5 @@
 <?php
+
 // modules/Subscription/Http/Requests/PurchasePackageRequest.php
 
 declare(strict_types=1);

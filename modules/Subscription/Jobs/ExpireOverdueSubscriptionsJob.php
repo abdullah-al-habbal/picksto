@@ -1,4 +1,5 @@
 <?php
+
 // modules/Subscription/Jobs/ExpireOverdueSubscriptionsJob.php
 
 declare(strict_types=1);

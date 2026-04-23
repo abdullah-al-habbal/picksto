@@ -1,4 +1,5 @@
 <?php
+
 // modules/User/Http/Actions/ActivateUserPackageAction.php
 
 declare(strict_types=1);
@@ -29,7 +30,7 @@ final class ActivateUserPackageAction
 
         return redirect()->route('web.admin.users.show', $user)
             ->with('success', __('user::messages.package_activated', [
-                'days' => $validated['durationDays']
+                'days' => $validated['durationDays'],
             ]));
     }
 }

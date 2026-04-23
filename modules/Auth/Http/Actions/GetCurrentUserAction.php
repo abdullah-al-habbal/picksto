@@ -1,4 +1,5 @@
 <?php
+
 // modules/Auth/Http/Actions/GetCurrentUserAction.php
 
 declare(strict_types=1);

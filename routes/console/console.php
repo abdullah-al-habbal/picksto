@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Schedule;
-use Modules\Subscription\Jobs\ResetDailyDownloadCountersJob;
 use Modules\Subscription\Jobs\ExpireOverdueSubscriptionsJob;
+use Modules\Subscription\Jobs\ResetDailyDownloadCountersJob;
 use Modules\Subscription\Repositories\SubscriptionRepository;
 
 Schedule::job(

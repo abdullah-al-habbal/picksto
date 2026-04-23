@@ -1,4 +1,5 @@
 <?php
+
 // modules/Download/Http/Actions/GetAdminDownloadStatsAction.php
 
 declare(strict_types=1);

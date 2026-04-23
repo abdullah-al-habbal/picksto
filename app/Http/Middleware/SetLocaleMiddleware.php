@@ -1,5 +1,7 @@
 <?php
+
 // filePath: app\Http\Middleware\SetLocaleMiddleware.php
+
 namespace App\Http\Middleware;
 
 use App\Models\Language;
@@ -44,6 +46,7 @@ class SetLocaleMiddleware
 
         if (! $user) {
             Log::info('No authenticated user found, skipping user preferred locale.');
+
             return null;
         }
 
@@ -87,7 +90,7 @@ class SetLocaleMiddleware
 
     private function isActiveLocale(?string $code): bool
     {
-        if (!$code) {
+        if (! $code) {
             return false;
         }
 

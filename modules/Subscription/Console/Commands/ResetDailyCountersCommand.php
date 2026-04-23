@@ -1,4 +1,5 @@
 <?php
+
 // modules/Subscription/Console/Commands/ResetDailyCountersCommand.php
 
 declare(strict_types=1);
@@ -12,6 +13,7 @@ use Modules\Subscription\Repositories\SubscriptionRepository;
 final class ResetDailyCountersCommand extends Command
 {
     protected $signature = 'subscription:reset-daily-counters {--sync : Run synchronously}';
+
     protected $description = 'Reset daily download counters for all active subscriptions';
 
     public function handle(): int

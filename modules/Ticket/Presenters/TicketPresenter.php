@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Ticket/Presenters/TicketPresenter.php
 
 declare(strict_types=1);
@@ -42,7 +43,7 @@ final class TicketPresenter
             'status' => $ticket->status,
             'priority' => $ticket->priority,
             'createdAt' => $ticket->created_at?->format('Y-m-d H:i'),
-            'replies' => $ticket->replies->map(fn($r) => [
+            'replies' => $ticket->replies->map(fn ($r) => [
                 'id' => $r->id,
                 'user' => $r->user?->name ?? 'System',
                 'message' => $r->message,

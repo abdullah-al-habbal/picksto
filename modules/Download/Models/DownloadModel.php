@@ -1,4 +1,5 @@
 <?php
+
 // modules/Download/Models/DownloadModel.php
 
 declare(strict_types=1);

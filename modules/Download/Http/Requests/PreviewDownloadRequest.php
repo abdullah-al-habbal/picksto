@@ -1,4 +1,5 @@
 <?php
+
 // modules/Download/Http/Requests/PreviewDownloadRequest.php
 
 declare(strict_types=1);

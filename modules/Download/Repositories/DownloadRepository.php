@@ -1,4 +1,5 @@
 <?php
+
 // modules/Download/Repositories/DownloadRepository.php
 
 declare(strict_types=1);
@@ -91,7 +92,7 @@ final class DownloadRepository
     {
         return $this->model->newQuery()
             ->where('status', 'completed')
-            ->selectRaw("site_source as provider, COUNT(*) as count")
+            ->selectRaw('site_source as provider, COUNT(*) as count')
             ->groupBy('site_source')
             ->pluck('count', 'provider')
             ->toArray();
@@ -100,6 +101,7 @@ final class DownloadRepository
     public function delete(int $id): bool
     {
         $download = $this->model->newQuery()->findOrFail($id);
+
         return $download->delete();
     }
 
@@ -133,7 +135,7 @@ final class DownloadRepository
     {
         $lowerUrl = strtolower($url);
 
-        return match(true) {
+        return match (true) {
             str_contains($lowerUrl, 'freepik.com') => 'Freepik',
             str_contains($lowerUrl, 'flaticon.com') => 'Flaticon',
             str_contains($lowerUrl, 'envato') || str_contains($lowerUrl, 'elements.envato') => 'Envato Elements',

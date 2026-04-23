@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Ticket/Http/Actions/GetAllTicketsAction.php
 
 declare(strict_types=1);
@@ -15,8 +16,7 @@ final class GetAllTicketsAction
     public function __construct(
         private readonly TicketRepository $ticketRepository,
         private readonly TicketPresenter $ticketPresenter,
-    ) {
-    }
+    ) {}
 
     public function __invoke(Request $request): View
     {
@@ -24,8 +24,9 @@ final class GetAllTicketsAction
             $request->get('status'),
             $request->get('priority')
         );
+
         return view('ticket::admin.index', [
-            'tickets' => $tickets->map(fn($t) => $this->ticketPresenter->presentAdminList($t)),
+            'tickets' => $tickets->map(fn ($t) => $this->ticketPresenter->presentAdminList($t)),
             'status' => $request->get('status'),
             'priority' => $request->get('priority'),
         ]);

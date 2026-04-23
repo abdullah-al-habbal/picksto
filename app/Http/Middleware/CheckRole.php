@@ -1,4 +1,5 @@
 <?php
+
 // app/Http/Middleware/CheckRole.php
 
 declare(strict_types=1);
@@ -14,7 +15,7 @@ final class CheckRole
     {
         $user = $request->user();
 
-        if (!$user || !in_array($user->role, $roles)) {
+        if (! $user || ! in_array($user->role, $roles)) {
             abort(403, __('auth::messages.unauthorized'));
         }
 

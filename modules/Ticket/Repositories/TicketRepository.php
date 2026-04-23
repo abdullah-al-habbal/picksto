@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Ticket/Repositories/TicketRepository.php
 
 declare(strict_types=1);
@@ -15,8 +16,7 @@ final class TicketRepository
     public function __construct(
         private readonly TicketModel $ticketModel,
         private readonly TicketReplyModel $replyModel,
-    ) {
-    }
+    ) {}
 
     public function create(int $userId, array $data): TicketModel
     {
@@ -60,7 +60,7 @@ final class TicketRepository
             'is_admin' => $isAdmin,
         ]);
 
-        if (!$isAdmin && $ticketId) {
+        if (! $isAdmin && $ticketId) {
             $this->ticketModel->newQuery()->where('id', $ticketId)->update(['status' => 'pending']);
         }
 
@@ -70,7 +70,7 @@ final class TicketRepository
     public function getStats(): array
     {
         return $this->ticketModel->newQuery()
-            ->selectRaw("status, COUNT(*) as count")
+            ->selectRaw('status, COUNT(*) as count')
             ->groupBy('status')
             ->pluck('count', 'status')
             ->toArray();
@@ -81,6 +81,7 @@ final class TicketRepository
         $ticket = $this->ticketModel->newQuery()->findOrFail($ticketId);
         $ticket->status = $ticket->status === 'open' ? 'pending' : 'closed';
         $ticket->save();
+
         return $ticket;
     }
 
@@ -98,7 +99,7 @@ final class TicketRepository
             })
             ->exists();
 
-        if (!$exists && !app('request')->user()?->isAdmin()) {
+        if (! $exists && ! app('request')->user()?->isAdmin()) {
             abort(403);
         }
     }

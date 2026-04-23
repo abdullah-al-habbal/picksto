@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Payment/Http/Requests/UpdateGatewayRequest.php
 
 declare(strict_types=1);

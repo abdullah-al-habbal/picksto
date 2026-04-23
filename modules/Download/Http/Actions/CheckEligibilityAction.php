@@ -1,4 +1,5 @@
 <?php
+
 // modules/Download/Http/Actions/CheckEligibilityAction.php
 
 declare(strict_types=1);

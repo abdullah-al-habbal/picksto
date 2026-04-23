@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Ticket/Database/Seeders/TicketSeeder.php
 
 declare(strict_types=1);
@@ -15,7 +16,7 @@ final class TicketSeeder extends Seeder
     {
         if (app()->environment('local')) {
             $users = UserModel::limit(5)->get();
-            $users->each(fn($user) => TicketModel::factory()->count(3)->create(['user_id' => $user->id]));
+            $users->each(fn ($user) => TicketModel::factory()->count(3)->create(['user_id' => $user->id]));
         }
     }
 }

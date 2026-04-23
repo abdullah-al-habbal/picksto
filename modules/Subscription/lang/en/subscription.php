@@ -1,4 +1,5 @@
 <?php
+
 // modules/Subscription/lang/en/subscription.php
 
 declare(strict_types=1);

@@ -1,4 +1,5 @@
 <?php
+
 // modules/User/Database/Migrations/2024_01_01_000001_create_users_table.php
 
 declare(strict_types=1);

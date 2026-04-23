@@ -1,4 +1,5 @@
 <?php
+
 // modules/Subscription/Console/Commands/ExpireOverdueSubscriptionsCommand.php
 
 declare(strict_types=1);
@@ -12,6 +13,7 @@ use Modules\Subscription\Repositories\SubscriptionRepository;
 final class ExpireOverdueSubscriptionsCommand extends Command
 {
     protected $signature = 'subscription:expire-overdue {--sync : Run synchronously}';
+
     protected $description = 'Expire overdue subscriptions';
 
     public function handle(): int

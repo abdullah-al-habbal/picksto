@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Payment/Database/Seeders/PaymentSeeder.php
 
 declare(strict_types=1);

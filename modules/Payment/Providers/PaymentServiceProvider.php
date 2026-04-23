@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Payment/Providers/PaymentServiceProvider.php
 
 declare(strict_types=1);
@@ -25,7 +26,7 @@ final class PaymentServiceProvider extends ServiceProvider
 
     private function loadRoutes(): void
     {
-        $path = __DIR__ . '/../Routes/web.php';
+        $path = __DIR__.'/../Routes/web.php';
 
         if (! File::exists($path)) {
             return;
@@ -39,7 +40,7 @@ final class PaymentServiceProvider extends ServiceProvider
 
     private function loadMigrations(): void
     {
-        $path = __DIR__ . '/../Database/Migrations';
+        $path = __DIR__.'/../Database/Migrations';
 
         if (File::isDirectory($path)) {
             $this->loadMigrationsFrom($path);
@@ -48,7 +49,7 @@ final class PaymentServiceProvider extends ServiceProvider
 
     private function loadTranslations(): void
     {
-        $path = __DIR__ . '/../lang';
+        $path = __DIR__.'/../lang';
 
         if (File::isDirectory($path)) {
             $this->loadTranslationsFrom($path, 'payment');

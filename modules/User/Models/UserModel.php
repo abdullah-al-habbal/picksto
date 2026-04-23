@@ -1,4 +1,5 @@
 <?php
+
 // modules/User/Models/UserModel.php
 
 declare(strict_types=1);

@@ -1,4 +1,5 @@
 <?php
+
 // modules/Subscription/Presenters/SubscriptionPresenter.php
 
 declare(strict_types=1);

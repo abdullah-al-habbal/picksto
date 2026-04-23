@@ -1,4 +1,5 @@
 <?php
+
 // modules/Package/lang/en/package.php
 
 declare(strict_types=1);

@@ -1,4 +1,5 @@
 <?php
+
 // modules/Auth/Http/Actions/LoginAction.php
 
 declare(strict_types=1);

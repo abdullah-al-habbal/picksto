@@ -1,4 +1,5 @@
 <?php
+
 // modules/User/Http/Middleware/CheckUserBanMiddleware.php
 
 declare(strict_types=1);

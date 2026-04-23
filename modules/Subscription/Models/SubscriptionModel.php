@@ -1,4 +1,5 @@
 <?php
+
 // modules/Subscription/Models/SubscriptionModel.php
 
 declare(strict_types=1);

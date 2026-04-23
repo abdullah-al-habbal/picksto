@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Ticket/Http/Requests/StoreReplyRequest.php
 
 declare(strict_types=1);

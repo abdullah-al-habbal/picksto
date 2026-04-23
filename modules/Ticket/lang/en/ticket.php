@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Ticket/lang/en/ticket.php
 
 declare(strict_types=1);

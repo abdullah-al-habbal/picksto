@@ -1,4 +1,5 @@
 <?php
+
 // modules/User/Http/Actions/GetUserProfileAction.php
 
 declare(strict_types=1);
@@ -7,8 +8,8 @@ namespace Modules\User\Http\Actions;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Modules\User\Repositories\UserRepository;
 use Modules\User\Presenters\UserPresenter;
+use Modules\User\Repositories\UserRepository;
 
 final class GetUserProfileAction
 {

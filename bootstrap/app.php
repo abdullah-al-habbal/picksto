@@ -6,14 +6,12 @@ declare(strict_types=1);
 
 use App\Http\Middleware\CheckRole;
 use Illuminate\Auth\AuthenticationException;
-use Illuminate\Auth\Middleware\{
-    Authenticate,
-    AuthenticateWithBasicAuth,
-    Authorize,
-    EnsureEmailIsVerified,
-    RedirectIfAuthenticated,
-    RequirePassword
-};
+use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
+use Illuminate\Auth\Middleware\Authorize;
+use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
+use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
+use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -109,7 +107,7 @@ return Application::configure(basePath: dirname(__DIR__))
         });
 
         $exceptions->render(function (NotFoundHttpException $e, Request $request) {
-            if (! $request->expectsJson()) {
+            if (!$request->expectsJson()) {
                 return null;
             }
 
@@ -137,4 +135,4 @@ return Application::configure(basePath: dirname(__DIR__))
                 'status_code' => 404,
             ], 404);
         });
-    }) ->create();
+    })->create();

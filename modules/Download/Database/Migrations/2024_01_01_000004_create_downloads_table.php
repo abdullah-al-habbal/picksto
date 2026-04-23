@@ -1,4 +1,5 @@
 <?php
+
 // modules/Download/Database/Migrations/2024_01_01_000004_create_downloads_table.php
 
 declare(strict_types=1);

@@ -1,4 +1,5 @@
 <?php
+
 // modules/Auth/Http/Requests/RegisterRequest.php
 
 declare(strict_types=1);

@@ -1,6 +1,8 @@
 <?php
+
 // filePath:
 declare(strict_types=1);
+
 return [
     'postmark' => [
         'key' => env('POSTMARK_API_KEY'),
@@ -18,5 +20,9 @@ return [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
+    ],
+    'browser' => [
+        'url' => env('BROWSER_SERVICE_URL', 'http://127.0.0.1:4000'),
+        'secret' => env('BROWSER_SERVICE_SECRET'),
     ],
 ];

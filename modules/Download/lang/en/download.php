@@ -1,4 +1,5 @@
 <?php
+
 // modules/Download/lang/en/download.php
 
 declare(strict_types=1);

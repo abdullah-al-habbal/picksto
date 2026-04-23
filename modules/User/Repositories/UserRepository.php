@@ -1,4 +1,5 @@
 <?php
+
 // modules/User/Repositories/UserRepository.php
 
 declare(strict_types=1);

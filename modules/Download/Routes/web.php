@@ -1,18 +1,19 @@
 <?php
+
 // modules/Download/Routes/web.php
 
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use Modules\Download\Http\Actions\PreviewDownloadAction;
-use Modules\Download\Http\Actions\RequestDownloadAction;
+use Modules\Download\Http\Actions\CheckEligibilityAction;
+use Modules\Download\Http\Actions\DeleteDownloadAction;
+use Modules\Download\Http\Actions\GetAdminDownloadStatsAction;
+use Modules\Download\Http\Actions\GetAllDownloadsAction;
 use Modules\Download\Http\Actions\GetDownloadHistoryAction;
 use Modules\Download\Http\Actions\GetUserDownloadStatsAction;
-use Modules\Download\Http\Actions\CheckEligibilityAction;
+use Modules\Download\Http\Actions\PreviewDownloadAction;
+use Modules\Download\Http\Actions\RequestDownloadAction;
 use Modules\Download\Http\Actions\ServeDownloadFileAction;
-use Modules\Download\Http\Actions\GetAllDownloadsAction;
-use Modules\Download\Http\Actions\GetAdminDownloadStatsAction;
-use Modules\Download\Http\Actions\DeleteDownloadAction;
 
 // User Routes
 Route::middleware('auth')->prefix('download')->name('download.')->group(static function (): void {

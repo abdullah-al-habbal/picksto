@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Payment/Http/Requests/StoreGatewayRequest.php
 
 declare(strict_types=1);

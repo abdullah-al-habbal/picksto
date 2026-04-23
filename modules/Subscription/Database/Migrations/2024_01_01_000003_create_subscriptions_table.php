@@ -1,4 +1,5 @@
 <?php
+
 // modules/Subscription/Database/Migrations/2024_01_01_000003_create_subscriptions_table.php
 
 declare(strict_types=1);

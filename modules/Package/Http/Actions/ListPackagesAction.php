@@ -1,4 +1,5 @@
 <?php
+
 // modules/Package/Http/Actions/ListPackagesAction.php
 
 declare(strict_types=1);
@@ -21,8 +22,7 @@ final class ListPackagesAction
     {
         $packages = $this->packageRepository->getActivePackages();
 
-        $presentedPackages = $packages->map(fn ($package) =>
-            $this->packagePresenter->present($package)
+        $presentedPackages = $packages->map(fn ($package) => $this->packagePresenter->present($package)
         );
 
         return view('package::packages.index', [

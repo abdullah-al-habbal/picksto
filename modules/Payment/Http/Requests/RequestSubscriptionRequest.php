@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Payment/Http/Requests/RequestSubscriptionRequest.php
 
 declare(strict_types=1);

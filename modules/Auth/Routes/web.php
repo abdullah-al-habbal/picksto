@@ -1,13 +1,14 @@
 <?php
+
 // modules/Auth/Routes/web.php
 
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use Modules\Auth\Http\Actions\RegisterAction;
-use Modules\Auth\Http\Actions\LoginAction;
-use Modules\Auth\Http\Actions\GetCurrentUserAction;
 use Modules\Auth\Http\Actions\ForgotPasswordAction;
+use Modules\Auth\Http\Actions\GetCurrentUserAction;
+use Modules\Auth\Http\Actions\LoginAction;
+use Modules\Auth\Http\Actions\RegisterAction;
 use Modules\Auth\Http\Actions\ResetPasswordAction;
 
 // Public auth routes

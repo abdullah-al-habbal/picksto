@@ -1,4 +1,5 @@
 <?php
+
 // modules/User/Database/Seeders/UserSeeder.php
 
 declare(strict_types=1);

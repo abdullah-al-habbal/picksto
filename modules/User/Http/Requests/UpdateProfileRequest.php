@@ -1,4 +1,5 @@
 <?php
+
 // modules/User/Http/Requests/UpdateProfileRequest.php
 
 declare(strict_types=1);

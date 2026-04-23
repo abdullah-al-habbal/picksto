@@ -1,4 +1,5 @@
 <?php
+
 // modules/Package/Database/Migrations/2024_01_01_000002_create_packages_table.php
 
 declare(strict_types=1);

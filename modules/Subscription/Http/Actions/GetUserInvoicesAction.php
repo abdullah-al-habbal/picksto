@@ -1,4 +1,5 @@
 <?php
+
 // modules/Subscription/Http/Actions/GetUserInvoicesAction.php
 
 declare(strict_types=1);
@@ -21,8 +22,7 @@ final class GetUserInvoicesAction
     {
         $invoices = $this->subscriptionRepository->getUserInvoices($request->user()->id);
 
-        $presentedInvoices = $invoices->map(fn ($invoice) =>
-            $this->subscriptionPresenter->presentInvoice($invoice)
+        $presentedInvoices = $invoices->map(fn ($invoice) => $this->subscriptionPresenter->presentInvoice($invoice)
         );
 
         return view('subscription::invoices.index', [

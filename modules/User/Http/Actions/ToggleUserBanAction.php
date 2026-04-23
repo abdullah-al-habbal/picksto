@@ -1,4 +1,5 @@
 <?php
+
 // modules/User/Http/Actions/ToggleUserBanAction.php
 
 declare(strict_types=1);

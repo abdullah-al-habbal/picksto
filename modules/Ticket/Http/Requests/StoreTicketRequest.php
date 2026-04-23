@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Ticket/Http/Requests/StoreTicketRequest.php
 
 declare(strict_types=1);

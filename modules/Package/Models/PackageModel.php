@@ -1,4 +1,5 @@
 <?php
+
 // modules/Package/Models/PackageModel.php
 
 declare(strict_types=1);

@@ -1,16 +1,17 @@
 <?php
+
 // modules/User/Routes/web.php
 
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
+use Modules\User\Http\Actions\ActivateUserPackageAction;
+use Modules\User\Http\Actions\ChangeUserRoleAction;
+use Modules\User\Http\Actions\GetUserDetailsAction;
 use Modules\User\Http\Actions\GetUserProfileAction;
+use Modules\User\Http\Actions\ToggleUserBanAction;
 use Modules\User\Http\Actions\UpdateUserProfileAction;
 use Modules\User\Http\Actions\UploadUserAvatarAction;
-use Modules\User\Http\Actions\GetUserDetailsAction;
-use Modules\User\Http\Actions\ChangeUserRoleAction;
-use Modules\User\Http\Actions\ToggleUserBanAction;
-use Modules\User\Http\Actions\ActivateUserPackageAction;
 use Modules\User\Http\Middleware\CheckUserBanMiddleware;
 
 Route::middleware('auth')->prefix('user')->name('user.')->group(static function (): void {

@@ -1,4 +1,5 @@
 <?php
+
 // modules/Auth/Http/Actions/RegisterAction.php
 
 declare(strict_types=1);

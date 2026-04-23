@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Payment/Http/Actions/ApproveRequestAction.php
 
 declare(strict_types=1);

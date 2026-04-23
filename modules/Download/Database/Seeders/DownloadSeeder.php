@@ -1,4 +1,5 @@
 <?php
+
 // modules/Download/Database/Seeders/DownloadSeeder.php
 
 declare(strict_types=1);

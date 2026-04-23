@@ -1,4 +1,5 @@
 <?php
+
 // modules/Auth/Http/Actions/ResetPasswordAction.php
 
 declare(strict_types=1);

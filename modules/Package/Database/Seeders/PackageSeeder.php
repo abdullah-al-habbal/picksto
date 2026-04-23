@@ -1,4 +1,5 @@
 <?php
+
 // modules/Package/Database/Seeders/PackageSeeder.php
 
 declare(strict_types=1);

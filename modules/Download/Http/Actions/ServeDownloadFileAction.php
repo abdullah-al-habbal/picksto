@@ -1,4 +1,5 @@
 <?php
+
 // modules/Download/Http/Actions/ServeDownloadFileAction.php
 
 declare(strict_types=1);
@@ -29,7 +30,7 @@ final class ServeDownloadFileAction
             abort(403);
         }
 
-        $path = $download ? $download->download_path : 'downloads/' . $filename;
+        $path = $download ? $download->download_path : 'downloads/'.$filename;
 
         if (! Storage::disk('local')->exists($path)) {
             abort(404);

@@ -1,4 +1,5 @@
 <?php
+
 // modules/User/lang/en/user.php
 
 declare(strict_types=1);

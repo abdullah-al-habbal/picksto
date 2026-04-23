@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Ticket/Http/Actions/AddReplyAction.php
 
 declare(strict_types=1);
@@ -15,8 +16,7 @@ final class AddReplyAction
 {
     public function __construct(
         private readonly TicketRepository $ticketRepository,
-    ) {
-    }
+    ) {}
 
     public function __invoke(StoreReplyRequest $request, TicketModel $ticket): RedirectResponse
     {
@@ -30,9 +30,11 @@ final class AddReplyAction
                 $request->validated('message')
             );
             DB::commit();
+
             return redirect()->back()->with('success', __('ticket::messages.reply_added'));
         } catch (\Exception $e) {
             DB::rollBack();
+
             return redirect()->back()->withInput()->with('error', __('ticket::errors.reply_failed'));
         }
     }

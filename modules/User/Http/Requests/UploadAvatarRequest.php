@@ -1,4 +1,5 @@
 <?php
+
 // modules/User/Http/Requests/UploadAvatarRequest.php
 
 declare(strict_types=1);

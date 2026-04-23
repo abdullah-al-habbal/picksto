@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Ticket/Models/TicketModel.php
 
 declare(strict_types=1);
@@ -7,9 +8,9 @@ namespace Modules\Ticket\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Modules\Ticket\Database\Factories\TicketModelFactory;
 use Modules\User\Models\UserModel;

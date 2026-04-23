@@ -1,13 +1,14 @@
 <?php
+
 // modules/Subscription/Routes/web.php
 
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use Modules\Subscription\Http\Actions\PurchasePackageAction;
-use Modules\Subscription\Http\Actions\GetUserInvoicesAction;
 use Modules\Subscription\Http\Actions\GetPendingCountAction;
+use Modules\Subscription\Http\Actions\GetUserInvoicesAction;
 use Modules\Subscription\Http\Actions\GetUserPendingAction;
+use Modules\Subscription\Http\Actions\PurchasePackageAction;
 
 Route::middleware('auth')->prefix('subscription')->name('subscription.')->group(static function (): void {
     Route::post('purchase', PurchasePackageAction::class)->name('purchase');

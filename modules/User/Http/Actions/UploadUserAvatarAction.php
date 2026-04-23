@@ -1,4 +1,5 @@
 <?php
+
 // modules/User/Http/Actions/UploadUserAvatarAction.php
 
 declare(strict_types=1);
@@ -27,7 +28,7 @@ final class UploadUserAvatarAction
 
         $this->userRepository->updateAvatar(
             $request->user()->id,
-            '/storage/' . $path
+            '/storage/'.$path
         );
 
         return redirect()->route('web.user.profile')

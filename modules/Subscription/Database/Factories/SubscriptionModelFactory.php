@@ -1,4 +1,5 @@
 <?php
+
 // modules/Subscription/Database/Factories/SubscriptionModelFactory.php
 
 declare(strict_types=1);
@@ -7,7 +8,6 @@ namespace Modules\Subscription\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Package\Models\PackageModel;
-use Modules\Subscription\Models\SubscriptionModel;
 use Modules\User\Models\UserModel;
 
 final class SubscriptionModelFactory extends Factory

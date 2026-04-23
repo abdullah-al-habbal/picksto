@@ -1,4 +1,5 @@
 <?php
+
 // modules/Download/Http/Actions/GetAllDownloadsAction.php
 
 declare(strict_types=1);

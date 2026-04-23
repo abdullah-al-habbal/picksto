@@ -1,4 +1,5 @@
 <?php
+
 // modules/User/Database/Factories/UserModelFactory.php
 
 declare(strict_types=1);

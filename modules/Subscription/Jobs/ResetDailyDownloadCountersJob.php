@@ -1,4 +1,5 @@
 <?php
+
 // modules/Subscription/Jobs/ResetDailyDownloadCountersJob.php
 
 declare(strict_types=1);

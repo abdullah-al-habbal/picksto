@@ -1,4 +1,5 @@
 <?php
+
 // modules/Package/Http/Actions/UpdatePackageAction.php
 
 declare(strict_types=1);

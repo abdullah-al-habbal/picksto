@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Payment/Models/PaymentGatewayModel.php
 
 declare(strict_types=1);

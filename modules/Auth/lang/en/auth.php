@@ -1,4 +1,5 @@
 <?php
+
 // modules/Auth/lang/en/auth.php
 
 declare(strict_types=1);

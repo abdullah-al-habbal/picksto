@@ -1,4 +1,5 @@
 <?php
+
 // modules/Auth/Database/Migrations/2024_01_01_000002_create_password_reset_tokens_table.php
 
 declare(strict_types=1);

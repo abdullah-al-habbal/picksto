@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Ticket/Http/Actions/GetTicketsStatsAction.php
 
 declare(strict_types=1);
@@ -12,8 +13,7 @@ final class GetTicketsStatsAction
 {
     public function __construct(
         private readonly TicketRepository $ticketRepository,
-    ) {
-    }
+    ) {}
 
     public function __invoke(): JsonResponse
     {

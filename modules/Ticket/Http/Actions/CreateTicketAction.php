@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Ticket/Http/Actions/CreateTicketAction.php
 
 declare(strict_types=1);
@@ -14,8 +15,7 @@ final class CreateTicketAction
 {
     public function __construct(
         private readonly TicketRepository $ticketRepository,
-    ) {
-    }
+    ) {}
 
     public function __invoke(StoreTicketRequest $request): RedirectResponse
     {
@@ -26,10 +26,12 @@ final class CreateTicketAction
                 $request->validated()
             );
             DB::commit();
+
             return redirect()->route('web.tickets.show', $ticket->id)
                 ->with('success', __('ticket::messages.created'));
         } catch (\Exception $e) {
             DB::rollBack();
+
             return redirect()->back()->withInput()->with('error', __('ticket::errors.create_failed'));
         }
     }

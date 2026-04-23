@@ -1,4 +1,5 @@
 <?php
+
 // modules/User/Presenters/UserPresenter.php
 
 declare(strict_types=1);

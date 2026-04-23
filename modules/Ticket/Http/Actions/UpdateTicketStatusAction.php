@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Ticket/Http/Actions/UpdateTicketStatusAction.php
 
 declare(strict_types=1);
@@ -14,8 +15,7 @@ final class UpdateTicketStatusAction
 {
     public function __construct(
         private readonly TicketRepository $ticketRepository,
-    ) {
-    }
+    ) {}
 
     public function __invoke(TicketModel $ticket): RedirectResponse
     {
@@ -23,9 +23,11 @@ final class UpdateTicketStatusAction
         try {
             $this->ticketRepository->updateStatus($ticket->id);
             DB::commit();
+
             return redirect()->back()->with('success', __('ticket::messages.status_updated'));
         } catch (\Exception $e) {
             DB::rollBack();
+
             return redirect()->back()->with('error', __('ticket::errors.status_update_failed'));
         }
     }

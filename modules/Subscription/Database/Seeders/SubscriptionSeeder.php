@@ -1,4 +1,5 @@
 <?php
+
 // modules/Subscription/Database/Seeders/SubscriptionSeeder.php
 
 declare(strict_types=1);

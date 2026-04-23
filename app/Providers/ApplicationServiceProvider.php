@@ -19,9 +19,7 @@ class ApplicationServiceProvider extends ServiceProvider
     protected array $policies = [
     ];
 
-    public function register(): void
-    {
-    }
+    public function register(): void {}
 
     public function boot(): void
     {

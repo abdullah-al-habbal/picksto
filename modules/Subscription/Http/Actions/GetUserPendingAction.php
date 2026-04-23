@@ -1,4 +1,5 @@
 <?php
+
 // modules/Subscription/Http/Actions/GetUserPendingAction.php
 
 declare(strict_types=1);
@@ -21,8 +22,7 @@ final class GetUserPendingAction
     {
         $pending = $this->subscriptionRepository->getUserPending($request->user()->id);
 
-        $presentedPending = $pending->map(fn ($sub) =>
-            $this->subscriptionPresenter->present($sub)
+        $presentedPending = $pending->map(fn ($sub) => $this->subscriptionPresenter->present($sub)
         );
 
         return view('subscription::pending.index', [

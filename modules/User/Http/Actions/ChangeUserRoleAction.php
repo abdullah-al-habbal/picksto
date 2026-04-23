@@ -1,4 +1,5 @@
 <?php
+
 // modules/User/Http/Actions/ChangeUserRoleAction.php
 
 declare(strict_types=1);

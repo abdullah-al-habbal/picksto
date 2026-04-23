@@ -1,4 +1,5 @@
 <?php
+
 // modules/Subscription/Http/Actions/GetPendingCountAction.php
 
 declare(strict_types=1);

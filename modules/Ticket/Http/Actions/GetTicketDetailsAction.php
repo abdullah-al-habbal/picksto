@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+
 // Ticket/Http/Actions/GetTicketDetailsAction.php
 
 declare(strict_types=1);
@@ -16,13 +17,13 @@ final class GetTicketDetailsAction
     public function __construct(
         private readonly TicketRepository $ticketRepository,
         private readonly TicketPresenter $ticketPresenter,
-    ) {
-    }
+    ) {}
 
     public function __invoke(Request $request, TicketModel $ticket): View
     {
         $this->ticketRepository->authorizeView($request->user()->id, $ticket->id);
         $data = $this->ticketPresenter->presentDetailed($ticket);
+
         return view('ticket::user.show', compact('data'));
     }
 }

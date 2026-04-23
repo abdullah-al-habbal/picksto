@@ -1,4 +1,5 @@
 <?php
+
 // modules/Package/Database/Factories/PackageModelFactory.php
 
 declare(strict_types=1);
