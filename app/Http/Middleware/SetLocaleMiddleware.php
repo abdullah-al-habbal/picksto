@@ -4,6 +4,7 @@
 
 namespace App\Http\Middleware;
 
+// fix: we need to have the LanguageModel
 use App\Models\Language;
 use Closure;
 use Illuminate\Http\Request;
@@ -44,7 +45,7 @@ class SetLocaleMiddleware
     {
         $user = Auth::guard('sanctum')->user();
 
-        if (! $user) {
+        if (!$user) {
             Log::info('No authenticated user found, skipping user preferred locale.');
 
             return null;
@@ -90,7 +91,7 @@ class SetLocaleMiddleware
 
     private function isActiveLocale(?string $code): bool
     {
-        if (! $code) {
+        if (!$code) {
             return false;
         }
 

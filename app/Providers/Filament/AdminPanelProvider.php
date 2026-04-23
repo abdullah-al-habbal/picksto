@@ -1,5 +1,7 @@
 <?php
-// picksto-laravel-service\app\Providers\Filament\AdminPanelProvider.php
+
+declare(strict_types=1);
+
 namespace App\Providers\Filament;
 
 use Filament\Http\Middleware\Authenticate;
@@ -10,36 +12,34 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Widgets\AccountWidget;
-use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
 
-class AdminPanelProvider extends PanelProvider
+final class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
-        return $panel
+        $panel = $panel
             ->default()
-            ->id('admin')
-            ->path('admin')
+            ->id(config('panels.admin.id', 'admin'))
+            ->path(config('panels.admin.path', 'admin'))
             ->login()
             ->colors([
                 'primary' => Color::Amber,
             ])
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
+            ->brandName(config('panels.admin.brand', 'Picksto Admin'))
+            ->spa()
+            ->plugins([
+                SpatieTranslatablePlugin::make()
+                    ->defaultLocales(['en', 'ar']),
+            ])
             ->pages([
                 Dashboard::class,
-            ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
-            ->widgets([
-                AccountWidget::class,
-                FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -54,6 +54,41 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                'admin',
             ]);
+
+        $modulesPath = base_path('modules');
+
+        if (is_dir($modulesPath)) {
+            foreach (scandir($modulesPath) as $module) {
+                if ($module === '.' || $module === '..') {
+                    continue;
+                }
+
+                $moduleDir = $modulesPath . DIRECTORY_SEPARATOR . $module;
+                if (!is_dir($moduleDir)) {
+                    continue;
+                }
+
+                $namespace = "Modules\\{$module}\\Filament\\Admin";
+
+                $resourcesDir = $moduleDir . DIRECTORY_SEPARATOR . 'Filament' . DIRECTORY_SEPARATOR . 'Admin' . DIRECTORY_SEPARATOR . 'Resources';
+                if (is_dir($resourcesDir)) {
+                    $panel->discoverResources(in: $resourcesDir, for: $namespace . '\\Resources');
+                }
+
+                $pagesDir = $moduleDir . DIRECTORY_SEPARATOR . 'Filament' . DIRECTORY_SEPARATOR . 'Admin' . DIRECTORY_SEPARATOR . 'Pages';
+                if (is_dir($pagesDir)) {
+                    $panel->discoverPages(in: $pagesDir, for: $namespace . '\\Pages');
+                }
+
+                $widgetsDir = $moduleDir . DIRECTORY_SEPARATOR . 'Filament' . DIRECTORY_SEPARATOR . 'Admin' . DIRECTORY_SEPARATOR . 'Widgets';
+                if (is_dir($widgetsDir)) {
+                    $panel->discoverWidgets(in: $widgetsDir, for: $namespace . '\\Widgets');
+                }
+            }
+        }
+
+        return $panel;
     }
 }

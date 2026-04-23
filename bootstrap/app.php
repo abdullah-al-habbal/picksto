@@ -3,7 +3,7 @@
 // filePath: bootstrap/app.php
 
 declare(strict_types=1);
-
+use App\Http\Middleware\CheckAdminRoleMiddleware;
 use App\Http\Middleware\CheckRole;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Middleware\Authenticate;
@@ -57,6 +57,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'throttle' => ThrottleRequests::class,
             'verified' => EnsureEmailIsVerified::class,
             'role' => CheckRole::class,
+            'admin' => CheckAdminRoleMiddleware::class,
         ]);
 
         $middleware->api(prepend: [

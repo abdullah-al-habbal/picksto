@@ -47,6 +47,8 @@ final class UserModel extends Authenticatable
     use Notifiable;
     use SoftDeletes;
 
+    protected $table = 'users';
+
     protected $fillable = [
         'name',
         'email',
