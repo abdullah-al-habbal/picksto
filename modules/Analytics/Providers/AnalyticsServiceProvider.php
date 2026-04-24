@@ -19,13 +19,14 @@ final class AnalyticsServiceProvider extends ServiceProvider
     {
         $this->loadRoutes();
         $this->loadTranslations();
+        $this->loadViews();
     }
 
     private function loadRoutes(): void
     {
         $path = __DIR__ . '/../Routes/web.php';
 
-        if (! File::exists($path)) {
+        if (!File::exists($path)) {
             return;
         }
 
@@ -41,6 +42,15 @@ final class AnalyticsServiceProvider extends ServiceProvider
 
         if (File::isDirectory($path)) {
             $this->loadTranslationsFrom($path, 'analytics');
+        }
+    }
+
+    private function loadViews(): void
+    {
+        $path = __DIR__ . '/../resources/views';
+
+        if (File::isDirectory($path)) {
+            $this->loadViewsFrom($path, 'analytics');
         }
     }
 }

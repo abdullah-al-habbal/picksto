@@ -12,7 +12,7 @@ class ListProducts extends ListRecords
 {
     use HasActiveLocaleSwitcher;
 
-    protected static string $resource = ProductResource::class;
+    protected string $resource = ProductResource::class;
 
     protected function getHeaderActions(): array
     {

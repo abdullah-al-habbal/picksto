@@ -12,7 +12,7 @@ class EditPackage extends EditRecord
 {
     use HasActiveLocaleSwitcher;
 
-    protected static string $resource = PackageResource::class;
+    protected string $resource = PackageResource::class;
 
     protected function getHeaderActions(): array
     {

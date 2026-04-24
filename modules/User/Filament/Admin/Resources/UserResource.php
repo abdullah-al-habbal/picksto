@@ -21,7 +21,7 @@ use Modules\User\Models\UserModel;
 
 class UserResource extends Resource
 {
-    protected static ?string $model = UserModel::class;
+    protected ?string $model = UserModel::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
 

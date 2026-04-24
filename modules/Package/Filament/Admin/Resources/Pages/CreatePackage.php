@@ -12,5 +12,5 @@ class CreatePackage extends CreateRecord
 {
     use HasActiveLocaleSwitcher;
 
-    protected static string $resource = PackageResource::class;
+    protected string $resource = PackageResource::class;
 }

@@ -1,23 +1,27 @@
 <?php
 
-declare(strict_types=1);
-
 return [
-    'labels' => [
-        'overview' => 'نظرة عامة',
-        'revenue' => 'الإيرادات',
-        'downloads' => 'التنزيلات',
-        'total_users' => 'إجمالي المستخدمين',
-        'active_subscriptions' => 'الاشتراكات النشطة',
-        'today_downloads' => 'تنزيلات اليوم',
-        'estimated_revenue' => 'الإيرادات المقدرة',
-        'traffic_sources' => 'مصادر الزيارات',
-        'top_countries' => 'أعلى الدول',
-        'package_performance' => 'أداء الباقات',
-        'daily_visits' => 'الزيارات اليومية',
-        'provider' => 'المصدر',
-        'count' => 'العدد',
-        'date' => 'التاريخ',
-        'amount' => 'المبلغ',
+    'widgets' => [
+        'stats_overview' => [
+            'heading' => 'نظرة عامة',
+            'total_users' => 'إجمالي المستخدمين',
+            'active_subscriptions' => 'الاشتراكات النشطة',
+            'today_downloads' => 'تحميلات اليوم',
+            'estimated_revenue' => 'الإيرادات المقدرة',
+        ],
+        'revenue_trend' => [
+            'heading' => 'اتجاه الإيرادات',
+            'dataset_label' => 'الإيرادات',
+        ],
+        'package_performance' => [
+            'heading' => 'أداء الباقات',
+        ],
+        'download_stats' => [
+            'heading' => 'إحصائيات التحميل',
+            'today' => 'اليوم',
+            'month' => 'هذا الشهر',
+            'total' => 'الإجمالي',
+            'by_provider' => 'حسب المزود',
+        ],
     ],
 ];

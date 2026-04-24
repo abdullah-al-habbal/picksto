@@ -12,7 +12,7 @@ class ListPackages extends ListRecords
 {
     use HasActiveLocaleSwitcher;
 
-    protected static string $resource = PackageResource::class;
+    protected string $resource = PackageResource::class;
 
     protected function getHeaderActions(): array
     {

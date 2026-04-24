@@ -10,7 +10,7 @@ use Modules\User\Filament\Admin\Resources\UserResource;
 
 class ListUsers extends ListRecords
 {
-    protected static string $resource = UserResource::class;
+    protected string $resource = UserResource::class;
 
     protected function getHeaderActions(): array
     {

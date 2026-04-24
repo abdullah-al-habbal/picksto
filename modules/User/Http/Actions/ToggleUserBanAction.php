@@ -13,7 +13,8 @@ final class ToggleUserBanAction
 {
     public function __construct(
         private readonly UserRepository $userRepository,
-    ) {}
+    ) {
+    }
 
     public function __invoke(Request $request, int $user)
     {

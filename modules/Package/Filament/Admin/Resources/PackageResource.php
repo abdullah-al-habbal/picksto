@@ -21,7 +21,7 @@ class PackageResource extends Resource
 {
     use Translatable;
 
-    protected static ?string $model = PackageModel::class;
+    protected ?string $model = PackageModel::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 

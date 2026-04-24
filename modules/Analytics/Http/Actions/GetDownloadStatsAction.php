@@ -6,18 +6,19 @@ namespace Modules\Analytics\Http\Actions;
 
 use Illuminate\Http\JsonResponse;
 use Modules\Analytics\Presenters\AnalyticsPresenter;
-use Modules\Analytics\Repositories\AnalyticsRepository;
+use Modules\Analytics\Services\DashboardStatsService;
 
 final class GetDownloadStatsAction
 {
     public function __construct(
-        private readonly AnalyticsRepository $analyticsRepository,
+        private readonly DashboardStatsService $dashboardStatsService,
         private readonly AnalyticsPresenter $analyticsPresenter,
-    ) {}
+    ) {
+    }
 
     public function __invoke(): JsonResponse
     {
-        $data = $this->analyticsRepository->getDownloadStats();
+        $data = $this->dashboardStatsService->getDownloadStats();
         $presented = $this->analyticsPresenter->presentDownloads($data);
 
         return response()->json([

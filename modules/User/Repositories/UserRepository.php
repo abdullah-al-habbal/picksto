@@ -130,4 +130,9 @@ final class UserRepository
 
         return $code;
     }
+
+    public function count(): int
+    {
+        return $this->model->newQuery()->count();
+    }
 }

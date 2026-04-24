@@ -7,6 +7,7 @@ declare(strict_types=1);
 namespace Modules\Subscription\Repositories;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 use Modules\Package\Models\PackageModel;
 use Modules\Subscription\Models\SubscriptionModel;
 use Modules\User\Models\UserModel;
@@ -17,7 +18,8 @@ final class SubscriptionRepository
         private readonly SubscriptionModel $model,
         private readonly PackageModel $packageModel,
         private readonly UserModel $userModel,
-    ) {}
+    ) {
+    }
 
     public function create(array $data): SubscriptionModel
     {
@@ -101,7 +103,7 @@ final class SubscriptionRepository
     {
         $subscription = $this->getActiveSubscription($userId);
 
-        if (! $subscription) {
+        if (!$subscription) {
             return false;
         }
 
@@ -130,5 +132,52 @@ final class SubscriptionRepository
             ->where('status', 'active')
             ->where('end_date', '<', now())
             ->update(['status' => 'expired']);
+    }
+
+    public function countActive(): int
+    {
+        return $this->model->newQuery()
+            ->where('status', 'active')
+            ->where('end_date', '>=', now())
+            ->count();
+    }
+
+    public function getTotalActiveRevenue(): float
+    {
+        return (float) $this->model->newQuery()
+            ->where('status', 'active')
+            ->join('packages', 'subscriptions.package_id', '=', 'packages.id')
+            ->sum('packages.price');
+    }
+
+    public function getRevenueByDay(int $periodDays): array
+    {
+        $startDate = now()->subDays($periodDays);
+
+        return $this->model->newQuery()
+            ->select(DB::raw('DATE(subscriptions.created_at) as date'), DB::raw('SUM(packages.price) as total'))
+            ->join('packages', 'subscriptions.package_id', '=', 'packages.id')
+            ->where('subscriptions.status', 'active')
+            ->whereDate('subscriptions.created_at', '>=', $startDate)
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get()
+            ->map(fn($item) => [
+                'date' => $item->date,
+                'amount' => (float) $item->total,
+            ])
+            ->toArray();
+    }
+
+    public function getPackagePerformance(): array
+    {
+        return $this->model->newQuery()
+            ->select('packages.name->ar as name', DB::raw('COUNT(*) as count'))
+            ->join('packages', 'subscriptions.package_id', '=', 'packages.id')
+            ->groupBy('packages.name->ar')
+            ->orderByDesc('count')
+            ->limit(5)
+            ->get()
+            ->toArray();
     }
 }

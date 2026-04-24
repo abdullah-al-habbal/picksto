@@ -19,6 +19,10 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
+use Modules\Analytics\Filament\Admin\Widgets\DownloadStatsWidget;
+use Modules\Analytics\Filament\Admin\Widgets\PackagePerformanceWidget;
+use Modules\Analytics\Filament\Admin\Widgets\RevenueTrendChart;
+use Modules\Analytics\Filament\Admin\Widgets\StatsOverview;
 
 final class AdminPanelProvider extends PanelProvider
 {
@@ -40,6 +44,12 @@ final class AdminPanelProvider extends PanelProvider
             ])
             ->pages([
                 Dashboard::class,
+            ])
+            ->widgets([
+                StatsOverview::class,
+                RevenueTrendChart::class,
+                PackagePerformanceWidget::class,
+                DownloadStatsWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

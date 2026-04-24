@@ -15,7 +15,8 @@ final class DownloadRepository
     public function __construct(
         private readonly DownloadModel $model,
         private readonly SubscriptionModel $subscriptionModel,
-    ) {}
+    ) {
+    }
 
     public function create(array $data): DownloadModel
     {
@@ -73,7 +74,7 @@ final class DownloadRepository
                 SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) as failed
             ")
             ->first()
-            ?->toArray() ?? ['total' => 0, 'completed' => 0, 'failed' => 0];
+                ?->toArray() ?? ['total' => 0, 'completed' => 0, 'failed' => 0];
     }
 
     public function getTotalStats(): array
@@ -85,7 +86,7 @@ final class DownloadRepository
                 SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) as failed
             ")
             ->first()
-            ?->toArray() ?? ['total' => 0, 'completed' => 0, 'failed' => 0];
+                ?->toArray() ?? ['total' => 0, 'completed' => 0, 'failed' => 0];
     }
 
     public function getStatsByProvider(): array
@@ -112,14 +113,14 @@ final class DownloadRepository
             ->active()
             ->first();
 
-        if (! $subscription) {
+        if (!$subscription) {
             throw new \RuntimeException(__('download::errors.no_subscription'));
         }
 
         $allowedSites = $subscription->package->allowed_sites ?? [];
         $hasAccess = in_array('All', $allowedSites, true) || in_array($siteSource, $allowedSites, true);
 
-        if (! $hasAccess) {
+        if (!$hasAccess) {
             throw new \RuntimeException(__('download::errors.site_not_supported', ['site' => $siteSource]));
         }
 
@@ -146,5 +147,26 @@ final class DownloadRepository
             str_contains($lowerUrl, 'placeit.net') => 'Placeit',
             default => 'Unknown',
         };
+    }
+
+    public function countCompletedToday(): int
+    {
+        return $this->model->newQuery()
+            ->where('status', 'completed')
+            ->whereDate('created_at', today())
+            ->count();
+    }
+
+    public function getStatsForMonth(string $month): array
+    {
+        return $this->model->newQuery()
+            ->whereRaw("DATE_FORMAT(created_at, '%Y-%m') = ?", [$month])
+            ->selectRaw("
+                COUNT(*) as total,
+                SUM(CASE WHEN status = 'completed' THEN 1 ELSE 0 END) as completed,
+                SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) as failed
+            ")
+            ->first()
+                ?->toArray() ?? ['total' => 0, 'completed' => 0, 'failed' => 0];
     }
 }

@@ -24,7 +24,7 @@ class ProductResource extends Resource
 {
     use Translatable;
 
-    protected static ?string $model = ProductModel::class;
+    protected ?string $model = ProductModel::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedShoppingBag;
 
@@ -52,7 +52,7 @@ class ProductResource extends Resource
 
     public static function getRecordTitle(?Model $record): string
     {
-        if (! $record) {
+        if (!$record) {
             return static::getModelLabel();
         }
 
