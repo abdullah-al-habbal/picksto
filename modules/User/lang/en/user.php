@@ -28,9 +28,19 @@ return [
         'avatar_uploaded' => 'Avatar uploaded successfully',
         'role_updated' => 'User role updated successfully',
         'user_banned' => 'User has been banned',
-        'user_unbanned' => 'User ban has been lifted',
+        'user_unbanned' => 'User has been unbanned',
         'package_activated' => 'Package activated for :days days',
         'account_banned' => 'This account is banned, please contact support',
+    ],
+    'actions' => [
+        'change_role' => 'Change Role',
+        'ban' => 'Ban User',
+        'unban' => 'Unban User',
+        'activate_package' => 'Activate Package',
+    ],
+    'fields' => [
+        'is_banned' => 'Is Banned',
+        'duration_days' => 'Duration (days)',
     ],
     'errors' => [
         'profile_update_failed' => 'Failed to update profile, please try again',

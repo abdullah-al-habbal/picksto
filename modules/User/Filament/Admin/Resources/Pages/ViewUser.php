@@ -6,6 +6,7 @@ namespace Modules\User\Filament\Admin\Resources\Pages;
 
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
+use Modules\User\Filament\Admin\Actions\UserActions;
 use Modules\User\Filament\Admin\Resources\UserResource;
 
 class ViewUser extends ViewRecord
@@ -16,6 +17,9 @@ class ViewUser extends ViewRecord
     {
         return [
             EditAction::make(),
+            UserActions::changeRole(),
+            UserActions::toggleBan(),
+            UserActions::activatePackage(),
         ];
     }
 }

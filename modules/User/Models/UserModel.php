@@ -15,6 +15,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
+use Modules\Subscription\Models\SubscriptionModel;
 use Modules\User\Database\Factories\UserModelFactory;
 
 /**
@@ -140,6 +141,11 @@ final class UserModel extends Authenticatable
     public function getAvatarUrlAttribute(): ?string
     {
         return $this->avatar !== null ? url($this->avatar) : null;
+    }
+
+    public function subscriptions(): HasMany
+    {
+        return $this->hasMany(SubscriptionModel::class, 'user_id');
     }
 
     public function updateLastLogin(): void

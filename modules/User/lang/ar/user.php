@@ -32,6 +32,16 @@ return [
         'package_activated' => 'تم تفعيل الحزمة لمدة :days يوم',
         'account_banned' => 'هذا الحساب محظور، يرجى التواصل مع الدعم',
     ],
+    'actions' => [
+        'change_role' => 'تغيير الدور',
+        'ban' => 'حظر المستخدم',
+        'unban' => 'إلغاء حظر المستخدم',
+        'activate_package' => 'تفعيل حزمة',
+    ],
+    'fields' => [
+        'is_banned' => 'محظور',
+        'duration_days' => 'المدة (أيام)',
+    ],
     'errors' => [
         'profile_update_failed' => 'فشل تحديث البيانات، يرجى المحاولة لاحقاً',
         'avatar_upload_failed' => 'فشل رفع الصورة، يرجى المحاولة لاحقاً',

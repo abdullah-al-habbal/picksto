@@ -22,7 +22,27 @@ return [
         'status_update_failed' => 'Failed to update status',
         'delete_failed' => 'Failed to delete ticket',
     ],
+    'actions' => [
+        'change_status' => 'Change Status',
+        'add_reply' => 'Add Reply',
+        'reply_to_ticket' => 'Reply to Ticket #:id',
+    ],
+    'fields' => [
+        'status' => 'Status',
+        'reply' => 'Reply',
+        'user' => 'User',
+        'subject' => 'Subject',
+        'priority' => 'Priority',
+    ],
+    'statuses' => [
+        'open' => 'Open',
+        'in_progress' => 'In Progress',
+        'closed' => 'Closed',
+        'resolved' => 'Resolved',
+    ],
     'labels' => [
+        'tickets' => 'Tickets',
+        'no_tickets' => 'No tickets found',
         'status_open' => 'Open',
         'status_pending' => 'Pending',
         'status_closed' => 'Closed',

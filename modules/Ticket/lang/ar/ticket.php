@@ -22,7 +22,27 @@ return [
         'status_update_failed' => 'فشل تحديث الحالة',
         'delete_failed' => 'فشل حذف التذكرة',
     ],
+    'actions' => [
+        'change_status' => 'تغيير الحالة',
+        'add_reply' => 'إضافة رد',
+        'reply_to_ticket' => 'رد على التذكرة رقم :id',
+    ],
+    'fields' => [
+        'status' => 'الحالة',
+        'reply' => 'الرد',
+        'user' => 'المستخدم',
+        'subject' => 'الموضوع',
+        'priority' => 'الأولوية',
+    ],
+    'statuses' => [
+        'open' => 'مفتوحة',
+        'in_progress' => 'قيد المعالجة',
+        'closed' => 'مغلقة',
+        'resolved' => 'تم الحل',
+    ],
     'labels' => [
+        'tickets' => 'التذاكر',
+        'no_tickets' => 'لا توجد تذاكر حالياً',
         'status_open' => 'مفتوحة',
         'status_pending' => 'قيد المراجعة',
         'status_closed' => 'مغلقة',

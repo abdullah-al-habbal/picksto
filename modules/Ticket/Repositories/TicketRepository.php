@@ -51,16 +51,18 @@ final class TicketRepository
         return $query->orderBy('created_at', 'desc')->paginate(20);
     }
 
-    public function addReply(int $ticketId, int $userId, bool $isAdmin, string $message): TicketReplyModel
+    public function addReply(int $ticketId, array $data): TicketReplyModel
     {
+        $isAdmin = auth()->user()?->role === 'admin' || auth()->user()?->role === 'supervisor';
+
         $reply = $this->replyModel->newQuery()->create([
             'ticket_id' => $ticketId,
-            'user_id' => $userId,
-            'message' => $message,
-            'is_admin' => $isAdmin,
+            'user_id'   => $data['user_id'],
+            'message'   => $data['content'],
+            'is_admin'  => $isAdmin,
         ]);
 
-        if (! $isAdmin && $ticketId) {
+        if (! $isAdmin) {
             $this->ticketModel->newQuery()->where('id', $ticketId)->update(['status' => 'pending']);
         }
 
@@ -76,10 +78,10 @@ final class TicketRepository
             ->toArray();
     }
 
-    public function updateStatus(int $ticketId): TicketModel
+    public function updateStatus(int $ticketId, string $status): TicketModel
     {
         $ticket = $this->ticketModel->newQuery()->findOrFail($ticketId);
-        $ticket->status = $ticket->status === 'open' ? 'pending' : 'closed';
+        $ticket->status = $status;
         $ticket->save();
 
         return $ticket;
