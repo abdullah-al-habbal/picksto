@@ -25,7 +25,7 @@ final class SubscriptionsRelationManager extends RelationManager
                 TextColumn::make('status')
                     ->label(__('subscriptionrequest::subscriptionrequest.fields.status'))
                     ->badge()
-                    ->color(fn(string $state): string => match ($state) {
+                    ->color(fn (string $state): string => match ($state) {
                         'active' => 'success',
                         'pending' => 'warning',
                         'expired' => 'danger',

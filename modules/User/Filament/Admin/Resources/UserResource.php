@@ -10,6 +10,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Subscription\Filament\Admin\Resources\RelationManagers\SubscriptionsRelationManager;
 use Modules\User\Filament\Admin\Resources\Pages\CreateUser;
 use Modules\User\Filament\Admin\Resources\Pages\EditUser;
 use Modules\User\Filament\Admin\Resources\Pages\ListUsers;
@@ -21,7 +22,7 @@ use Modules\User\Models\UserModel;
 
 class UserResource extends Resource
 {
-    protected ?string $model = UserModel::class;
+    protected static ?string $model = UserModel::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
 
@@ -49,16 +50,16 @@ class UserResource extends Resource
 
     public static function getRecordTitle(?Model $record): string
     {
-        if (!$record) {
+        if (! $record) {
             return static::getModelLabel();
         }
 
-        return $record->name ?? '#' . $record->id;
+        return $record->name ?? '#'.$record->id;
     }
 
     public static function getNavigationBadge(): ?string
     {
-        return (string) cache()->remember('filament.resource.user.count', now()->addMinutes(5), fn() => static::getModel()::count());
+        return (string) cache()->remember('filament.resource.user.count', now()->addMinutes(5), fn () => static::getModel()::count());
     }
 
     public static function getNavigationBadgeColor(): string|array|null
@@ -84,7 +85,7 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            SubscriptionsRelationManager::class,
         ];
     }
 

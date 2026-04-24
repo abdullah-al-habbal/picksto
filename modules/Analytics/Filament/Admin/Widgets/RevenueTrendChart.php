@@ -37,7 +37,7 @@ final class RevenueTrendChart extends ChartWidget
                     'fill' => true,
                 ],
             ],
-            'labels' => array_map(fn($day) => Carbon::parse($day['date'])->format('M d'), $byDay),
+            'labels' => array_map(fn ($day) => Carbon::parse($day['date'])->format('M d'), $byDay),
         ];
     }
 }

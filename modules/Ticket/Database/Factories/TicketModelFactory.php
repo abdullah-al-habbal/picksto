@@ -27,11 +27,11 @@ final class TicketModelFactory extends Factory
 
     public function open(): static
     {
-        return $this->state(fn(array $attributes): array => ['status' => 'open']);
+        return $this->state(fn (array $attributes): array => ['status' => 'open']);
     }
 
     public function highPriority(): static
     {
-        return $this->state(fn(array $attributes): array => ['priority' => 'high']);
+        return $this->state(fn (array $attributes): array => ['priority' => 'high']);
     }
 }

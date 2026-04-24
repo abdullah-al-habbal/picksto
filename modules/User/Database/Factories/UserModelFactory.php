@@ -37,7 +37,7 @@ final class UserModelFactory extends Factory
 
     public function unverified(): static
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'email_verified' => false,
             'phone_verified' => false,
         ]);
@@ -45,7 +45,7 @@ final class UserModelFactory extends Factory
 
     public function admin(): static
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'role' => 'admin',
             'email_verified' => true,
         ]);
@@ -53,7 +53,7 @@ final class UserModelFactory extends Factory
 
     public function supervisor(): static
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'role' => 'supervisor',
             'email_verified' => true,
         ]);
@@ -61,14 +61,14 @@ final class UserModelFactory extends Factory
 
     public function banned(): static
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'is_banned' => true,
         ]);
     }
 
     public function withReferrer(int $referrerId): static
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'referred_by' => $referrerId,
         ]);
     }

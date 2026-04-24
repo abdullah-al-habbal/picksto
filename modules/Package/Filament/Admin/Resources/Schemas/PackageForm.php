@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Package\Filament\Admin\Resources\Schemas;
 
-use Filament\Schemas\Components\TextInput;
 use Filament\Schemas\Components\Textarea;
+use Filament\Schemas\Components\TextInput;
 use Filament\Schemas\Schema;
 
 class PackageForm

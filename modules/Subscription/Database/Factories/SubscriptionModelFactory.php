@@ -33,7 +33,7 @@ final class SubscriptionModelFactory extends Factory
 
     public function active(): static
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'status' => 'active',
             'start_date' => now(),
             'end_date' => now()->addDays(30),
@@ -42,7 +42,7 @@ final class SubscriptionModelFactory extends Factory
 
     public function pending(): static
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'status' => 'pending',
             'start_date' => null,
             'end_date' => null,
@@ -51,7 +51,7 @@ final class SubscriptionModelFactory extends Factory
 
     public function expired(): static
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'status' => 'expired',
             'start_date' => now()->subDays(60),
             'end_date' => now()->subDays(30),
@@ -60,14 +60,14 @@ final class SubscriptionModelFactory extends Factory
 
     public function cancelled(): static
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'status' => 'cancelled',
         ]);
     }
 
     public function withDownloads(int $today, int $month): static
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'downloads_today' => $today,
             'downloads_month' => $month,
         ]);

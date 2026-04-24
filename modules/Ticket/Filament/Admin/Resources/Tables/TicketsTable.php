@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Ticket\Filament\Admin\Resources\Tables;
 
-use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -33,7 +32,7 @@ final class TicketsTable
                 TextColumn::make('status')
                     ->label(__('ticket::ticket.fields.status'))
                     ->badge()
-                    ->color(fn(string $state): string => match ($state) {
+                    ->color(fn (string $state): string => match ($state) {
                         'open' => 'success',
                         'pending' => 'warning',
                         'closed' => 'gray',
@@ -45,7 +44,7 @@ final class TicketsTable
                 TextColumn::make('priority')
                     ->label(__('ticket::ticket.fields.priority'))
                     ->badge()
-                    ->color(fn(string $state): string => match ($state) {
+                    ->color(fn (string $state): string => match ($state) {
                         'high' => 'danger',
                         'medium' => 'warning',
                         'low' => 'success',

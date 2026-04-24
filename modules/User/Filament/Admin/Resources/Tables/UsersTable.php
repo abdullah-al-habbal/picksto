@@ -31,7 +31,7 @@ final class UsersTable
                 TextColumn::make('role')
                     ->label(__('dashboard.resources.user.fields.role'))
                     ->badge()
-                    ->color(fn(string $state): string => match ($state) {
+                    ->color(fn (string $state): string => match ($state) {
                         'admin' => 'danger',
                         'supervisor' => 'warning',
                         'user' => 'success',

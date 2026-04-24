@@ -36,7 +36,7 @@ final class SubscriptionRequestsTable
                 TextColumn::make('status')
                     ->label(__('subscriptionrequest::subscriptionrequest.fields.status'))
                     ->badge()
-                    ->color(fn(string $state): string => match ($state) {
+                    ->color(fn (string $state): string => match ($state) {
                         'pending' => 'warning',
                         'completed' => 'success',
                         'approved' => 'success',

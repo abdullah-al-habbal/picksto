@@ -13,7 +13,7 @@ class ViewProduct extends ViewRecord
 {
     use HasActiveLocaleSwitcher;
 
-    protected string $resource = ProductResource::class;
+    protected static string $resource = ProductResource::class;
 
     protected function getHeaderActions(): array
     {

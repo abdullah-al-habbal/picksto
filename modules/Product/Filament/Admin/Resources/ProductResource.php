@@ -24,7 +24,7 @@ class ProductResource extends Resource
 {
     use Translatable;
 
-    protected ?string $model = ProductModel::class;
+    protected static ?string $model = ProductModel::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedShoppingBag;
 

@@ -18,8 +18,7 @@ final class SubscriptionRepository
         private readonly SubscriptionModel $model,
         private readonly PackageModel $packageModel,
         private readonly UserModel $userModel,
-    ) {
-    }
+    ) {}
 
     public function create(array $data): SubscriptionModel
     {
@@ -103,7 +102,7 @@ final class SubscriptionRepository
     {
         $subscription = $this->getActiveSubscription($userId);
 
-        if (!$subscription) {
+        if (! $subscription) {
             return false;
         }
 
@@ -162,7 +161,7 @@ final class SubscriptionRepository
             ->groupBy('date')
             ->orderBy('date')
             ->get()
-            ->map(fn($item) => [
+            ->map(fn ($item) => [
                 'date' => $item->date,
                 'amount' => (float) $item->total,
             ])

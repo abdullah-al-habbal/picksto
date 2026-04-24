@@ -10,7 +10,7 @@ use Modules\User\Filament\Admin\Resources\UserResource;
 
 class EditUser extends EditRecord
 {
-    protected string $resource = UserResource::class;
+    protected static string $resource = UserResource::class;
 
     protected function getHeaderActions(): array
     {

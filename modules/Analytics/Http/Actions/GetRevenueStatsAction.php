@@ -14,8 +14,7 @@ final class GetRevenueStatsAction
     public function __construct(
         private readonly DashboardStatsService $dashboardStatsService,
         private readonly AnalyticsPresenter $analyticsPresenter,
-    ) {
-    }
+    ) {}
 
     public function __invoke(RevenueStatsRequest $request): JsonResponse
     {

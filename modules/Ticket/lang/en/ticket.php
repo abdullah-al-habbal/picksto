@@ -33,12 +33,18 @@ return [
         'user' => 'User',
         'subject' => 'Subject',
         'priority' => 'Priority',
+        'message' => 'Message',
     ],
     'statuses' => [
         'open' => 'Open',
-        'in_progress' => 'In Progress',
+        'pending' => 'Pending',
         'closed' => 'Closed',
         'resolved' => 'Resolved',
+    ],
+    'priorities' => [
+        'low' => 'Low',
+        'medium' => 'Medium',
+        'high' => 'High',
     ],
     'labels' => [
         'tickets' => 'Tickets',

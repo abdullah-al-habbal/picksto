@@ -27,7 +27,7 @@ final class StatsOverview extends StatsOverviewWidget
             Stat::make(__('analytics::analytics.widgets.stats_overview.today_downloads'), (string) $summary['todayDownloads'])
                 ->icon('heroicon-o-arrow-down-tray')
                 ->color('warning'),
-            Stat::make(__('analytics::analytics.widgets.stats_overview.estimated_revenue'), '$' . number_format($summary['estimatedRevenue'], 2))
+            Stat::make(__('analytics::analytics.widgets.stats_overview.estimated_revenue'), '$'.number_format($summary['estimatedRevenue'], 2))
                 ->icon('heroicon-o-banknotes')
                 ->color('success'),
         ];

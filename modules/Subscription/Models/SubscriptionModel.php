@@ -111,7 +111,7 @@ final class SubscriptionModel extends Model
 
     public function canDownload(): bool
     {
-        if (!$this->isActive()) {
+        if (! $this->isActive()) {
             return false;
         }
 

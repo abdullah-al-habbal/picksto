@@ -21,9 +21,9 @@ final class TicketActions
                 Select::make('status')
                     ->label(__('ticket::fields.status'))
                     ->options([
-                        'open'        => __('ticket::statuses.open'),
+                        'open' => __('ticket::statuses.open'),
                         'in_progress' => __('ticket::statuses.in_progress'),
-                        'closed'      => __('ticket::statuses.closed'),
+                        'closed' => __('ticket::statuses.closed'),
                     ])
                     ->required()
                     ->default(fn ($record) => $record->status),

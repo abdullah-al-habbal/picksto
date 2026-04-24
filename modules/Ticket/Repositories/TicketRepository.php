@@ -57,9 +57,9 @@ final class TicketRepository
 
         $reply = $this->replyModel->newQuery()->create([
             'ticket_id' => $ticketId,
-            'user_id'   => $data['user_id'],
-            'message'   => $data['content'],
-            'is_admin'  => $isAdmin,
+            'user_id' => $data['user_id'],
+            'message' => $data['content'],
+            'is_admin' => $isAdmin,
         ]);
 
         if (! $isAdmin) {

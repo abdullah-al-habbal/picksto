@@ -13,8 +13,7 @@ final class GetDownloadStatsAction
     public function __construct(
         private readonly DashboardStatsService $dashboardStatsService,
         private readonly AnalyticsPresenter $analyticsPresenter,
-    ) {
-    }
+    ) {}
 
     public function __invoke(): JsonResponse
     {

@@ -1,4 +1,5 @@
 <?php
+
 // picksto-laravel-service\modules\User\Filament\Admin\Resources\Schemas\UserForm.php
 declare(strict_types=1);
 
@@ -43,8 +44,8 @@ final class UserForm
                 TextInput::make('password')
                     ->label(__('dashboard.resources.user.fields.password'))
                     ->password()
-                    ->dehydrated(fn($state) => filled($state))
-                    ->required(fn(string $context): bool => $context === 'create')
+                    ->dehydrated(fn ($state) => filled($state))
+                    ->required(fn (string $context): bool => $context === 'create')
                     ->maxLength(255),
             ]);
     }

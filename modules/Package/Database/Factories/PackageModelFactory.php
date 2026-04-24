@@ -36,28 +36,28 @@ final class PackageModelFactory extends Factory
 
     public function active(): static
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'is_active' => true,
         ]);
     }
 
     public function inactive(): static
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'is_active' => false,
         ]);
     }
 
     public function freepikOnly(): static
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'allowed_sites' => json_encode(['Freepik']),
         ]);
     }
 
     public function allSites(): static
     {
-        return $this->state(fn(array $attributes): array => [
+        return $this->state(fn (array $attributes): array => [
             'allowed_sites' => json_encode(['All']),
         ]);
     }

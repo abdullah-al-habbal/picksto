@@ -15,8 +15,7 @@ final class DashboardStatsService
         private readonly UserRepository $userRepository,
         private readonly SubscriptionRepository $subscriptionRepository,
         private readonly DownloadRepository $downloadRepository,
-    ) {
-    }
+    ) {}
 
     public function getOverviewStats(): array
     {
@@ -36,6 +35,19 @@ final class DashboardStatsService
                     'estimatedRevenue' => $totalRevenue,
                 ],
                 'packagePerformance' => $packagePerformance,
+                'trafficSources' => [
+                    ['source' => 'Direct', 'count' => 0],
+                    ['source' => 'Search', 'count' => 0],
+                    ['source' => 'Social', 'count' => 0],
+                ],
+                'topCountries' => [
+                    ['country' => 'SA', 'count' => 0],
+                    ['country' => 'EG', 'count' => 0],
+                    ['country' => 'US', 'count' => 0],
+                ],
+                'dailyVisits' => [
+                    ['date' => now()->format('Y-m-d'), 'count' => 0],
+                ],
             ];
         });
     }
