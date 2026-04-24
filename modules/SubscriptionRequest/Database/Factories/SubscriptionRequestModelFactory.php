@@ -8,10 +8,13 @@ namespace Modules\SubscriptionRequest\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Package\Models\PackageModel;
+use Modules\SubscriptionRequest\Models\SubscriptionRequestModel;
 use Modules\User\Models\UserModel;
 
 final class SubscriptionRequestModelFactory extends Factory
 {
+    protected $model = SubscriptionRequestModel::class;
+
     public function definition(): array
     {
         return [

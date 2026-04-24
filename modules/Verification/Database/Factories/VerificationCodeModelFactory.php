@@ -6,9 +6,12 @@ namespace Modules\Verification\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\User\Models\UserModel;
+use Modules\Verification\Models\VerificationCodeModel;
 
 final class VerificationCodeModelFactory extends Factory
 {
+    protected $model = VerificationCodeModel::class;
+
     public function definition(): array
     {
         return [
@@ -23,11 +26,11 @@ final class VerificationCodeModelFactory extends Factory
 
     public function used(): static
     {
-        return $this->state(fn (array $attributes): array => ['is_used' => true]);
+        return $this->state(fn(array $attributes): array => ['is_used' => true]);
     }
 
     public function expired(): static
     {
-        return $this->state(fn (array $attributes): array => ['expires_at' => now()->subMinutes(5)]);
+        return $this->state(fn(array $attributes): array => ['expires_at' => now()->subMinutes(5)]);
     }
 }

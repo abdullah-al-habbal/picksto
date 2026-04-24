@@ -7,9 +7,12 @@ declare(strict_types=1);
 namespace Modules\Settings\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Settings\Models\SettingModel;
 
 final class SettingModelFactory extends Factory
 {
+    protected $model = SettingModel::class;
+
     public function definition(): array
     {
         return [
@@ -22,7 +25,7 @@ final class SettingModelFactory extends Factory
 
     public function siteConfig(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $attributes): array => [
             'key_name' => 'site_config',
             'group' => 'site',
             'value' => json_encode([

@@ -36,6 +36,8 @@ final class SubscriptionModel extends Model
 {
     use HasFactory;
 
+    protected $table = 'subscriptions';
+
     protected $fillable = [
         'user_id',
         'package_id',
@@ -109,7 +111,7 @@ final class SubscriptionModel extends Model
 
     public function canDownload(): bool
     {
-        if (! $this->isActive()) {
+        if (!$this->isActive()) {
             return false;
         }
 

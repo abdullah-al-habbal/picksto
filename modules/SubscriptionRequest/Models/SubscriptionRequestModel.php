@@ -40,6 +40,8 @@ final class SubscriptionRequestModel extends Model
 {
     use HasFactory;
 
+    protected $table = 'subscription_requests';
+
     protected $fillable = [
         'user_id',
         'package_id',

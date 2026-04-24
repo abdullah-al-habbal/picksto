@@ -31,6 +31,8 @@ final class DownloadModel extends Model
 {
     use HasFactory;
 
+    protected $table = 'downloads';
+
     protected $fillable = [
         'user_id',
         'original_url',

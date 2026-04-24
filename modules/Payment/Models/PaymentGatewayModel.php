@@ -27,6 +27,8 @@ final class PaymentGatewayModel extends Model
 {
     use HasFactory;
 
+    protected $table = 'payment_gateways';
+
     protected $fillable = [
         'name',
         'type',

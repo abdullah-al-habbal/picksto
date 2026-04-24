@@ -7,6 +7,7 @@ use App\Providers\Filament\AdminPanelProvider;
 use App\Providers\ScrambleServiceProvider;
 use Modules\Analytics\Providers\AnalyticsServiceProvider;
 use Modules\Currency\Providers\CurrencyServiceProvider;
+use Modules\Download\Providers\DownloadServiceProvider;
 use Modules\LemonSqueezy\Providers\LemonSqueezyServiceProvider;
 use Modules\Package\Providers\PackageServiceProvider;
 use Modules\Payment\Providers\PaymentServiceProvider;
@@ -27,6 +28,7 @@ return [
     ScrambleServiceProvider::class,
     AnalyticsServiceProvider::class,
     CurrencyServiceProvider::class,
+    DownloadServiceProvider::class,
     LemonSqueezyServiceProvider::class,
     PackageServiceProvider::class,
     PaymentServiceProvider::class,

@@ -32,6 +32,8 @@ final class TicketModel extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'tickets';
+
     protected $fillable = [
         'user_id',
         'subject',

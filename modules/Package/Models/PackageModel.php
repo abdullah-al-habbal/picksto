@@ -35,6 +35,8 @@ final class PackageModel extends Model
     use HasFactory;
     use HasTranslations;
 
+    protected $table = 'packages';
+
     protected $fillable = [
         'name',
         'description',

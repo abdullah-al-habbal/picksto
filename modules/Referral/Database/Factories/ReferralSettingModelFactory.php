@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace Modules\Referral\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Referral\Models\ReferralSettingModel;
 
 final class ReferralSettingModelFactory extends Factory
 {
+    protected $model = ReferralSettingModel::class;
+
     public function definition(): array
     {
         return [

@@ -7,9 +7,12 @@ declare(strict_types=1);
 namespace Modules\Payment\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Payment\Models\PaymentGatewayModel;
 
 final class PaymentGatewayModelFactory extends Factory
 {
+    protected $model = PaymentGatewayModel::class;
+
     public function definition(): array
     {
         return [
@@ -24,11 +27,11 @@ final class PaymentGatewayModelFactory extends Factory
 
     public function active(): static
     {
-        return $this->state(fn (array $attributes): array => ['is_active' => true]);
+        return $this->state(fn(array $attributes): array => ['is_active' => true]);
     }
 
     public function manual(): static
     {
-        return $this->state(fn (array $attributes): array => ['type' => 'manual']);
+        return $this->state(fn(array $attributes): array => ['type' => 'manual']);
     }
 }

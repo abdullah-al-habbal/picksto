@@ -38,8 +38,8 @@ final class SubscriptionSeeder extends Seeder
             foreach ($users as $user) {
                 SubscriptionModel::factory()
                     ->active()
-                    ->for($user)
-                    ->for($packages->random())
+                    ->for($user, 'user')
+                    ->for($packages->random(), 'package')
                     ->create();
             }
         }

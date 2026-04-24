@@ -7,9 +7,12 @@ declare(strict_types=1);
 namespace Modules\Currency\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Currency\Models\CurrencySettingModel;
 
 final class CurrencySettingModelFactory extends Factory
 {
+    protected $model = CurrencySettingModel::class;
+
     public function definition(): array
     {
         return [
@@ -26,7 +29,7 @@ final class CurrencySettingModelFactory extends Factory
 
     public function usd(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $attributes): array => [
             'code' => 'USD',
             'symbol' => '$',
             'name' => 'US Dollar',
@@ -36,7 +39,7 @@ final class CurrencySettingModelFactory extends Factory
 
     public function eur(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $attributes): array => [
             'code' => 'EUR',
             'symbol' => '€',
             'name' => 'Euro',

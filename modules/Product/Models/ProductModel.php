@@ -30,6 +30,8 @@ final class ProductModel extends Model
     use HasFactory;
     use HasTranslations;
 
+    protected $table = 'products';
+
     protected $fillable = [
         'name',
         'description',

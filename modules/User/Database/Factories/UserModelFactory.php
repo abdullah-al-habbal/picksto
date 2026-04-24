@@ -9,9 +9,12 @@ namespace Modules\User\Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Modules\User\Models\UserModel;
 
 final class UserModelFactory extends Factory
 {
+    protected $model = UserModel::class;
+
     public function definition(): array
     {
         return [
@@ -34,7 +37,7 @@ final class UserModelFactory extends Factory
 
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $attributes): array => [
             'email_verified' => false,
             'phone_verified' => false,
         ]);
@@ -42,7 +45,7 @@ final class UserModelFactory extends Factory
 
     public function admin(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $attributes): array => [
             'role' => 'admin',
             'email_verified' => true,
         ]);
@@ -50,7 +53,7 @@ final class UserModelFactory extends Factory
 
     public function supervisor(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $attributes): array => [
             'role' => 'supervisor',
             'email_verified' => true,
         ]);
@@ -58,14 +61,14 @@ final class UserModelFactory extends Factory
 
     public function banned(): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $attributes): array => [
             'is_banned' => true,
         ]);
     }
 
     public function withReferrer(int $referrerId): static
     {
-        return $this->state(fn (array $attributes): array => [
+        return $this->state(fn(array $attributes): array => [
             'referred_by' => $referrerId,
         ]);
     }
