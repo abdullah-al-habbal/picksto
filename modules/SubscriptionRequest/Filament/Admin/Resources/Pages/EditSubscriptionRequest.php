@@ -4,19 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\SubscriptionRequest\Filament\Admin\Resources\Pages;
 
-use Filament\Resources\Pages\ViewRecord;
-use Modules\SubscriptionRequest\Filament\Admin\Actions\SubscriptionRequestActions;
+use Filament\Actions\DeleteAction;
+use Filament\Resources\Pages\EditRecord;
 use Modules\SubscriptionRequest\Filament\Admin\Resources\SubscriptionRequestResource;
 
-final class ViewSubscriptionRequest extends ViewRecord
+class EditSubscriptionRequest extends EditRecord
 {
     protected static string $resource = SubscriptionRequestResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            SubscriptionRequestActions::approve(),
-            SubscriptionRequestActions::reject(),
+            DeleteAction::make(),
         ];
     }
 }

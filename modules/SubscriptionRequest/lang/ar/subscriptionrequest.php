@@ -10,8 +10,20 @@ return [
     'fields' => [
         'user' => 'المستخدم',
         'package' => 'الحزمة',
+        'gateway' => 'بوابة الدفع',
         'amount' => 'المبلغ',
         'status' => 'الحالة',
+        'transaction_id' => 'رقم العملية',
+        'user_notes' => 'ملاحظات المستخدم',
+        'admin_notes' => 'ملاحظات المسؤول',
+        'approved_by' => 'تمت الموافقة بواسطة',
+        'approved_at' => 'تاريخ الموافقة',
+    ],
+    'statuses' => [
+        'pending' => 'قيد الانتظار',
+        'approved' => 'تمت الموافقة',
+        'rejected' => 'مرفوض',
+        'completed' => 'مكتمل',
     ],
     'messages' => [
         'request_approved' => 'تمت الموافقة على طلب الاشتراك.',
@@ -19,6 +31,8 @@ return [
     ],
     'labels' => [
         'requests' => 'طلبات الاشتراك',
+        'plural' => 'طلبات الاشتراك',
+        'singular' => 'طلب اشتراك',
         'no_requests' => 'لا توجد طلبات اشتراك حالياً',
     ],
 ];

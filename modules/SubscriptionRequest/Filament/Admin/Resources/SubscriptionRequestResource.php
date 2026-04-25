@@ -8,6 +8,9 @@ use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
+use Modules\SubscriptionRequest\Filament\Admin\Resources\Pages\CreateSubscriptionRequest;
+use Modules\SubscriptionRequest\Filament\Admin\Resources\Pages\EditSubscriptionRequest;
 use Modules\SubscriptionRequest\Filament\Admin\Resources\Pages\ListSubscriptionRequests;
 use Modules\SubscriptionRequest\Filament\Admin\Resources\Pages\ViewSubscriptionRequest;
 use Modules\SubscriptionRequest\Filament\Admin\Resources\Schemas\SubscriptionRequestForm;
@@ -31,6 +34,35 @@ final class SubscriptionRequestResource extends Resource
         return __('subscriptionrequest::subscriptionrequest.labels.requests');
     }
 
+    public static function getModelLabel(): string
+    {
+        return __('subscriptionrequest::subscriptionrequest.labels.singular');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('subscriptionrequest::subscriptionrequest.labels.plural');
+    }
+
+    public static function getRecordTitle(?Model $record): string
+    {
+        if (! $record) {
+            return static::getModelLabel();
+        }
+
+        return '#' . $record->id . ' – ' . ($record->user?->name ?? '');
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return (string) cache()->remember('filament.resource.subreq.count', now()->addMinutes(5), fn () => static::getModel()::count());
+    }
+
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        return 'danger';
+    }
+
     public static function form(Schema $schema): Schema
     {
         return SubscriptionRequestForm::configure($schema);
@@ -50,7 +82,9 @@ final class SubscriptionRequestResource extends Resource
     {
         return [
             'index' => ListSubscriptionRequests::route('/'),
+            'create' => CreateSubscriptionRequest::route('/create'),
             'view' => ViewSubscriptionRequest::route('/{record}'),
+            'edit' => EditSubscriptionRequest::route('/{record}/edit'),
         ];
     }
 }

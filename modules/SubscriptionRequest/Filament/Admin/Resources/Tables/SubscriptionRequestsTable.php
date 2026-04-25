@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\SubscriptionRequest\Filament\Admin\Resources\Tables;
 
+use Filament\Actions\DeleteAction;
+use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Modules\SubscriptionRequest\Filament\Admin\Actions\SubscriptionRequestActions;
 
@@ -36,7 +39,7 @@ final class SubscriptionRequestsTable
                 TextColumn::make('status')
                     ->label(__('subscriptionrequest::subscriptionrequest.fields.status'))
                     ->badge()
-                    ->color(fn (string $state): string => match ($state) {
+                    ->color(fn(string $state): string => match ($state) {
                         'pending' => 'warning',
                         'completed' => 'success',
                         'approved' => 'success',
@@ -50,10 +53,21 @@ final class SubscriptionRequestsTable
                     ->dateTime()
                     ->sortable(),
             ])
+            ->filters([
+                SelectFilter::make('status')
+                    ->options([
+                        'pending' => __('subscriptionrequest::subscriptionrequest.statuses.pending'),
+                        'approved' => __('subscriptionrequest::subscriptionrequest.statuses.approved'),
+                        'rejected' => __('subscriptionrequest::subscriptionrequest.statuses.rejected'),
+                        'completed' => __('subscriptionrequest::subscriptionrequest.statuses.completed'),
+                    ]),
+            ])
             ->recordActions([
                 ViewAction::make(),
+                EditAction::make(),
                 SubscriptionRequestActions::approve(),
                 SubscriptionRequestActions::reject(),
+                DeleteAction::make(),
             ])
             ->emptyStateHeading(__('subscriptionrequest::subscriptionrequest.labels.no_requests'));
     }

@@ -31,6 +31,8 @@ return [
     ],
     'labels' => [
         'requests' => 'Subscription Requests',
+        'plural' => 'Subscription Requests',
+        'singular' => 'Subscription Request',
         'no_requests' => 'No subscription requests found',
     ],
 ];
