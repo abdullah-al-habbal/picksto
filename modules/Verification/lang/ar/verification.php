@@ -30,4 +30,28 @@ return [
         'test_email_required' => 'يرجى إدخال بريد إلكتروني للاختبار',
         'test_phone_required' => 'يرجى إدخال رقم هاتف للاختبار',
     ],
+    'labels' => [
+        'codes' => 'رموز التحقق',
+        'plural' => 'رموز التحقق',
+        'singular' => 'رمز تحقق',
+        'status' => 'الحالة',
+        'type' => 'النوع',
+    ],
+    'fields' => [
+        'user' => 'المستخدم',
+        'type' => 'النوع',
+        'code' => 'الرمز',
+        'status' => 'الحالة',
+        'expires_at' => 'تاريخ الانتهاء',
+        'verified_at' => 'تاريخ التحقق',
+    ],
+    'types' => [
+        'email' => 'بريد إلكتروني',
+        'whatsapp' => 'واتساب',
+    ],
+    'statuses' => [
+        'pending' => 'قيد الانتظار',
+        'verified' => 'تم التحقق',
+        'expired' => 'منتهي',
+    ],
 ];

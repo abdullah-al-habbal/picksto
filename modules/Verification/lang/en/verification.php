@@ -30,4 +30,28 @@ return [
         'test_email_required' => 'Please provide an email for testing',
         'test_phone_required' => 'Please provide a phone number for testing',
     ],
+    'labels' => [
+        'codes' => 'Verification Codes',
+        'plural' => 'Verification Codes',
+        'singular' => 'Verification Code',
+        'status' => 'Status',
+        'type' => 'Type',
+    ],
+    'fields' => [
+        'user' => 'User',
+        'type' => 'Type',
+        'code' => 'Code',
+        'status' => 'Status',
+        'expires_at' => 'Expires At',
+        'verified_at' => 'Verified At',
+    ],
+    'types' => [
+        'email' => 'Email',
+        'whatsapp' => 'WhatsApp',
+    ],
+    'statuses' => [
+        'pending' => 'Pending',
+        'verified' => 'Verified',
+        'expired' => 'Expired',
+    ],
 ];
