@@ -1,7 +1,5 @@
 <?php
 
-// Payment/lang/ar/payment.php
-
 declare(strict_types=1);
 
 return [
@@ -38,6 +36,9 @@ return [
         'request_reject_failed' => 'فشل رفض الطلب',
     ],
     'labels' => [
+        'gateways' => 'بوابات الدفع',
+        'plural' => 'بوابات الدفع',
+        'singular' => 'بوابة دفع',
         'gateway' => 'بوابة الدفع',
         'type' => 'النوع',
         'status' => 'الحالة',
@@ -49,6 +50,14 @@ return [
         'payment_gateways' => 'بوابات الدفع',
         'request_subscription' => 'طلب اشتراك',
     ],
+    'fields' => [
+        'name' => 'الاسم',
+        'type' => 'النوع',
+        'status' => 'الحالة',
+        'is_active' => 'نشط',
+        'description' => 'الوصف',
+        'config' => 'الإعدادات',
+    ],
     'types' => [
         'stripe' => 'Stripe',
         'paypal' => 'PayPal',
@@ -56,9 +65,9 @@ return [
         'lemonsqueezy' => 'Lemon Squeezy',
     ],
     'statuses' => [
-        'pending' => '🟡 قيد المراجعة',
-        'approved' => '🟢 معتمد',
-        'rejected' => '🔴 مرفوض',
-        'completed' => '✅ مكتمل',
+        'pending' => 'قيد المراجعة',
+        'approved' => 'معتمد',
+        'rejected' => 'مرفوض',
+        'completed' => 'مكتمل',
     ],
 ];

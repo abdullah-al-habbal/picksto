@@ -1,7 +1,5 @@
 <?php
 
-// Payment/lang/en/payment.php
-
 declare(strict_types=1);
 
 return [
@@ -38,6 +36,9 @@ return [
         'request_reject_failed' => 'Failed to reject request',
     ],
     'labels' => [
+        'gateways' => 'Payment Gateways',
+        'plural' => 'Payment Gateways',
+        'singular' => 'Payment Gateway',
         'gateway' => 'Payment Gateway',
         'type' => 'Type',
         'status' => 'Status',
@@ -49,6 +50,14 @@ return [
         'payment_gateways' => 'Payment Gateways',
         'request_subscription' => 'Request Subscription',
     ],
+    'fields' => [
+        'name' => 'Name',
+        'type' => 'Type',
+        'status' => 'Status',
+        'is_active' => 'Is Active',
+        'description' => 'Description',
+        'config' => 'Configuration',
+    ],
     'types' => [
         'stripe' => 'Stripe',
         'paypal' => 'PayPal',
@@ -56,9 +65,9 @@ return [
         'lemonsqueezy' => 'Lemon Squeezy',
     ],
     'statuses' => [
-        'pending' => '🟡 Pending',
-        'approved' => '🟢 Approved',
-        'rejected' => '🔴 Rejected',
-        'completed' => '✅ Completed',
+        'pending' => 'Pending',
+        'approved' => 'Approved',
+        'rejected' => 'Rejected',
+        'completed' => 'Completed',
     ],
 ];
