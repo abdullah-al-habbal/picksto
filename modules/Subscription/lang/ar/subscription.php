@@ -1,7 +1,5 @@
 <?php
 
-// modules/Subscription/lang/ar/subscription.php
-
 declare(strict_types=1);
 
 return [
@@ -27,6 +25,9 @@ return [
         'user_not_found' => 'المستخدم غير موجود',
     ],
     'labels' => [
+        'subscriptions' => 'الاشتراكات',
+        'plural' => 'الاشتراكات',
+        'singular' => 'اشتراك',
         'package' => 'الباقة',
         'status' => 'الحالة',
         'status_active' => 'نشط',
@@ -47,10 +48,21 @@ return [
         'purchase_package' => 'شراء باقة',
         'renew_subscription' => 'تجديد الاشتراك',
     ],
+    'fields' => [
+        'user' => 'المستخدم',
+        'package' => 'الباقة',
+        'status' => 'الحالة',
+        'start_date' => 'تاريخ البدء',
+        'end_date' => 'تاريخ الانتهاء',
+        'downloads_today' => 'تنزيلات اليوم',
+        'downloads_month' => 'تنزيلات الشهر',
+        'payment_method' => 'طريقة الدفع',
+        'transaction_id' => 'رقم المعاملة',
+    ],
     'statuses' => [
-        'active' => '🟢 نشط',
-        'pending' => '🟡 قيد المراجعة',
-        'expired' => '🔴 منتهي',
-        'cancelled' => '⚪ ملغي',
+        'active' => 'نشط',
+        'pending' => 'قيد المراجعة',
+        'expired' => 'منتهي',
+        'cancelled' => 'ملغي',
     ],
 ];

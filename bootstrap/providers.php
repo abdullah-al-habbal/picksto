@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Providers\ApplicationServiceProvider;
 use App\Providers\Filament\AdminPanelProvider;
+use App\Providers\Filament\ClientPanelProvider;
 use App\Providers\ScrambleServiceProvider;
 use Modules\Analytics\Providers\AnalyticsServiceProvider;
 use Modules\Currency\Providers\CurrencyServiceProvider;
@@ -25,6 +26,7 @@ use Modules\Verification\Providers\VerificationServiceProvider;
 return [
     ApplicationServiceProvider::class,
     AdminPanelProvider::class,
+    ClientPanelProvider::class,
     ScrambleServiceProvider::class,
     AnalyticsServiceProvider::class,
     CurrencyServiceProvider::class,

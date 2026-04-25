@@ -1,7 +1,5 @@
 <?php
 
-// modules/Subscription/lang/en/subscription.php
-
 declare(strict_types=1);
 
 return [
@@ -27,6 +25,9 @@ return [
         'user_not_found' => 'User not found',
     ],
     'labels' => [
+        'subscriptions' => 'Subscriptions',
+        'plural' => 'Subscriptions',
+        'singular' => 'Subscription',
         'package' => 'Package',
         'status' => 'Status',
         'status_active' => 'Active',
@@ -47,10 +48,21 @@ return [
         'purchase_package' => 'Purchase Package',
         'renew_subscription' => 'Renew Subscription',
     ],
+    'fields' => [
+        'user' => 'User',
+        'package' => 'Package',
+        'status' => 'Status',
+        'start_date' => 'Start Date',
+        'end_date' => 'End Date',
+        'downloads_today' => 'Downloads Today',
+        'downloads_month' => 'Downloads This Month',
+        'payment_method' => 'Payment Method',
+        'transaction_id' => 'Transaction ID',
+    ],
     'statuses' => [
-        'active' => '🟢 Active',
-        'pending' => '🟡 Pending',
-        'expired' => '🔴 Expired',
-        'cancelled' => '⚪ Cancelled',
+        'active' => 'Active',
+        'pending' => 'Pending',
+        'expired' => 'Expired',
+        'cancelled' => 'Cancelled',
     ],
 ];
