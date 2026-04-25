@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Ticket\Filament\Admin\Resources\Tables;
 
+use Filament\Actions\DeleteAction;
+use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Modules\Ticket\Filament\Admin\Actions\TicketActions;
 
@@ -57,10 +60,27 @@ final class TicketsTable
                     ->dateTime()
                     ->sortable(),
             ])
+            ->filters([
+                SelectFilter::make('status')
+                    ->options([
+                        'open' => __('ticket::ticket.statuses.open'),
+                        'pending' => __('ticket::ticket.statuses.pending'),
+                        'closed' => __('ticket::ticket.statuses.closed'),
+                        'resolved' => __('ticket::ticket.statuses.resolved'),
+                    ]),
+                SelectFilter::make('priority')
+                    ->options([
+                        'low' => __('ticket::ticket.priorities.low'),
+                        'medium' => __('ticket::ticket.priorities.medium'),
+                        'high' => __('ticket::ticket.priorities.high'),
+                    ]),
+            ])
             ->recordActions([
                 ViewAction::make(),
+                EditAction::make(),
                 TicketActions::changeStatus(),
                 TicketActions::addReply(),
+                DeleteAction::make(),
             ])
             ->emptyStateHeading(__('ticket::ticket.labels.no_tickets'));
     }

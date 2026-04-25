@@ -13,7 +13,8 @@ final class GetTicketsStatsAction
 {
     public function __construct(
         private readonly TicketRepository $ticketRepository,
-    ) {}
+    ) {
+    }
 
     public function __invoke(): JsonResponse
     {

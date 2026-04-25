@@ -48,6 +48,8 @@ return [
     ],
     'labels' => [
         'tickets' => 'Tickets',
+        'plural' => 'Tickets',
+        'singular' => 'Ticket',
         'no_tickets' => 'No tickets found',
         'status_open' => 'Open',
         'status_pending' => 'Pending',

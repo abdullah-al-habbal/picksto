@@ -7,7 +7,6 @@ use Modules\Analytics\Http\Actions\GetAnalyticsOverviewAction;
 use Modules\Analytics\Http\Actions\GetDownloadStatsAction;
 use Modules\Analytics\Http\Actions\GetRevenueStatsAction;
 
-// Admin routes only - exact Node.js mapping
 Route::middleware(['auth', 'role:admin'])->prefix('admin/analytics')->name('admin.analytics.')->group(static function (): void {
     Route::get('/', GetAnalyticsOverviewAction::class)->name('index');
     Route::get('revenue', GetRevenueStatsAction::class)->name('revenue');

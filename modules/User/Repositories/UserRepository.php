@@ -9,6 +9,7 @@ namespace Modules\User\Repositories;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Modules\Subscription\Services\SubscriptionService;
 use Modules\User\Models\UserModel;
 
 final class UserRepository

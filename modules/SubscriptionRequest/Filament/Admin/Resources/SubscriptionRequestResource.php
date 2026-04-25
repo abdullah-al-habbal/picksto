@@ -6,6 +6,7 @@ namespace Modules\SubscriptionRequest\Filament\Admin\Resources;
 
 use BackedEnum;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use Modules\SubscriptionRequest\Filament\Admin\Resources\Pages\ListSubscriptionRequests;
 use Modules\SubscriptionRequest\Filament\Admin\Resources\Pages\ViewSubscriptionRequest;

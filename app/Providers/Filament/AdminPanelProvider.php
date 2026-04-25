@@ -33,6 +33,7 @@ final class AdminPanelProvider extends PanelProvider
             ->id(config('panels.admin.id', 'admin'))
             ->path(config('panels.admin.path', 'admin'))
             ->login()
+            ->profile(\Modules\User\Filament\Admin\Pages\EditProfile::class)
             ->colors([
                 'primary' => Color::Amber,
             ])

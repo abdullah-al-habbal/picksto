@@ -6,7 +6,11 @@ namespace Modules\Ticket\Filament\Admin\Resources;
 
 use BackedEnum;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
+use Modules\Ticket\Filament\Admin\Resources\Pages\CreateTicket;
+use Modules\Ticket\Filament\Admin\Resources\Pages\EditTicket;
 use Modules\Ticket\Filament\Admin\Resources\Pages\ListTickets;
 use Modules\Ticket\Filament\Admin\Resources\Pages\ViewTicket;
 use Modules\Ticket\Filament\Admin\Resources\RelationManagers\RepliesRelationManager;
@@ -29,6 +33,35 @@ final class TicketResource extends Resource
     public static function getNavigationLabel(): string
     {
         return __('ticket::ticket.labels.tickets');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('ticket::ticket.labels.singular');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('ticket::ticket.labels.plural');
+    }
+
+    public static function getRecordTitle(?Model $record): string
+    {
+        if (! $record) {
+            return static::getModelLabel();
+        }
+
+        return '#' . $record->id . ' – ' . ($record->subject ?? '');
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return (string) cache()->remember('filament.resource.ticket.count', now()->addMinutes(5), fn () => static::getModel()::count());
+    }
+
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        return 'warning';
     }
 
     public static function form(Schema $schema): Schema
@@ -57,7 +90,9 @@ final class TicketResource extends Resource
     {
         return [
             'index' => ListTickets::route('/'),
+            'create' => CreateTicket::route('/create'),
             'view' => ViewTicket::route('/{record}'),
+            'edit' => EditTicket::route('/{record}/edit'),
         ];
     }
 }

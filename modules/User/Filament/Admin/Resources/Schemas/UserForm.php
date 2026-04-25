@@ -5,6 +5,7 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Admin\Resources\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -41,11 +42,27 @@ final class UserForm
                     ])
                     ->required(),
 
+                FileUpload::make('avatar')
+                    ->label(__('dashboard.resources.user.fields.avatar'))
+                    ->image()
+                    ->directory('avatars')
+                    ->disk('public')
+                    ->avatar()
+                    ->imageEditor(),
+
+                TextInput::make('profession')
+                    ->label(__('dashboard.resources.user.fields.profession'))
+                    ->maxLength(255),
+
+                TextInput::make('company_size')
+                    ->label(__('dashboard.resources.user.fields.company_size'))
+                    ->maxLength(255),
+
                 TextInput::make('password')
                     ->label(__('dashboard.resources.user.fields.password'))
                     ->password()
-                    ->dehydrated(fn ($state) => filled($state))
-                    ->required(fn (string $context): bool => $context === 'create')
+                    ->dehydrated(fn($state) => filled($state))
+                    ->required(fn(string $context): bool => $context === 'create')
                     ->maxLength(255),
             ]);
     }

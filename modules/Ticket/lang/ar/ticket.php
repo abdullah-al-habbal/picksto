@@ -42,6 +42,8 @@ return [
     ],
     'labels' => [
         'tickets' => 'التذاكر',
+        'plural' => 'التذاكر',
+        'singular' => 'تذكرة',
         'no_tickets' => 'لا توجد تذاكر حالياً',
         'status_open' => 'مفتوحة',
         'status_pending' => 'قيد المراجعة',
