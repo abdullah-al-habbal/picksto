@@ -1,7 +1,5 @@
 <?php
 
-// Settings/lang/ar/settings.php
-
 declare(strict_types=1);
 
 return [
@@ -20,11 +18,19 @@ return [
         'update_failed' => 'فشل تحديث الإعدادات',
     ],
     'labels' => [
+        'settings' => 'الإعدادات',
+        'plural' => 'الإعدادات',
+        'singular' => 'إعداد',
         'site_name' => 'اسم الموقع',
         'site_description' => 'وصف الموقع',
         'logo' => 'الشعار',
         'favicon' => 'الأيقونة',
         'botBrowserVisible' => 'إظهار متصفح البوت',
         'download_providers' => 'مزودو التنزيل',
+    ],
+    'fields' => [
+        'key' => 'المفتاح',
+        'value' => 'القيمة',
+        'group' => 'المجموعة',
     ],
 ];

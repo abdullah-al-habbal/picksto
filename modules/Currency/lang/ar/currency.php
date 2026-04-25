@@ -1,7 +1,5 @@
 <?php
 
-// Currency/lang/ar/currency.php
-
 declare(strict_types=1);
 
 return [
@@ -20,6 +18,9 @@ return [
         'update_failed' => 'فشل تحديث إعدادات العملة',
     ],
     'labels' => [
+        'currencies' => 'العملات',
+        'plural' => 'العملات',
+        'singular' => 'عملة',
         'code' => 'رمز العملة',
         'symbol' => 'الرمز',
         'name' => 'اسم العملة',
@@ -30,5 +31,16 @@ return [
         'spaceBetween' => 'مسافة بين الرمز والرقم',
         'before' => 'قبل',
         'after' => 'بعد',
+    ],
+    'fields' => [
+        'code' => 'الرمز الدولي',
+        'symbol' => 'الرمز',
+        'name' => 'الاسم',
+        'decimal_places' => 'عدد الكسور',
+        'decimal_separator' => 'فاصل الكسور',
+        'thousands_separator' => 'فاصل الآلاف',
+        'symbol_position' => 'موضع الرمز',
+        'space_between' => 'مسافة بين الرمز والرقم',
+        'is_active' => 'نشط',
     ],
 ];
