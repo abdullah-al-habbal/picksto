@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Product\Filament\Admin\Resources\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 
 final class ProductsTable
@@ -17,23 +18,22 @@ final class ProductsTable
     {
         return $table
             ->columns([
+                ImageColumn::make('image')
+                    ->label(__('product::product.fields.image')),
+
                 TextColumn::make('name')
-                    ->label(__('dashboard.resources.product.fields.name'))
+                    ->label(__('product::product.fields.name'))
                     ->searchable()
                     ->sortable(),
 
                 TextColumn::make('price')
-                    ->label(__('dashboard.resources.product.fields.price'))
-                    ->money('SAR')
+                    ->label(__('product::product.fields.price'))
+                    ->money('USD')
                     ->sortable(),
 
-                ToggleColumn::make('is_active')
-                    ->label(__('dashboard.resources.product.fields.is_active'))
-                    ->sortable(),
-
-                TextColumn::make('sort_order')
-                    ->label(__('dashboard.resources.product.fields.sort_order'))
-                    ->numeric()
+                IconColumn::make('is_active')
+                    ->label(__('product::product.fields.is_active'))
+                    ->boolean()
                     ->sortable(),
 
                 TextColumn::make('created_at')
@@ -42,15 +42,10 @@ final class ProductsTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([])
             ->recordActions([
+                ViewAction::make(),
                 EditAction::make(),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
-            ])
-            ->emptyStateHeading(__('dashboard.resources.product.empty_state'));
+                DeleteAction::make(),
+            ]);
     }
 }

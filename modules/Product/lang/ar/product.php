@@ -1,7 +1,5 @@
 <?php
 
-// Product/lang/ar/product.php
-
 declare(strict_types=1);
 
 return [
@@ -23,5 +21,17 @@ return [
         'create_failed' => 'فشل إنشاء المنتج',
         'update_failed' => 'فشل تحديث المنتج',
         'delete_failed' => 'فشل حذف المنتج',
+    ],
+    'labels' => [
+        'products' => 'المنتجات',
+        'plural' => 'المنتجات',
+        'singular' => 'منتج',
+    ],
+    'fields' => [
+        'name' => 'الاسم',
+        'price' => 'السعر',
+        'is_active' => 'نشط',
+        'description' => 'الوصف',
+        'image' => 'الصورة',
     ],
 ];

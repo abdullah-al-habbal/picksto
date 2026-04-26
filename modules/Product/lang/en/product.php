@@ -1,7 +1,5 @@
 <?php
 
-// Product/lang/en/product.php
-
 declare(strict_types=1);
 
 return [
@@ -23,5 +21,17 @@ return [
         'create_failed' => 'Failed to create product',
         'update_failed' => 'Failed to update product',
         'delete_failed' => 'Failed to delete product',
+    ],
+    'labels' => [
+        'products' => 'Products',
+        'plural' => 'Products',
+        'singular' => 'Product',
+    ],
+    'fields' => [
+        'name' => 'Name',
+        'price' => 'Price',
+        'is_active' => 'Active',
+        'description' => 'Description',
+        'image' => 'Image',
     ],
 ];

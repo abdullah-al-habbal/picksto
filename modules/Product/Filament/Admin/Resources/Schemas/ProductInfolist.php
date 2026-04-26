@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Product\Filament\Admin\Resources\Schemas;
 
-use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\ImageEntry;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
 final class ProductInfolist
@@ -15,23 +16,24 @@ final class ProductInfolist
         return $schema
             ->components([
                 TextEntry::make('name')
-                    ->label(__('dashboard.resources.product.fields.name')),
-                TextEntry::make('description')
-                    ->label(__('dashboard.resources.product.fields.description'))
-                    ->columnSpanFull(),
+                    ->label(__('product::product.fields.name')),
+
                 TextEntry::make('price')
-                    ->label(__('dashboard.resources.product.fields.price'))
-                    ->money('SAR'),
-                TextEntry::make('currency')
-                    ->label(__('dashboard.resources.product.fields.currency')),
-                ImageEntry::make('image_url')
-                    ->label(__('dashboard.resources.product.fields.image_url')),
-                TextEntry::make('is_active')
-                    ->label(__('dashboard.resources.product.fields.is_active'))
-                    ->badge()
-                    ->color(fn (bool $state): string => $state ? 'success' : 'gray'),
-                TextEntry::make('sort_order')
-                    ->label(__('dashboard.resources.product.fields.sort_order')),
+                    ->label(__('product::product.fields.price'))
+                    ->money('USD'),
+
+                ImageEntry::make('image')
+                    ->label(__('product::product.fields.image')),
+
+                IconEntry::make('is_active')
+                    ->label(__('product::product.fields.is_active'))
+                    ->boolean(),
+
+                TextEntry::make('description')
+                    ->label(__('product::product.fields.description'))
+                    ->html()
+                    ->columnSpanFull(),
+
                 TextEntry::make('created_at')
                     ->label(__('dashboard.fields.created_at'))
                     ->dateTime(),
