@@ -1,7 +1,5 @@
 <?php
 
-// modules/Download/lang/ar/download.php
-
 declare(strict_types=1);
 
 return [
@@ -21,6 +19,9 @@ return [
         'daily_limit_reached' => 'لقد وصلت للحد اليومي',
     ],
     'labels' => [
+        'downloads' => 'التنزيلات',
+        'plural' => 'التنزيلات',
+        'singular' => 'تنزيل',
         'history' => 'سجل التنزيلات',
         'file_name' => 'اسم الملف',
         'site' => 'المصدر',
@@ -28,5 +29,19 @@ return [
         'date' => 'التاريخ',
         'actions' => 'إجراءات',
         'download' => 'تحميل',
+    ],
+    'fields' => [
+        'user' => 'المستخدم',
+        'file_name' => 'اسم الملف',
+        'source_url' => 'رابط المصدر',
+        'file_path' => 'مسار الملف',
+        'site' => 'الموقع',
+        'status' => 'الحالة',
+        'ip_address' => 'عنوان IP',
+    ],
+    'statuses' => [
+        'pending' => 'قيد التنفيذ',
+        'completed' => 'مكتمل',
+        'failed' => 'فشل',
     ],
 ];

@@ -1,7 +1,5 @@
 <?php
 
-// modules/Download/lang/en/download.php
-
 declare(strict_types=1);
 
 return [
@@ -21,6 +19,9 @@ return [
         'daily_limit_reached' => 'Daily download limit reached',
     ],
     'labels' => [
+        'downloads' => 'Downloads',
+        'plural' => 'Downloads',
+        'singular' => 'Download',
         'history' => 'Download History',
         'file_name' => 'File Name',
         'site' => 'Source',
@@ -28,5 +29,19 @@ return [
         'date' => 'Date',
         'actions' => 'Actions',
         'download' => 'Download',
+    ],
+    'fields' => [
+        'user' => 'User',
+        'file_name' => 'File Name',
+        'source_url' => 'Source URL',
+        'file_path' => 'File Path',
+        'site' => 'Site',
+        'status' => 'Status',
+        'ip_address' => 'IP Address',
+    ],
+    'statuses' => [
+        'pending' => 'Pending',
+        'completed' => 'Completed',
+        'failed' => 'Failed',
     ],
 ];
