@@ -1,7 +1,5 @@
 <?php
 
-// modules/Package/lang/en/package.php
-
 declare(strict_types=1);
 
 return [
@@ -40,6 +38,9 @@ return [
         'not_found' => 'Package not found',
     ],
     'labels' => [
+        'packages' => 'Packages',
+        'plural' => 'Packages',
+        'singular' => 'Package',
         'name.ar' => 'Package Name (Arabic)',
         'name.en' => 'Package Name (English)',
         'description.ar' => 'Description (Arabic)',
@@ -55,7 +56,17 @@ return [
         'create_package' => 'Create New Package',
         'edit_package' => 'Edit Package',
         'delete_package' => 'Delete Package',
-        'packages' => 'Packages',
+    ],
+    'fields' => [
+        'name' => 'Name',
+        'price' => 'Price',
+        'currency' => 'Currency',
+        'daily_limit' => 'Daily Limit',
+        'monthly_limit' => 'Monthly Limit',
+        'allowed_sites' => 'Allowed Sites',
+        'duration_days' => 'Duration (Days)',
+        'is_active' => 'Active',
+        'description' => 'Description',
     ],
     'sites' => [
         'Freepik' => 'Freepik',

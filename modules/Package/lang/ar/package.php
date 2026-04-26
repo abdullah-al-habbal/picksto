@@ -1,7 +1,5 @@
 <?php
 
-// modules/Package/lang/ar/package.php
-
 declare(strict_types=1);
 
 return [
@@ -40,6 +38,9 @@ return [
         'not_found' => 'الباقة غير موجودة',
     ],
     'labels' => [
+        'packages' => 'الباقات',
+        'plural' => 'الباقات',
+        'singular' => 'الباقة',
         'name.ar' => 'اسم الباقة (عربي)',
         'name.en' => 'اسم الباقة (إنجليزي)',
         'description.ar' => 'الوصف (عربي)',
@@ -55,7 +56,17 @@ return [
         'create_package' => 'إنشاء باقة جديدة',
         'edit_package' => 'تعديل الباقة',
         'delete_package' => 'حذف الباقة',
-        'packages' => 'الباقات',
+    ],
+    'fields' => [
+        'name' => 'الاسم',
+        'price' => 'السعر',
+        'currency' => 'العملة',
+        'daily_limit' => 'الحد اليومي',
+        'monthly_limit' => 'الحد الشهري',
+        'allowed_sites' => 'المواقع المسموح بها',
+        'duration_days' => 'المدة (أيام)',
+        'is_active' => 'نشط',
+        'description' => 'الوصف',
     ],
     'sites' => [
         'Freepik' => 'Freepik',

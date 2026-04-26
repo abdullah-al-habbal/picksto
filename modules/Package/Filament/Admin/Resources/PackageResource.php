@@ -11,13 +11,8 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
 use LaraZeus\SpatieTranslatable\Resources\Concerns\Translatable;
-use Modules\Package\Filament\Admin\Resources\Pages\CreatePackage;
-use Modules\Package\Filament\Admin\Resources\Pages\EditPackage;
-use Modules\Package\Filament\Admin\Resources\Pages\ListPackages;
-use Modules\Package\Filament\Admin\Resources\Schemas\PackageForm;
-use Modules\Package\Filament\Admin\Resources\Tables\PackagesTable;
-use Modules\Package\Models\PackageModel;
-use Modules\Subscription\Filament\Admin\Resources\RelationManagers\SubscriptionsRelationManager;
+use Modules\Package\Filament\Admin\Resources\Pages\ViewPackage;
+use Modules\Package\Filament\Admin\Resources\Schemas\PackageInfolist;
 
 class PackageResource extends Resource
 {
@@ -25,7 +20,7 @@ class PackageResource extends Resource
 
     protected static ?string $model = PackageModel::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?int $navigationSort = 2;
 
@@ -36,17 +31,17 @@ class PackageResource extends Resource
 
     public static function getNavigationLabel(): string
     {
-        return __('dashboard.resources.package.navigation.label');
+        return __('package::package.labels.packages');
     }
 
     public static function getModelLabel(): string
     {
-        return __('dashboard.resources.package.navigation.singular');
+        return __('package::package.labels.singular');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('dashboard.resources.package.navigation.plural');
+        return __('package::package.labels.plural');
     }
 
     public static function getRecordTitle(?Model $record): string
@@ -73,6 +68,11 @@ class PackageResource extends Resource
         return PackageForm::configure($schema);
     }
 
+    public static function infolist(Schema $schema): Schema
+    {
+        return PackageInfolist::configure($schema);
+    }
+
     public static function table(Table $table): Table
     {
         return PackagesTable::configure($table);
@@ -90,6 +90,7 @@ class PackageResource extends Resource
         return [
             'index' => ListPackages::route('/'),
             'create' => CreatePackage::route('/create'),
+            'view' => ViewPackage::route('/{record}'),
             'edit' => EditPackage::route('/{record}/edit'),
         ];
     }
