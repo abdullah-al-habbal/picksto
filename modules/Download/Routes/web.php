@@ -12,7 +12,6 @@ use Modules\Download\Http\Actions\PreviewDownloadAction;
 use Modules\Download\Http\Actions\RequestDownloadAction;
 use Modules\Download\Http\Actions\ServeDownloadFileAction;
 
-// User Routes
 Route::middleware('auth')->prefix('download')->name('download.')->group(static function (): void {
     Route::post('preview', PreviewDownloadAction::class)->name('preview');
     Route::post('/', RequestDownloadAction::class)->name('request');
@@ -21,5 +20,4 @@ Route::middleware('auth')->prefix('download')->name('download.')->group(static f
     Route::get('check', CheckEligibilityAction::class)->name('check');
 });
 
-// File Serving (Protected, separate prefix for clean URLs)
 Route::middleware('auth')->get('downloads/{filename}', ServeDownloadFileAction::class)->name('downloads.serve');
