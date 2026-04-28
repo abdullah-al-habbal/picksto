@@ -7,5 +7,4 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\Route;
 use Modules\Package\Http\Actions\ListPackagesAction;
 
-// Public: List all active packages
 Route::get('packages', ListPackagesAction::class)->name('packages.index');
