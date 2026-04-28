@@ -6,9 +6,6 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
 use Modules\Download\Http\Actions\CheckEligibilityAction;
-use Modules\Download\Http\Actions\DeleteDownloadAction;
-use Modules\Download\Http\Actions\GetAdminDownloadStatsAction;
-use Modules\Download\Http\Actions\GetAllDownloadsAction;
 use Modules\Download\Http\Actions\GetDownloadHistoryAction;
 use Modules\Download\Http\Actions\GetUserDownloadStatsAction;
 use Modules\Download\Http\Actions\PreviewDownloadAction;
@@ -26,10 +23,3 @@ Route::middleware('auth')->prefix('download')->name('download.')->group(static f
 
 // File Serving (Protected, separate prefix for clean URLs)
 Route::middleware('auth')->get('downloads/{filename}', ServeDownloadFileAction::class)->name('downloads.serve');
-
-// Admin Routes
-Route::middleware(['auth', 'role:admin'])->prefix('admin/downloads')->name('admin.downloads.')->group(static function (): void {
-    Route::get('all', GetAllDownloadsAction::class)->name('index');
-    Route::get('stats', GetAdminDownloadStatsAction::class)->name('stats');
-    Route::delete('{download}', DeleteDownloadAction::class)->name('destroy');
-});
