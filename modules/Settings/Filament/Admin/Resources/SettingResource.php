@@ -9,6 +9,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Settings\Filament\Admin\Resources\Pages\CreateSetting;
 use Modules\Settings\Filament\Admin\Resources\Pages\EditSetting;
 use Modules\Settings\Filament\Admin\Resources\Pages\ListSettings;
 use Modules\Settings\Filament\Admin\Resources\Pages\ViewSetting;
@@ -71,6 +72,7 @@ final class SettingResource extends Resource
     {
         return [
             'index' => ListSettings::route('/'),
+            'create' => CreateSetting::route('/create'),
             'view' => ViewSetting::route('/{record}'),
             'edit' => EditSetting::route('/{record}/edit'),
         ];

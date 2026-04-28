@@ -9,6 +9,8 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Download\Filament\Admin\Resources\Pages\CreateDownload;
+use Modules\Download\Filament\Admin\Resources\Pages\EditDownload;
 use Modules\Download\Filament\Admin\Resources\Pages\ListDownloads;
 use Modules\Download\Filament\Admin\Resources\Pages\ViewDownload;
 use Modules\Download\Filament\Admin\Resources\Schemas\DownloadForm;
@@ -80,6 +82,8 @@ final class DownloadResource extends Resource
     {
         return [
             'index' => ListDownloads::route('/'),
+            'create' => CreateDownload::route('/create'),
+            'edit' => EditDownload::route('/{record}/edit'),
             'view' => ViewDownload::route('/{record}'),
         ];
     }

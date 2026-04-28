@@ -46,6 +46,17 @@ final class LemonSqueezyRepository
         return $response->json('data', []);
     }
 
+    public function getProduct(int | string $productId): array
+    {
+        $response = Http::timeout(30)
+            ->withToken(config('services.lemonsqueezy.api_key'))
+            ->get("https://api.lemonsqueezy.com/v1/products/{$productId}");
+
+        $response->throw();
+
+        return $response->json('data', []);
+    }
+
     public function getCustomers(): array
     {
         $response = Http::timeout(30)
@@ -83,8 +94,6 @@ final class LemonSqueezyRepository
 
     public function handleWebhook(array $payload, string $signature): void
     {
-        // Verify webhook signature if needed
-        // For now, log and process as in Node.js
         $eventName = $payload['meta']['event_name'] ?? 'unknown';
 
         Log::info('LemonSqueezy Webhook', [
@@ -92,6 +101,5 @@ final class LemonSqueezyRepository
             'payload' => $payload,
         ]);
 
-        // Here you would dispatch jobs or update subscriptions based on $eventName
     }
 }

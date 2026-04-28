@@ -12,7 +12,6 @@ final class UploadServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        // Direct instantiation only - no bindings, no interfaces
     }
 
     public function boot(): void
@@ -23,9 +22,9 @@ final class UploadServiceProvider extends ServiceProvider
 
     private function loadRoutes(): void
     {
-        $path = __DIR__.'/../Routes/web.php';
+        $path = __DIR__ . '/../Routes/web.php';
 
-        if (! File::exists($path)) {
+        if (!File::exists($path)) {
             return;
         }
 
@@ -37,7 +36,7 @@ final class UploadServiceProvider extends ServiceProvider
 
     private function loadTranslations(): void
     {
-        $path = __DIR__.'/../lang';
+        $path = __DIR__ . '/../lang';
 
         if (File::isDirectory($path)) {
             $this->loadTranslationsFrom($path, 'upload');
