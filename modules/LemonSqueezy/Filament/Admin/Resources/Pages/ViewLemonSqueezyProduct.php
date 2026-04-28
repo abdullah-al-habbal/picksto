@@ -13,11 +13,11 @@ final class ViewLemonSqueezyProduct extends Page
 {
     protected static string $resource = LemonSqueezyProductResource::class;
 
-    protected static string $view = 'lemon-squeezy::filament.pages.view-api-record';
+    protected string $view = 'lemon-squeezy::filament.pages.view-api-record';
 
     public array $record = [];
 
-    public function mount(string | int $record): void
+    public function mount(string|int $record): void
     {
         $repository = app(LemonSqueezyRepository::class);
 
@@ -29,7 +29,7 @@ final class ViewLemonSqueezyProduct extends Page
         }
     }
 
-    public function getTitle(): string | Htmlable
+    public function getTitle(): string|Htmlable
     {
         return $this->record['attributes']['name'] ?? __('Product');
     }

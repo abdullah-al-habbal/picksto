@@ -1,27 +1,48 @@
 <?php
 
-// modules/LemonSqueezy/lang/ar/lemonsqueezy.php
-
-declare(strict_types=1);
-
 return [
-    'validation' => [
-        'variantId' => [
-            'required' => 'معرف الباقة مطلوب',
+    'navigation' => [
+        'group' => 'الدفع',
+    ],
+    'customers' => [
+        'labels' => [
+            'singular' => 'عميل',
+            'plural' => 'العملاء',
+            'navigation' => 'عملاء LemonSqueezy',
+        ],
+        'fields' => [
+            'id' => 'المعرف',
+            'email' => 'البريد الإلكتروني',
+            'name' => 'الاسم',
+            'status' => 'الحالة',
+            'created_at' => 'تاريخ الإنشاء',
+        ],
+        'status' => [
+            'active' => 'نشط',
+            'inactive' => 'غير نشط',
+        ],
+        'messages' => [
+            'info' => 'هذه واجهة عرض فقط لعملاء LemonSqueezy. يتم جلب البيانات من واجهة برمجة تطبيقات LemonSqueezy.',
         ],
     ],
-    'messages' => [
-        'checkout_created' => 'تم إنشاء رابط الدفع بنجاح',
-        'webhook_received' => 'تم استلام الحدث بنجاح',
-    ],
-    'errors' => [
-        'checkout_failed' => 'فشل إنشاء رابط الدفع، يرجى المحاولة لاحقاً',
-        'fetch_failed' => 'فشل جلب البيانات من Lemon Squeezy',
-    ],
-    'labels' => [
-        'products' => 'المنتجات',
-        'customers' => 'العملاء',
-        'subscriptions' => 'الاشتراكات',
-        'checkout' => 'إتمام الشراء',
+    'products' => [
+        'labels' => [
+            'singular' => 'منتج',
+            'plural' => 'المنتجات',
+            'navigation' => 'منتجات LemonSqueezy',
+        ],
+        'fields' => [
+            'id' => 'المعرف',
+            'name' => 'الاسم',
+            'status' => 'الحالة',
+            'created_at' => 'تاريخ الإنشاء',
+        ],
+        'status' => [
+            'published' => 'منشور',
+            'draft' => 'مسودة',
+        ],
+        'messages' => [
+            'info' => 'هذه واجهة عرض فقط لمنتجات LemonSqueezy. يتم جلب البيانات من واجهة برمجة تطبيقات LemonSqueezy.',
+        ],
     ],
 ];

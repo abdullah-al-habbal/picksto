@@ -1,27 +1,48 @@
 <?php
 
-// modules/LemonSqueezy/lang/en/lemonsqueezy.php
-
-declare(strict_types=1);
-
 return [
-    'validation' => [
-        'variantId' => [
-            'required' => 'Variant ID is required',
+    'navigation' => [
+        'group' => 'Payment',
+    ],
+    'customers' => [
+        'labels' => [
+            'singular' => 'Customer',
+            'plural' => 'Customers',
+            'navigation' => 'LemonSqueezy Customers',
+        ],
+        'fields' => [
+            'id' => 'ID',
+            'email' => 'Email',
+            'name' => 'Name',
+            'status' => 'Status',
+            'created_at' => 'Created At',
+        ],
+        'status' => [
+            'active' => 'Active',
+            'inactive' => 'Inactive',
+        ],
+        'messages' => [
+            'info' => 'This is a read-only view of LemonSqueezy customers. Data is fetched from the LemonSqueezy API.',
         ],
     ],
-    'messages' => [
-        'checkout_created' => 'Checkout link created successfully',
-        'webhook_received' => 'Event received successfully',
-    ],
-    'errors' => [
-        'checkout_failed' => 'Failed to create checkout link, please try again',
-        'fetch_failed' => 'Failed to fetch data from Lemon Squeezy',
-    ],
-    'labels' => [
-        'products' => 'Products',
-        'customers' => 'Customers',
-        'subscriptions' => 'Subscriptions',
-        'checkout' => 'Checkout',
+    'products' => [
+        'labels' => [
+            'singular' => 'Product',
+            'plural' => 'Products',
+            'navigation' => 'LemonSqueezy Products',
+        ],
+        'fields' => [
+            'id' => 'ID',
+            'name' => 'Name',
+            'status' => 'Status',
+            'created_at' => 'Created At',
+        ],
+        'status' => [
+            'published' => 'Published',
+            'draft' => 'Draft',
+        ],
+        'messages' => [
+            'info' => 'This is a read-only view of LemonSqueezy products. Data is fetched from the LemonSqueezy API.',
+        ],
     ],
 ];

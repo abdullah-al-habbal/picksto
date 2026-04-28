@@ -13,7 +13,7 @@ final class ListLemonSqueezyCustomers extends Page
 {
     protected static string $resource = LemonSqueezyCustomerResource::class;
 
-    protected static string $view = 'lemon-squeezy::filament.pages.list-api-records';
+    protected string $view = 'lemon-squeezy::filament.pages.list-api-records';
 
     public array $records = [];
 

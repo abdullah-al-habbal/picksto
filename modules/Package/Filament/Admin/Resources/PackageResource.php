@@ -11,8 +11,15 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
 use LaraZeus\SpatieTranslatable\Resources\Concerns\Translatable;
+use Modules\Package\Models\PackageModel;
+use Modules\Package\Filament\Admin\Resources\Pages\CreatePackage;
+use Modules\Package\Filament\Admin\Resources\Pages\EditPackage;
+use Modules\Package\Filament\Admin\Resources\Pages\ListPackages;
 use Modules\Package\Filament\Admin\Resources\Pages\ViewPackage;
+use Modules\Package\Filament\Admin\Resources\Schemas\PackageForm;
 use Modules\Package\Filament\Admin\Resources\Schemas\PackageInfolist;
+use Modules\Package\Filament\Admin\Resources\Tables\PackagesTable;
+use Modules\Subscription\Filament\Admin\Resources\RelationManagers\SubscriptionsRelationManager;
 
 class PackageResource extends Resource
 {
@@ -46,16 +53,16 @@ class PackageResource extends Resource
 
     public static function getRecordTitle(?Model $record): string
     {
-        if (! $record) {
+        if (!$record) {
             return static::getModelLabel();
         }
 
-        return $record->name ?? '#'.$record->id;
+        return $record->name ?? '#' . $record->id;
     }
 
     public static function getNavigationBadge(): ?string
     {
-        return (string) cache()->remember('filament.resource.package.count', now()->addMinutes(5), fn () => static::getModel()::count());
+        return (string) cache()->remember('filament.resource.package.count', now()->addMinutes(5), fn() => static::getModel()::count());
     }
 
     public static function getNavigationBadgeColor(): string|array|null
