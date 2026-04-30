@@ -5,56 +5,39 @@ declare(strict_types=1);
 namespace Modules\Referral\Filament\Client\Pages;
 
 use Filament\Actions\Action;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use Filament\Tables\Columns\BadgeColumn;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Schemas\Schema;
 use Modules\Referral\Models\ReferralModel;
 use Modules\Referral\Models\ReferralRewardModel;
 use Modules\Referral\Repositories\ReferralRepository;
+use Modules\Referral\Filament\Client\Tables\ReferralsTable;
+use Modules\Referral\Filament\Client\Schemas\ReferralRewardForm;
 
 final class ReferralPage extends Page implements HasTable, HasForms
 {
     use InteractsWithTable;
     use InteractsWithForms;
 
-    protected static ?string $navigationIcon = 'heroicon-o-share-2';
+    protected static \BackedEnum|string|null $navigationIcon = 'heroicon-o-share-2';
     protected static ?string $navigationLabel = 'Referrals';
     protected static ?int $navigationSort = 5;
     protected string $view = 'filament.pages.referral';
 
     public function table(Table $table): Table
     {
-        return $table
+        return ReferralsTable::configure($table)
             ->query(
                 ReferralModel::query()
                     ->where('referrer_id', auth()->id())
                     ->with('referred')
                     ->orderBy('registered_at', 'desc')
-            )
-            ->columns([
-                TextColumn::make('referred.name')
-                    ->label('Referred User')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('referred.email')
-                    ->label('Email')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('registered_at')
-                    ->label('Registration Date')
-                    ->dateTime('M d, Y')
-                    ->sortable(),
-            ])
-            ->defaultSort('registered_at', 'desc')
-            ->paginated([10, 25, 50]);
+            );
     }
 
     public function getReferralStats(): array
@@ -67,15 +50,7 @@ final class ReferralPage extends Page implements HasTable, HasForms
     {
         return Action::make('claim-rewards')
             ->label('Claim Available Rewards')
-            ->form([
-                Section::make('Available Rewards')
-                    ->schema([
-                        TextInput::make('reward_id')
-                            ->label('Reward ID')
-                            ->required(),
-                    ])
-                    ->columns(1),
-            ])
+            ->schema(fn (Schema $schema) => ReferralRewardForm::configure($schema))
             ->action(function (array $data): void {
                 try {
                     $reward = ReferralRewardModel::find($data['reward_id']);

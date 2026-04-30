@@ -21,6 +21,7 @@ final class SubscriptionServiceProvider extends ServiceProvider
         $this->loadRoutes();
         $this->loadMigrations();
         $this->loadTranslations();
+        $this->loadViews();
     }
 
     private function loadRoutes(): void
@@ -52,6 +53,15 @@ final class SubscriptionServiceProvider extends ServiceProvider
 
         if (File::isDirectory($path)) {
             $this->loadTranslationsFrom($path, 'subscription');
+        }
+    }
+
+    private function loadViews(): void
+    {
+        $path = __DIR__ . '/../resources/views';
+
+        if (File::isDirectory($path)) {
+            $this->loadViewsFrom($path, 'subscription');
         }
     }
 }

@@ -4,34 +4,45 @@ declare(strict_types=1);
 
 namespace Modules\Settings\Filament\Client\Pages;
 
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Toggle;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Schemas\Schema;
 use Modules\Settings\Repositories\SettingsRepository;
+use Modules\Settings\Filament\Client\Schemas\SettingsForm;
 
 final class SettingsPage extends Page implements HasForms
 {
     use InteractsWithForms;
 
-    protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
+    protected static \BackedEnum|string|null $navigationIcon = 'heroicon-o-cog-6-tooth';
     protected static ?string $navigationLabel = 'Account Settings';
     protected static ?int $navigationSort = 10;
-    protected string $view = 'filament.pages.settings';
+    protected string $view = 'settings::filament.pages.settings';
 
-    public function getSettings(): array
+    public ?array $data = [];
+
+    public function mount(): void
     {
         $repository = app(SettingsRepository::class);
-        return $repository->getSettings(false) ?? [];
+        $settings = $repository->getSettings(false) ?? [];
+
+        $this->form->fill($settings);
     }
 
-    public function updateNotificationPreferences(array $data): void
+    public function form(Schema $schema): Schema
+    {
+        return SettingsForm::configure($schema)
+            ->statePath('data');
+    }
+
+    public function save(): void
     {
         try {
             $repository = app(SettingsRepository::class);
-            $repository->updateUserSettings(auth()->id(), $data);
+            // fix:
+            $repository->updateUserSettings(auth()->id(), $this->form->getState());
 
             Notification::make()
                 ->success()

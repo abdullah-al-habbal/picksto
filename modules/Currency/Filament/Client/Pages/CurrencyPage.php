@@ -4,28 +4,29 @@ declare(strict_types=1);
 
 namespace Modules\Currency\Filament\Client\Pages;
 
-use Filament\Forms\Components\Select;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Schemas\Schema;
 use Modules\Currency\Repositories\CurrencyRepository;
+use Modules\Currency\Filament\Client\Schemas\CurrencyForm;
 
 final class CurrencyPage extends Page implements HasForms
 {
     use InteractsWithForms;
 
-    protected static ?string $navigationIcon = 'heroicon-o-currency-dollar';
+    protected static \BackedEnum|string|null $navigationIcon = 'heroicon-o-currency-dollar';
     protected static ?string $navigationLabel = 'Currency';
     protected static ?int $navigationSort = 11;
-    protected string $view = 'filament.pages.currency';
+    protected string $view = 'currency::filament.pages.currency';
 
     public ?array $data = [];
 
     public function mount(): void
     {
         $repository = app(CurrencyRepository::class);
+        // fix:
         $settings = $repository->getUserCurrencySetting(auth()->id());
 
         $this->form->fill([
@@ -33,35 +34,19 @@ final class CurrencyPage extends Page implements HasForms
         ]);
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Select::make('currency')
-                    ->label('Preferred Currency')
-                    ->options([
-                        'USD' => 'US Dollar (USD)',
-                        'EUR' => 'Euro (EUR)',
-                        'GBP' => 'British Pound (GBP)',
-                        'JPY' => 'Japanese Yen (JPY)',
-                        'CAD' => 'Canadian Dollar (CAD)',
-                        'AUD' => 'Australian Dollar (AUD)',
-                        'CHF' => 'Swiss Franc (CHF)',
-                        'CNY' => 'Chinese Yuan (CNY)',
-                        'INR' => 'Indian Rupee (INR)',
-                        'MXN' => 'Mexican Peso (MXN)',
-                    ])
-                    ->required()
-                    ->live()
-                    ->afterStateUpdated(fn () => $this->save()),
-            ])
-            ->statePath('data');
+        return CurrencyForm::configure($schema)
+            ->statePath('data')
+            ->live()
+            ->afterStateUpdated(fn () => $this->save());
     }
 
     public function save(): void
     {
         try {
             $repository = app(CurrencyRepository::class);
+            // fix:
             $repository->updateUserCurrencySetting(auth()->id(), $this->form->getState());
 
             Notification::make()

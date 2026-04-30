@@ -4,26 +4,20 @@ declare(strict_types=1);
 
 namespace Modules\User\Filament\Client\Pages;
 
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Illuminate\Support\Facades\Storage;
 use Modules\User\Models\User;
 use Modules\User\Repositories\UserRepository;
+use Modules\User\Filament\Client\Schemas\ProfileForm;
 
-final class ProfilePage extends Page implements HasForms
+final class ProfilePage extends Page
 {
-    use InteractsWithForms;
-
-    protected static ?string $navigationIcon = 'heroicon-o-user-circle';
+    protected static \BackedEnum|string|null $navigationIcon = 'heroicon-o-user-circle';
     protected static ?string $navigationLabel = 'Profile';
     protected static ?int $navigationSort = 1;
-    protected string $view = 'filament.pages.profile';
+    protected string $view = 'user::filament.pages.profile';
 
     public ?array $data = [];
 
@@ -42,45 +36,9 @@ final class ProfilePage extends Page implements HasForms
         ];
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Section::make('Profile Information')
-                    ->description('Update your personal information')
-                    ->schema([
-                        FileUpload::make('avatar')
-                            ->label('Avatar')
-                            ->avatar()
-                            ->image()
-                            ->maxSize(5 * 1024)
-                            ->directory('avatars')
-                            ->deleteUploadedFileUsing(function (string $file): void {
-                                Storage::disk('public')->delete($file);
-                            }),
-                        TextInput::make('name')
-                            ->label('Full Name')
-                            ->required()
-                            ->minLength(2)
-                            ->maxLength(100),
-                        TextInput::make('email')
-                            ->label('Email Address')
-                            ->email()
-                            ->required()
-                            ->unique(User::class, 'email', ignoreRecord: true),
-                        TextInput::make('phone')
-                            ->label('Phone Number')
-                            ->tel()
-                            ->placeholder('+1 (555) 000-0000'),
-                        TextInput::make('profession')
-                            ->label('Profession')
-                            ->maxLength(100),
-                        TextInput::make('companySize')
-                            ->label('Company Size')
-                            ->maxLength(50),
-                    ])
-                    ->columns(2),
-            ])
+        return ProfileForm::configure($schema)
             ->statePath('data')
             ->model(auth()->user());
     }
@@ -93,21 +51,17 @@ final class ProfilePage extends Page implements HasForms
             $userRepository = app(UserRepository::class);
             $user = auth()->user();
 
-            // Handle avatar upload
             if (isset($data['avatar']) && $data['avatar'] !== $user->avatar) {
-                // Delete old avatar if exists
                 if ($user->avatar) {
                     $oldPath = str_replace('/storage/', '', $user->avatar);
                     Storage::disk('public')->delete($oldPath);
                 }
 
-                // Update avatar path
                 if ($data['avatar']) {
                     $data['avatar'] = '/storage/' . $data['avatar'];
                 }
             }
 
-            // Update profile
             $userRepository->updateProfile($user->id, $data);
 
             Notification::make()

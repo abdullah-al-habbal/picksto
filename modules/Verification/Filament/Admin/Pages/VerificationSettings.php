@@ -4,21 +4,22 @@ declare(strict_types=1);
 
 namespace Modules\Verification\Filament\Admin\Pages;
 
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
+
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use Filament\Schemas\Components\Form;
+use Filament\Schemas\Components\Section;
 use Modules\Verification\Models\VerificationSettingModel;
 
 final class VerificationSettings extends Page implements HasForms
 {
     use InteractsWithForms;
 
-    protected static ?string $navigationIcon = 'heroicon-o-cog-8-tooth';
+    protected static \BackedEnum|string|null $navigationIcon = 'heroicon-o-cog-8-tooth';
     protected string $view = 'verification::filament.pages.verification-settings';
     
     public ?array $data = [];
