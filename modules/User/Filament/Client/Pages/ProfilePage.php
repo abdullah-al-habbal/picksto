@@ -31,7 +31,7 @@ final class ProfilePage extends Page
             'email' => $user->email,
             'phone' => $user->phone,
             'profession' => $user->profession,
-            'companySize' => $user->companySize,
+            'company_size' => $user->company_size,
             'avatar' => $user->avatar ? str_replace('/storage/', '', $user->avatar) : null,
         ];
     }

@@ -80,6 +80,7 @@ final class UserModel extends Authenticatable
             'phone_verified' => 'boolean',
             'email_verified' => 'boolean',
             'is_banned' => 'boolean',
+            'settings' => 'array',
         ];
     }
 

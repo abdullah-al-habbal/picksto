@@ -67,7 +67,7 @@ final class UserRepository
             'email' => $data['email'],
             'phone' => $data['phone'] ?? $user->phone,
             'profession' => $data['profession'] ?? $user->profession,
-            'company_size' => $data['companySize'] ?? $user->company_size,
+            'company_size' => $data['company_size'] ?? $user->company_size,
         ]);
 
         return $user->fresh();

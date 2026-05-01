@@ -8,6 +8,8 @@ namespace Modules\Settings\Repositories;
 
 use Modules\Settings\Models\SettingModel;
 
+use Modules\User\Models\UserModel;
+
 final class SettingsRepository
 {
     public function __construct(
@@ -21,13 +23,26 @@ final class SettingsRepository
             ->first()?->value ?? [];
 
         if (! $isAdmin) {
-            // Hide sensitive config from non-admins
             unset($siteConfig['downloadProviders']);
         }
 
-        return [
+        $userSettings = [];
+        if (auth()->check()) {
+            $userSettings = auth()->user()->settings['notification_preferences'] ?? [];
+        }
+
+        return array_merge([
             'siteConfig' => $siteConfig,
-        ];
+        ], $userSettings);
+    }
+
+    public function updateUserSettings(int $userId, array $data): void
+    {
+        $user = UserModel::find($userId);
+        $settings = $user->settings ?? [];
+        $settings['notification_preferences'] = $data;
+        $user->settings = $settings;
+        $user->save();
     }
 
     public function updateSettings(array $data): SettingModel

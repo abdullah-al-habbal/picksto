@@ -46,7 +46,7 @@ class ProfileForm
                         TextInput::make('profession')
                             ->label('Profession')
                             ->maxLength(100),
-                        TextInput::make('companySize')
+                        TextInput::make('company_size')
                             ->label('Company Size')
                             ->maxLength(50),
                     ])

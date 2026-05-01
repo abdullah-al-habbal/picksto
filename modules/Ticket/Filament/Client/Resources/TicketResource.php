@@ -19,12 +19,13 @@ class TicketResource extends Resource
 {
     protected static ?string $model = TicketModel::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-ticket';
+    protected static \BackedEnum|string|null $navigationIcon = 'heroicon-o-ticket';
 
     protected static ?int $navigationSort = 4;
 
     public static function getNavigationGroup(): ?string
     {
+        // fix: translate, use the Client translate files
         return 'Support';
     }
 

@@ -4,8 +4,7 @@
 
 namespace App\Http\Middleware;
 
-// fix: we need to have the LanguageModel
-use App\Models\Language;
+use Modules\Language\Models\LanguageModel;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -43,17 +42,13 @@ class SetLocaleMiddleware
 
     private function getUserPreferredLocale(Request $request): ?string
     {
-        $user = Auth::guard('sanctum')->user();
+        $user = Auth::guard('web')->user();
 
         if (!$user) {
-            Log::info('No authenticated user found, skipping user preferred locale.');
-
             return null;
         }
 
-        $user->loadMissing('settings.preferredLanguage');
-        Log::info('Authenticated user found, checking preferred language.', ['user_id' => $user->id, 'preferred_language' => $user->settings?->preferredLanguage?->code]);
-        $userLocale = $user->settings?->preferredLanguage?->code;
+        $userLocale = $user->settings['preferred_language'] ?? null;
 
         return $this->isActiveLocale($userLocale) ? $userLocale : null;
     }
@@ -69,7 +64,7 @@ class SetLocaleMiddleware
 
     private function getDefaultLocale(): ?string
     {
-        $default = Language::getDefault();
+        $default = LanguageModel::getDefault();
 
         return $default?->code;
     }
@@ -81,7 +76,7 @@ class SetLocaleMiddleware
 
     private function getActiveLocales(): array
     {
-        return Language::where('is_active', true)->pluck('code')->toArray();
+        return LanguageModel::where('is_active', true)->pluck('code')->toArray();
     }
 
     private function applyLocale(string $locale): void
@@ -95,7 +90,7 @@ class SetLocaleMiddleware
             return false;
         }
 
-        return Language::where('code', $code)
+        return LanguageModel::where('code', $code)
             ->where('is_active', true)
             ->exists();
     }

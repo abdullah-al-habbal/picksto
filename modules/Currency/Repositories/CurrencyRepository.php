@@ -8,6 +8,8 @@ namespace Modules\Currency\Repositories;
 
 use Modules\Currency\Models\CurrencySettingModel;
 
+use Modules\User\Models\UserModel;
+
 final class CurrencyRepository
 {
     public function __construct(
@@ -17,6 +19,21 @@ final class CurrencyRepository
     public function getSettings(): ?CurrencySettingModel
     {
         return $this->model->newQuery()->first();
+    }
+
+    public function getUserCurrencySetting(int $userId): array
+    {
+        $user = UserModel::find($userId);
+        return $user->settings['currency_settings'] ?? ['currency' => 'USD'];
+    }
+
+    public function updateUserCurrencySetting(int $userId, array $data): void
+    {
+        $user = UserModel::find($userId);
+        $settings = $user->settings ?? [];
+        $settings['currency_settings'] = $data;
+        $user->settings = $settings;
+        $user->save();
     }
 
     public function updateSettings(array $data): CurrencySettingModel
@@ -39,13 +56,16 @@ final class CurrencyRepository
         return $settings;
     }
 
-    public function format(float $amount): string
+    public function format(float $amount, ?int $userId = null): string
     {
         $settings = $this->getSettings();
 
         if (! $settings) {
             return number_format($amount, 2);
         }
+
+        // TODO: In a real app, we would convert the amount based on user's preferred currency rate
+        // For now, we just use the global formatter but could adjust based on user preference if needed
 
         return $settings->format($amount);
     }
