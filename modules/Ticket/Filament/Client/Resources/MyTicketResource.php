@@ -15,23 +15,32 @@ use Modules\Ticket\Filament\Client\Schemas\TicketForm;
 use Modules\Ticket\Filament\Client\Schemas\TicketInfolist;
 use Modules\Ticket\Filament\Client\Tables\TicketsTable;
 
-class TicketResource extends Resource
+final class MyTicketResource extends Resource
 {
     protected static ?string $model = TicketModel::class;
 
-    protected static \BackedEnum|string|null $navigationIcon = 'heroicon-o-ticket';
+    protected static ?string $navigationIcon = 'heroicon-o-ticket';
 
     protected static ?int $navigationSort = 4;
 
-    public static function getNavigationGroup(): ?string
-    {
-        // fix: translate, use the Client translate files
-        return 'Support';
-    }
-
     public static function getNavigationLabel(): string
     {
-        return 'Support Tickets';
+        return __('ticket::ticket.labels.tickets');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('ticket::ticket.labels.singular');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('ticket::ticket.labels.plural');
+    }
+
+    public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
+    {
+        return parent::getEloquentQuery()->where('user_id', auth()->id());
     }
 
     public static function form(Schema $schema): Schema
@@ -56,5 +65,10 @@ class TicketResource extends Resource
             'create' => CreateTicket::route('/create'),
             'view' => ViewTicket::route('/{record}'),
         ];
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('dashboard.navigation.groups.support');
     }
 }

@@ -10,34 +10,29 @@ use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
-class TicketForm
+final class TicketForm
 {
     public static function configure(Schema $schema): Schema
     {
         return $schema
             ->components([
-                Section::make('New Support Ticket')
-                    ->components([
-                        TextInput::make('subject')
-                            ->label('Subject')
-                            ->required()
-                            ->maxLength(255),
-                        Select::make('category')
-                            ->label('Category')
-                            ->options([
-                                'bug' => 'Bug Report',
-                                'feature' => 'Feature Request',
-                                'support' => 'Technical Support',
-                                'billing' => 'Billing Question',
-                                'other' => 'Other',
-                            ])
-                            ->required(),
-                        RichEditor::make('description')
-                            ->label('Description')
-                            ->required()
-                            ->toolbarButtons(['bold', 'italic', 'underline', 'link']),
+                TextInput::make('subject')
+                    ->label(__('ticket::ticket.fields.subject'))
+                    ->required()
+                    ->maxLength(255),
+                Select::make('priority')
+                    ->label(__('ticket::ticket.fields.priority'))
+                    ->options([
+                        'low' => __('ticket::ticket.labels.priority_low'),
+                        'medium' => __('ticket::ticket.labels.priority_medium'),
+                        'high' => __('ticket::ticket.labels.priority_high'),
                     ])
-                    ->columns(1),
+                    ->required()
+                    ->native(false),
+                RichEditor::make('message')
+                    ->label(__('ticket::ticket.fields.message'))
+                    ->required()
+                    ->toolbarButtons(['bold', 'italic', 'underline', 'link']),
             ]);
     }
 }

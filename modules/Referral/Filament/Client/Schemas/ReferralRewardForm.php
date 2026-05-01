@@ -8,19 +8,15 @@ use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
-class ReferralRewardForm
+final class ReferralRewardForm
 {
     public static function configure(Schema $schema): Schema
     {
         return $schema
             ->components([
-                Section::make('Available Rewards')
-                    ->components([
-                        TextInput::make('reward_id')
-                            ->label('Reward ID')
-                            ->required(),
-                    ])
-                    ->columns(1),
+                TextInput::make('reward_id')
+                    ->label(__('referral::referral.validation.rewardId.required'))
+                    ->required(),
             ]);
     }
 }

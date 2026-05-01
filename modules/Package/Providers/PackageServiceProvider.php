@@ -19,6 +19,16 @@ final class PackageServiceProvider extends ServiceProvider
         $this->loadRoutes();
         $this->loadMigrations();
         $this->loadTranslations();
+        $this->loadViews();
+    }
+
+    private function loadViews(): void
+    {
+        $path = __DIR__.'/../Resources/views';
+
+        if (File::isDirectory($path)) {
+            $this->loadViewsFrom($path, 'package');
+        }
     }
 
     private function loadRoutes(): void

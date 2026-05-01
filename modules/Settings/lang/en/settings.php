@@ -27,6 +27,12 @@ return [
         'favicon' => 'Favicon',
         'botBrowserVisible' => 'Show Bot Browser',
         'download_providers' => 'Download Providers',
+        'notifications' => 'Notifications',
+        'notification_preferences' => 'Notification Preferences',
+        'manage_notifications' => 'Manage how you receive notifications',
+        'email_notifications' => 'Email Notifications',
+        'push_notifications' => 'Push Notifications',
+        'marketing_emails' => 'Marketing Emails',
     ],
     'fields' => [
         'key' => 'Key',

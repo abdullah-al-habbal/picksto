@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Modules\Ticket\Filament\Client\Resources\Pages;
 
 use Filament\Resources\Pages\CreateRecord;
-use Modules\Ticket\Filament\Client\Resources\TicketResource;
+use Modules\Ticket\Filament\Client\Resources\MyTicketResource;
 
 class CreateTicket extends CreateRecord
 {
-    protected static string $resource = TicketResource::class;
+    protected static string $resource = MyTicketResource::class;
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {

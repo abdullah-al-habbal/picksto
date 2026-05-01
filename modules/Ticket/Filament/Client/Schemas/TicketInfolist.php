@@ -8,21 +8,18 @@ use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
-class TicketInfolist
+final class TicketInfolist
 {
     public static function configure(Schema $schema): Schema
     {
         return $schema
             ->components([
-                Section::make('Ticket Details')
+                Section::make(__('ticket::ticket.labels.singular'))
                     ->components([
                         TextEntry::make('subject')
-                            ->label('Subject'),
-                        TextEntry::make('category')
-                            ->label('Category')
-                            ->badge(),
+                            ->label(__('ticket::ticket.fields.subject')),
                         TextEntry::make('status')
-                            ->label('Status')
+                            ->label(__('ticket::ticket.fields.status'))
                             ->badge()
                             ->color(fn (string $state): string => match ($state) {
                                 'open' => 'info',
@@ -30,18 +27,23 @@ class TicketInfolist
                                 'resolved' => 'success',
                                 'closed' => 'gray',
                                 default => 'gray',
-                            }),
+                            })
+                            ->formatStateUsing(fn (string $state): string => __("ticket::ticket.statuses.{$state}")),
                         TextEntry::make('priority')
-                            ->label('Priority')
+                            ->label(__('ticket::ticket.fields.priority'))
                             ->badge()
                             ->color(fn (string $state): string => match ($state) {
                                 'high' => 'danger',
                                 'medium' => 'warning',
                                 'low' => 'info',
                                 default => 'gray',
-                            }),
-                        TextEntry::make('description')
-                            ->label('Description')
+                            })
+                            ->formatStateUsing(fn (string $state): string => __("ticket::ticket.labels.priority_{$state}")),
+                        TextEntry::make('created_at')
+                            ->label(__('dashboard.fields.created_at'))
+                            ->dateTime(),
+                        TextEntry::make('message')
+                            ->label(__('ticket::ticket.fields.message'))
                             ->html()
                             ->columnSpanFull(),
                     ])

@@ -16,9 +16,10 @@ final class CurrencyPage extends Page implements HasForms
 {
     use InteractsWithForms;
 
-    protected static \BackedEnum|string|null $navigationIcon = 'heroicon-o-currency-dollar';
-    protected static ?string $navigationLabel = 'Currency';
+    protected static ?string $navigationIcon = 'heroicon-o-currency-dollar';
+
     protected static ?int $navigationSort = 11;
+
     protected string $view = 'currency::filament.pages.currency';
 
     public ?array $data = [];
@@ -26,45 +27,47 @@ final class CurrencyPage extends Page implements HasForms
     public function mount(): void
     {
         $repository = app(CurrencyRepository::class);
-        // fix:
         $settings = $repository->getUserCurrencySetting(auth()->id());
 
-        $this->form->fill([
-            'currency' => $settings['currency'] ?? 'USD',
-        ]);
+        $this->form->fill($settings);
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('currency::currency.labels.currencies');
+    }
+
+    public function getHeading(): string
+    {
+        return __('currency::currency.labels.currencies');
     }
 
     public function form(Schema $schema): Schema
     {
         return CurrencyForm::configure($schema)
-            ->statePath('data')
-            ->live()
-            ->afterStateUpdated(fn () => $this->save());
+            ->statePath('data');
     }
 
     public function save(): void
     {
         try {
             $repository = app(CurrencyRepository::class);
-            // fix:
             $repository->updateUserCurrencySetting(auth()->id(), $this->form->getState());
 
             Notification::make()
                 ->success()
-                ->title('Currency Updated')
-                ->body('Your currency preference has been saved.')
+                ->title(__('currency::currency.messages.updated'))
                 ->send();
         } catch (\Exception $e) {
             Notification::make()
                 ->danger()
-                ->title('Error')
-                ->body('Failed to update currency setting.')
+                ->title(__('currency::currency.errors.update_failed'))
                 ->send();
         }
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return 'Account';
+        return __('dashboard.navigation.groups.account');
     }
 }

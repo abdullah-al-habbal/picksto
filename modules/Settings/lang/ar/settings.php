@@ -27,6 +27,12 @@ return [
         'favicon' => 'الأيقونة',
         'botBrowserVisible' => 'إظهار متصفح البوت',
         'download_providers' => 'مزودو التنزيل',
+        'notifications' => 'الإشعارات',
+        'notification_preferences' => 'تفضيلات الإشعارات',
+        'manage_notifications' => 'إدارة كيفية تلقي الإشعارات',
+        'email_notifications' => 'إشعارات البريد الإلكتروني',
+        'push_notifications' => 'إشعارات الجوال',
+        'marketing_emails' => 'رسائل التسويق',
     ],
     'fields' => [
         'key' => 'المفتاح',

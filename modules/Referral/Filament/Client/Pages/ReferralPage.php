@@ -24,10 +24,11 @@ final class ReferralPage extends Page implements HasTable, HasForms
     use InteractsWithTable;
     use InteractsWithForms;
 
-    protected static \BackedEnum|string|null $navigationIcon = 'heroicon-o-share-2';
-    protected static ?string $navigationLabel = 'Referrals';
+    protected static ?string $navigationIcon = 'heroicon-o-share-2';
+    
     protected static ?int $navigationSort = 5;
-    protected string $view = 'filament.pages.referral';
+    
+    protected string $view = 'referral::filament.pages.referral';
 
     public function table(Table $table): Table
     {
@@ -40,6 +41,16 @@ final class ReferralPage extends Page implements HasTable, HasForms
             );
     }
 
+    public static function getNavigationLabel(): string
+    {
+        return __('referral::referral.labels.referrals');
+    }
+
+    public function getHeading(): string
+    {
+        return __('referral::referral.labels.referrals');
+    }
+
     public function getReferralStats(): array
     {
         $repository = app(ReferralRepository::class);
@@ -49,7 +60,7 @@ final class ReferralPage extends Page implements HasTable, HasForms
     public function claimRewardsAction(): Action
     {
         return Action::make('claim-rewards')
-            ->label('Claim Available Rewards')
+            ->label(__('referral::referral.messages.reward_claimed'))
             ->schema(fn (Schema $schema) => ReferralRewardForm::configure($schema))
             ->action(function (array $data): void {
                 try {
@@ -58,8 +69,7 @@ final class ReferralPage extends Page implements HasTable, HasForms
                     if (! $reward || $reward->user_id !== auth()->id()) {
                         Notification::make()
                             ->danger()
-                            ->title('Error')
-                            ->body('Reward not found.')
+                            ->title(__('referral::referral.errors.claim_failed'))
                             ->send();
 
                         return;
@@ -69,16 +79,14 @@ final class ReferralPage extends Page implements HasTable, HasForms
 
                     Notification::make()
                         ->success()
-                        ->title('Reward Claimed')
-                        ->body('Your reward has been claimed successfully.')
+                        ->title(__('referral::referral.messages.reward_claimed'))
                         ->send();
 
                     $this->redirect(static::getUrl());
                 } catch (\Exception $e) {
                     Notification::make()
                         ->danger()
-                        ->title('Error')
-                        ->body('Failed to claim reward. Please try again.')
+                        ->title(__('referral::referral.errors.claim_failed'))
                         ->send();
                 }
             });
@@ -86,6 +94,6 @@ final class ReferralPage extends Page implements HasTable, HasForms
 
     public static function getNavigationGroup(): ?string
     {
-        return 'Growth';
+        return __('dashboard.navigation.groups.growth');
     }
 }

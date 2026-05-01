@@ -16,9 +16,10 @@ final class SettingsPage extends Page implements HasForms
 {
     use InteractsWithForms;
 
-    protected static \BackedEnum|string|null $navigationIcon = 'heroicon-o-cog-6-tooth';
-    protected static ?string $navigationLabel = 'Account Settings';
+    protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
+    
     protected static ?int $navigationSort = 10;
+    
     protected string $view = 'settings::filament.pages.settings';
 
     public ?array $data = [];
@@ -31,6 +32,16 @@ final class SettingsPage extends Page implements HasForms
         $this->form->fill($settings);
     }
 
+    public static function getNavigationLabel(): string
+    {
+        return __('settings::settings.labels.settings');
+    }
+
+    public function getHeading(): string
+    {
+        return __('settings::settings.labels.settings');
+    }
+
     public function form(Schema $schema): Schema
     {
         return SettingsForm::configure($schema)
@@ -41,25 +52,22 @@ final class SettingsPage extends Page implements HasForms
     {
         try {
             $repository = app(SettingsRepository::class);
-            // fix:
             $repository->updateUserSettings(auth()->id(), $this->form->getState());
 
             Notification::make()
                 ->success()
-                ->title('Settings Updated')
-                ->body('Your preferences have been saved.')
+                ->title(__('settings::settings.messages.updated'))
                 ->send();
         } catch (\Exception $e) {
             Notification::make()
                 ->danger()
-                ->title('Error')
-                ->body('Failed to update settings.')
+                ->title(__('settings::settings.errors.update_failed'))
                 ->send();
         }
     }
 
     public static function getNavigationGroup(): ?string
     {
-        return 'Account';
+        return __('dashboard.navigation.groups.account');
     }
 }

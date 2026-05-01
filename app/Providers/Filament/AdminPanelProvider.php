@@ -23,6 +23,7 @@ use Modules\Analytics\Filament\Admin\Widgets\DownloadStatsWidget;
 use Modules\Analytics\Filament\Admin\Widgets\PackagePerformanceWidget;
 use Modules\Analytics\Filament\Admin\Widgets\RevenueTrendChart;
 use Modules\Analytics\Filament\Admin\Widgets\StatsOverview;
+use Modules\User\Filament\Admin\Pages\EditProfile;
 
 final class AdminPanelProvider extends PanelProvider
 {
@@ -33,7 +34,7 @@ final class AdminPanelProvider extends PanelProvider
             ->id(config('panels.admin.id', 'admin'))
             ->path(config('panels.admin.path', 'admin'))
             ->login()
-            ->profile(\Modules\User\Filament\Admin\Pages\EditProfile::class)
+            ->profile(EditProfile::class)
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -65,7 +66,6 @@ final class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-                'admin',
             ]);
 
         $modulesPath = base_path('modules');

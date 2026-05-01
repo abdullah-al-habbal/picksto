@@ -7,23 +7,23 @@ namespace Modules\Referral\Filament\Client\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class ReferralsTable
+final class ReferralsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
                 TextColumn::make('referred.name')
-                    ->label('Referred User')
+                    ->label(__('referral::referral.fields.referred'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('referred.email')
-                    ->label('Email')
+                    ->label(__('user::user.labels.email'))
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('registered_at')
-                    ->label('Registration Date')
-                    ->dateTime('M d, Y')
+                    ->label(__('referral::referral.labels.earned_at'))
+                    ->dateTime()
                     ->sortable(),
             ])
             ->defaultSort('registered_at', 'desc')

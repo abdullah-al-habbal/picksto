@@ -6,6 +6,9 @@ declare(strict_types=1);
 
 namespace Modules\User\Models;
 
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasAvatar;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -41,12 +44,26 @@ use Modules\User\Database\Factories\UserModelFactory;
  * @property-read BelongsTo<UserModel, int> $referrer
  * @property-read string|null $avatar_url
  */
-final class UserModel extends Authenticatable
+final class UserModel extends Authenticatable implements FilamentUser, HasAvatar
 {
     use HasApiTokens;
     use HasFactory;
     use Notifiable;
     use SoftDeletes;
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return match ($panel->getId()) {
+            'admin' => in_array($this->role, ['admin', 'supervisor']),
+            'client' => $this->role === 'user',
+            default => false,
+        };
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return $this->avatar ? asset('storage/' . $this->avatar) : null;
+    }
 
     protected $table = 'users';
 
@@ -89,14 +106,19 @@ final class UserModel extends Authenticatable
         return UserModelFactory::new();
     }
 
+    public function subscriptions(): HasMany
+    {
+        return $this->hasMany(SubscriptionModel::class, 'user_id');
+    }
+
     public function referrals(): HasMany
     {
-        return $this->hasMany(UserModel::class, 'referred_by');
+        return $this->hasMany(self::class, 'referred_by');
     }
 
     public function referrer(): BelongsTo
     {
-        return $this->belongsTo(UserModel::class, 'referred_by');
+        return $this->belongsTo(self::class, 'referred_by');
     }
 
     public function scopeActive(Builder $query): Builder
@@ -104,53 +126,8 @@ final class UserModel extends Authenticatable
         return $query->where('is_banned', false);
     }
 
-    public function scopeVerified(Builder $query): Builder
+    public function scopeByRole(Builder $query, string $role): Builder
     {
-        return $query->where('email_verified', true);
-    }
-
-    public function scopeAdmins(Builder $query): Builder
-    {
-        return $query->whereIn('role', ['admin', 'supervisor']);
-    }
-
-    public function scopeWithReferralStats(Builder $query): Builder
-    {
-        return $query->withCount('referrals');
-    }
-
-    public function isAdmin(): bool
-    {
-        return $this->role === 'admin';
-    }
-
-    public function isSupervisor(): bool
-    {
-        return $this->role === 'supervisor';
-    }
-
-    public function isBanned(): bool
-    {
-        return $this->is_banned;
-    }
-
-    public function isVerified(): bool
-    {
-        return $this->email_verified && $this->phone_verified;
-    }
-
-    public function getAvatarUrlAttribute(): ?string
-    {
-        return $this->avatar !== null ? url($this->avatar) : null;
-    }
-
-    public function subscriptions(): HasMany
-    {
-        return $this->hasMany(SubscriptionModel::class, 'user_id');
-    }
-
-    public function updateLastLogin(): void
-    {
-        $this->update(['last_login_at' => now()]);
+        return $query->where('role', $role);
     }
 }

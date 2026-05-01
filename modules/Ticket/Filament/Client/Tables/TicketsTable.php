@@ -14,16 +14,16 @@ class TicketsTable
         return $table
             ->columns([
                 TextColumn::make('id')
-                    ->label('Ticket ID')
+                    ->label('#')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('subject')
-                    ->label('Subject')
+                    ->label(__('ticket::ticket.fields.subject'))
                     ->searchable()
                     ->sortable()
                     ->wrap(),
                 TextColumn::make('status')
-                    ->label('Status')
+                    ->label(__('ticket::ticket.fields.status'))
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
                         'open' => 'info',
@@ -32,9 +32,10 @@ class TicketsTable
                         'closed' => 'gray',
                         default => 'gray',
                     })
+                    ->formatStateUsing(fn (string $state): string => __("ticket::ticket.statuses.{$state}"))
                     ->sortable(),
                 TextColumn::make('priority')
-                    ->label('Priority')
+                    ->label(__('ticket::ticket.fields.priority'))
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
                         'high' => 'danger',
@@ -42,10 +43,11 @@ class TicketsTable
                         'low' => 'info',
                         default => 'gray',
                     })
+                    ->formatStateUsing(fn (string $state): string => __("ticket::ticket.labels.priority_{$state}"))
                     ->sortable(),
-                TextColumn::make('createdAt')
-                    ->label('Created')
-                    ->dateTime('M d, Y H:i')
+                TextColumn::make('created_at')
+                    ->label(__('dashboard.fields.created_at'))
+                    ->dateTime()
                     ->sortable(),
             ])
             ->defaultSort('created_at', 'desc')

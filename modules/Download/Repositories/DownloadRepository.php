@@ -7,15 +7,91 @@ declare(strict_types=1);
 namespace Modules\Download\Repositories;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Modules\Download\Models\DownloadModel;
 use Modules\Subscription\Models\SubscriptionModel;
 
 final class DownloadRepository
 {
+    private string $baseUrl;
+    private string $secret;
+
     public function __construct(
         private readonly DownloadModel $model,
         private readonly SubscriptionModel $subscriptionModel,
     ) {
+        $this->baseUrl = config('services.browser.url', 'http://127.0.0.1:4000');
+        $this->secret = config('services.browser.secret', '');
+    }
+
+    public function requestDownload(int $userId, string $url): DownloadModel
+    {
+        $siteSource = $this->detectSiteSource($url);
+
+        $this->checkUserEligibility($userId, $siteSource);
+
+        $download = $this->create([
+            'user_id' => $userId,
+            'source_url' => $url,
+            'site_source' => $siteSource,
+            'status' => 'pending',
+        ]);
+
+        try {
+            $response = Http::withHeaders([
+                'X-API-Secret' => $this->secret,
+            ])
+                ->timeout(300)
+                ->post("{$this->baseUrl}/api/download", [
+                    'url' => $url,
+                    'siteSource' => $siteSource,
+                    'downloadId' => $download->id,
+                ]);
+
+            if (!$response->successful()) {
+                $download->update(['status' => 'failed']);
+                throw new \RuntimeException("Microservice returned error: {$response->body()}");
+            }
+
+            $result = $response->json();
+
+            // Note: The microservice might be async. 
+            // If it returns the file immediately:
+            if (isset($result['data']['downloadPath'])) {
+                $download->update([
+                    'status' => 'completed',
+                    'download_path' => $result['data']['downloadPath'],
+                ]);
+            }
+
+            return $download;
+
+        } catch (\Exception $e) {
+            Log::error('Download request failed', [
+                'download_id' => $download->id,
+                'error' => $e->getMessage(),
+            ]);
+
+            $download->update(['status' => 'failed']);
+            throw $e;
+        }
+    }
+
+    public function extractPreview(string $url): array
+    {
+        $response = Http::withHeaders([
+            'X-API-Secret' => $this->secret,
+        ])
+            ->post("{$this->baseUrl}/api/extract-preview", [
+                'url' => $url,
+            ]);
+
+        if (!$response->successful()) {
+            throw new \RuntimeException('Failed to extract preview');
+        }
+
+        return $response->json()['data'] ?? [];
     }
 
     public function create(array $data): DownloadModel

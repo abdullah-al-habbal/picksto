@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Download\Filament\Client\Tables;
 
+use Filament\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -14,39 +15,39 @@ class DownloadsTable
         return $table
             ->columns([
                 TextColumn::make('product.name')
-                    ->label('Product')
+                    ->label(__('download::download.labels.file_name'))
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('fileSize')
-                    ->label('File Size')
-                    ->formatStateUsing(fn (string $state): string => static::formatBytes((int) $state))
-                    ->sortable(),
-                TextColumn::make('downloadCount')
-                    ->label('Downloads')
+                TextColumn::make('file_size')
+                    ->label(__('download::download.fields.file_path'))
+                    ->formatStateUsing(fn(?int $state): string => $state ? static::formatBytes($state) : '-')
                     ->sortable(),
                 TextColumn::make('status')
-                    ->label('Status')
+                    ->label(__('download::download.fields.status'))
                     ->badge()
-                    ->color(fn (string $state): string => match ($state) {
+                    ->color(fn(string $state): string => match ($state) {
                         'completed' => 'success',
                         'pending' => 'warning',
                         'failed' => 'danger',
-                        'expired' => 'gray',
                         default => 'gray',
                     })
+                    ->formatStateUsing(fn(string $state): string => __("download::download.statuses.{$state}"))
                     ->sortable(),
-                TextColumn::make('createdAt')
-                    ->label('Downloaded')
-                    ->dateTime('M d, Y H:i')
+                TextColumn::make('created_at')
+                    ->label(__('download::download.labels.date'))
+                    ->dateTime()
                     ->sortable(),
-                TextColumn::make('expiresAt')
-                    ->label('Expires')
-                    ->dateTime('M d, Y')
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->defaultSort('created_at', 'desc')
-            ->paginated([10, 25, 50]);
+            ->paginated([10, 25, 50])
+            ->actions([
+                Action::make('download')
+                    ->label(__('download::download.labels.download'))
+                    ->icon('heroicon-m-arrow-down-tray')
+                    ->url(fn($record) => route('web.downloads.serve', ['filename' => basename($record->download_path)]))
+                    ->openUrlInNewTab()
+                    ->visible(fn($record) => $record->status === 'completed'),
+            ]);
     }
 
     private static function formatBytes(int $bytes, int $precision = 2): string
