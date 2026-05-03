@@ -9,6 +9,9 @@ namespace Modules\Download\Providers;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Modules\Product\Models\ProductModel;
+use Modules\Package\Models\PackageModel;
 
 final class DownloadServiceProvider extends ServiceProvider
 {
@@ -20,6 +23,11 @@ final class DownloadServiceProvider extends ServiceProvider
         $this->loadMigrations();
         $this->loadTranslations();
         $this->loadViews();
+
+        Relation::morphMap([
+            'product' => ProductModel::class,
+            'package' => PackageModel::class,
+        ]);
     }
 
     private function loadRoutes(): void

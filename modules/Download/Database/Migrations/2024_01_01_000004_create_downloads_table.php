@@ -8,8 +8,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     public function up(): void
     {
         Schema::create('downloads', static function (Blueprint $table): void {
@@ -23,6 +22,9 @@ return new class extends Migration
             $table->string('ip_address')->nullable();
             $table->text('error_message')->nullable();
             $table->timestamps();
+
+            $table->nullableMorphs('downloadable');
+            $table->timestamp('downloaded_at')->nullable();
 
             $table->index(['user_id', 'status']);
             $table->index(['created_at']);

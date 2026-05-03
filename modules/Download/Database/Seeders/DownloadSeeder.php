@@ -12,7 +12,7 @@ final class DownloadSeeder extends Seeder
 {
     public function run(): void
     {
-        if (! app()->environment('local')) {
+        if (!app()->environment('local')) {
             return;
         }
 
@@ -28,15 +28,34 @@ final class DownloadSeeder extends Seeder
         $total = 10000;
         $data = [];
 
+        $sources = ['Freepik', 'Flaticon', 'Envato Elements', 'MotionArray'];
+
         for ($i = 0; $i < $total; $i++) {
+            $type = fake()->randomElement(['product', 'package']);
+            if ($type === 'product' && !empty($productIds)) {
+                $downloadableType = 'product';
+                $downloadableId = $productIds[array_rand($productIds)];
+            } elseif (!empty($packageIds)) {
+                $downloadableType = 'package';
+                $downloadableId = $packageIds[array_rand($packageIds)];
+            } else {
+                continue;
+            }
+
             $data[] = [
-                'user_id'       => $userIds[array_rand($userIds)],
-                'product_id'    => !empty($productIds) ? $productIds[array_rand($productIds)] : null,
-                'package_id'    => !empty($packageIds) ? $packageIds[array_rand($packageIds)] : null,
-                'status'        => 'completed',
+                'user_id' => $userIds[array_rand($userIds)],
+                'original_url' => 'https://example.com/download/' . fake()->uuid(),
+                'file_name' => fake()->slug() . '.zip',
+                'site_source' => $sources[array_rand($sources)],
+                'status' => 'completed',
+                'download_path' => '/downloads/' . fake()->slug() . '.zip',
+                'ip_address' => fake()->ipv4(),
+                'error_message' => null,
+                'downloadable_type' => $downloadableType,
+                'downloadable_id' => $downloadableId,
                 'downloaded_at' => now()->subDays(rand(0, 30)),
-                'created_at'    => now(),
-                'updated_at'    => now(),
+                'created_at' => now(),
+                'updated_at' => now(),
             ];
 
             if (count($data) >= $chunkSize) {
@@ -45,7 +64,7 @@ final class DownloadSeeder extends Seeder
             }
         }
 
-        if (! empty($data)) {
+        if (!empty($data)) {
             DB::table('downloads')->insert($data);
         }
     }

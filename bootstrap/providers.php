@@ -9,6 +9,7 @@ use App\Providers\ScrambleServiceProvider;
 use Modules\Analytics\Providers\AnalyticsServiceProvider;
 use Modules\Currency\Providers\CurrencyServiceProvider;
 use Modules\Download\Providers\DownloadServiceProvider;
+use Modules\Language\Providers\LanguageServiceProvider;
 use Modules\LemonSqueezy\Providers\LemonSqueezyServiceProvider;
 use Modules\Package\Providers\PackageServiceProvider;
 use Modules\Payment\Providers\PaymentServiceProvider;
@@ -42,6 +43,7 @@ return [
     TestProviderServiceProvider::class,
     TicketServiceProvider::class,
     UploadServiceProvider::class,
+    LanguageServiceProvider::class,
     UserServiceProvider::class,
     VerificationServiceProvider::class,
 ];

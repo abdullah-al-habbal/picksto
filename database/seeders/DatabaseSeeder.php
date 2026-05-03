@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Modules\Analytics\Database\Seeders\AnalyticsSeeder;
 use Modules\Currency\Database\Seeders\CurrencySeeder;
+use Modules\Language\Database\Seeders\LanguageSeeder;
 use Modules\Download\Database\Seeders\DownloadSeeder;
 use Modules\Package\Database\Seeders\PackageSeeder;
 use Modules\Payment\Database\Seeders\PaymentSeeder;
@@ -22,6 +23,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            CurrencySeeder::class,
+            LanguageSeeder::class,
             UserSeeder::class,
             UserSettingSeeder::class,
             PackageSeeder::class,
@@ -30,7 +33,6 @@ class DatabaseSeeder extends Seeder
             PaymentSeeder::class,
             ReferralSeeder::class,
             VerificationSeeder::class,
-            CurrencySeeder::class,
             SettingsSeeder::class,
             SubscriptionSeeder::class,
             DownloadSeeder::class,

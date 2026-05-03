@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Modules\Package\Database\Factories\PackageModelFactory;
 use Modules\Subscription\Models\SubscriptionModel;
 use Spatie\Translatable\HasTranslations;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Modules\Download\Models\DownloadModel;
 
 /**
  * @property int $id
@@ -101,5 +103,10 @@ final class PackageModel extends Model
         $allowed = $this->allowed_sites ?? [];
 
         return in_array('All', $allowed, true) || in_array($site, $allowed, true);
+    }
+
+    public function downloads(): MorphMany
+    {
+        return $this->morphMany(DownloadModel::class, 'downloadable');
     }
 }

@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Modules\Product\Database\Factories\ProductModelFactory;
 use Spatie\Translatable\HasTranslations;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Modules\Download\Models\DownloadModel;
 
 /**
  * @property int $id
@@ -66,5 +68,10 @@ final class ProductModel extends Model
     public function scopeActive(Builder $query): Builder
     {
         return $query->where('is_active', true)->orderBy('sort_order');
+    }
+
+    public function downloads(): MorphMany
+    {
+        return $this->morphMany(DownloadModel::class, 'downloadable');
     }
 }

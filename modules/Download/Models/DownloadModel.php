@@ -9,6 +9,7 @@ namespace Modules\Download\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Carbon;
 use Modules\Download\Database\Factories\DownloadModelFactory;
 use Modules\User\Models\UserModel;
@@ -23,9 +24,11 @@ use Modules\User\Models\UserModel;
  * @property string|null $download_path
  * @property string|null $ip_address
  * @property string|null $error_message
+ * @property Carbon|null $downloaded_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property-read UserModel $user
+ * @property-read Model|null $downloadable
  */
 final class DownloadModel extends Model
 {
@@ -42,7 +45,17 @@ final class DownloadModel extends Model
         'download_path',
         'ip_address',
         'error_message',
+        'downloadable_type',
+        'downloadable_id',
+        'downloaded_at',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'downloaded_at' => 'datetime',
+        ];
+    }
 
     protected static function newFactory(): DownloadModelFactory
     {
@@ -52,6 +65,11 @@ final class DownloadModel extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(UserModel::class);
+    }
+
+    public function downloadable(): MorphTo
+    {
+        return $this->morphTo();
     }
 
     public function scopeCompleted($query)

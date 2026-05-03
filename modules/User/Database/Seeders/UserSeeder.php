@@ -103,6 +103,7 @@ final class UserSeeder extends Seeder
             'email_verified' => true,
             'phone_verified' => true,
             'is_banned' => false,
+            'referred_by' => null,
             'created_at' => now(),
             'updated_at' => now(),
         ], $overrides);
