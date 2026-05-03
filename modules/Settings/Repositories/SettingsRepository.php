@@ -7,14 +7,15 @@ declare(strict_types=1);
 namespace Modules\Settings\Repositories;
 
 use Modules\Settings\Models\SettingModel;
-
 use Modules\User\Models\UserModel;
+use Modules\User\Models\UserSettingModel;
 
 final class SettingsRepository
 {
     public function __construct(
         private readonly SettingModel $model,
-    ) {}
+    ) {
+    }
 
     public function getSettings(bool $isAdmin = false): array
     {
@@ -22,13 +23,19 @@ final class SettingsRepository
             ->where('key_name', 'site_config')
             ->first()?->value ?? [];
 
-        if (! $isAdmin) {
+        if (!$isAdmin) {
             unset($siteConfig['downloadProviders']);
         }
 
         $userSettings = [];
         if (auth()->check()) {
-            $userSettings = auth()->user()->settings['notification_preferences'] ?? [];
+            $userSetting = UserSettingModel::where('user_id', auth()->id())->first();
+            if ($userSetting) {
+                $userSettings = [
+                    'notify_email_enabled' => $userSetting->notify_email_enabled,
+                    'notify_whatsapp_enabled' => $userSetting->notify_whatsapp_enabled,
+                ];
+            }
         }
 
         return array_merge([
@@ -38,11 +45,13 @@ final class SettingsRepository
 
     public function updateUserSettings(int $userId, array $data): void
     {
-        $user = UserModel::find($userId);
-        $settings = $user->settings ?? [];
-        $settings['notification_preferences'] = $data;
-        $user->settings = $settings;
-        $user->save();
+        UserSettingModel::updateOrCreate(
+            ['user_id' => $userId],
+            [
+                'notify_email_enabled' => $data['notify_email_enabled'] ?? true,
+                'notify_whatsapp_enabled' => $data['notify_whatsapp_enabled'] ?? false,
+            ]
+        );
     }
 
     public function updateSettings(array $data): SettingModel

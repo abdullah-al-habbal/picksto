@@ -9,7 +9,6 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class SetLocaleMiddleware
@@ -48,9 +47,10 @@ class SetLocaleMiddleware
             return null;
         }
 
-        $userLocale = $user->settings['preferred_language'] ?? null;
+        $user->load('setting.language');
+        $languageCode = $user->setting?->language?->code;
 
-        return $this->isActiveLocale($userLocale) ? $userLocale : null;
+        return $this->isActiveLocale($languageCode) ? $languageCode : null;
     }
 
     private function getHeaderPreferredLocale(Request $request): ?string

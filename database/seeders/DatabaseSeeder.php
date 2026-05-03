@@ -14,6 +14,7 @@ use Modules\Settings\Database\Seeders\SettingsSeeder;
 use Modules\Subscription\Database\Seeders\SubscriptionSeeder;
 use Modules\Ticket\Database\Seeders\TicketSeeder;
 use Modules\User\Database\Seeders\UserSeeder;
+use Modules\User\Database\Seeders\UserSettingSeeder;
 use Modules\Verification\Database\Seeders\VerificationSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
+            UserSettingSeeder::class,
             PackageSeeder::class,
             ProductSeeder::class,
             TicketSeeder::class,
