@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Package\Filament\Client\Pages;
 
+use BackedEnum;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
@@ -18,7 +19,7 @@ final class PlansPage extends Page implements HasForms
 {
     use InteractsWithForms;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-group';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-rectangle-group';
 
     protected static ?int $navigationSort = 2;
 

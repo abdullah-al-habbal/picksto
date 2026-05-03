@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\SubscriptionRequest\Filament\Client\Resources;
 
+use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -19,7 +20,7 @@ final class MySubscriptionRequestResource extends Resource
 {
     protected static ?string $model = SubscriptionRequestModel::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-magnifying-glass';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-document-magnifying-glass';
 
     public static function getNavigationLabel(): string
     {

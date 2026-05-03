@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Referral\Filament\Client\Pages;
 
+use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
@@ -24,7 +25,7 @@ final class ReferralPage extends Page implements HasTable, HasForms
     use InteractsWithTable;
     use InteractsWithForms;
 
-    protected static ?string $navigationIcon = 'heroicon-o-share-2';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-share-2';
     
     protected static ?int $navigationSort = 5;
     

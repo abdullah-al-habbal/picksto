@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\Download\Filament\Client\Pages;
 
+use BackedEnum;
 use Filament\Pages\Page;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
 use Filament\Schemas\Schema;
+use Filament\Tables\Concerns\InteractsWithTable;
+use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Modules\Download\Filament\Client\Schemas\RequestDownloadForm;
 use Modules\Download\Filament\Client\Tables\DownloadsTable;
@@ -20,7 +23,7 @@ final class DownloadsPage extends Page implements HasTable, HasForms
     use InteractsWithTable;
     use InteractsWithForms;
 
-    protected static ?string $navigationIcon = 'heroicon-o-arrow-down-tray';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-arrow-down-tray';
 
     protected static ?int $navigationSort = 3;
 

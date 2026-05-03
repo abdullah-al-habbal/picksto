@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Ticket\Filament\Client\Resources;
 
+use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
@@ -19,7 +20,7 @@ final class MyTicketResource extends Resource
 {
     protected static ?string $model = TicketModel::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-ticket';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-ticket';
 
     protected static ?int $navigationSort = 4;
 
