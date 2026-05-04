@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\LemonSqueezy\Filament\Admin\Resources;
 
-use Filament\Forms\Components\Placeholder;
+use BackedEnum;
 use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Modules\LemonSqueezy\Filament\Admin\Resources\Pages\ListLemonSqueezyProducts;
 use Modules\LemonSqueezy\Filament\Admin\Resources\Pages\ViewLemonSqueezyProduct;
@@ -18,7 +17,7 @@ use Modules\LemonSqueezy\Filament\Admin\Resources\Tables\LemonSqueezyProductsTab
 final class LemonSqueezyProductResource extends Resource
 {
     protected static ?string $model = null;
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-shopping-bag';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-shopping-bag';
 
     public static function getNavigationGroup(): ?string
     {

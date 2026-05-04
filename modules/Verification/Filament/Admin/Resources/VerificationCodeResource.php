@@ -53,6 +53,11 @@ final class VerificationCodeResource extends Resource
         return $record->code . ' – ' . ($record->user?->name ?? '');
     }
 
+    public static function getNavigationBadge(): ?string
+    {
+        return (string) static::getModel()::count();
+    }
+
     public static function form(Schema $schema): Schema
     {
         return VerificationCodeForm::configure($schema);

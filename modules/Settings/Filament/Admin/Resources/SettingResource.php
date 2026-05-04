@@ -53,6 +53,11 @@ final class SettingResource extends Resource
         return $record->key;
     }
 
+    public static function getNavigationBadge(): ?string
+    {
+        return (string) static::getModel()::count();
+    }
+
     public static function form(Schema $schema): Schema
     {
         return SettingForm::configure($schema);

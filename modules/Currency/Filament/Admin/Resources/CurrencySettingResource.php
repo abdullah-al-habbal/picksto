@@ -53,6 +53,11 @@ final class CurrencySettingResource extends Resource
         return $record->name . ' (' . $record->code . ')';
     }
 
+    public static function getNavigationBadge(): ?string
+    {
+        return (string) static::getModel()::count();
+    }
+
     public static function form(Schema $schema): Schema
     {
         return CurrencySettingForm::configure($schema);

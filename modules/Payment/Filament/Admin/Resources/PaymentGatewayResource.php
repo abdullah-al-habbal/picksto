@@ -53,6 +53,11 @@ final class PaymentGatewayResource extends Resource
         return $record->name;
     }
 
+    public static function getNavigationBadge(): ?string
+    {
+        return (string) static::getModel()::count();
+    }
+
     public static function form(Schema $schema): Schema
     {
         return PaymentGatewayForm::configure($schema);
