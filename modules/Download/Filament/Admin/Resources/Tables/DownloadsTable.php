@@ -9,6 +9,7 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Modules\Download\Models\DownloadModel;
 
 final class DownloadsTable
 {
@@ -26,10 +27,15 @@ final class DownloadsTable
                     ->searchable()
                     ->limit(30),
 
-                TextColumn::make('site')
-                    ->label(__('download::download.fields.site'))
+                TextColumn::make('site_source')
+                    ->label(__('download::download.fields.site_source'))
                     ->badge()
                     ->color('gray')
+                    ->sortable(),
+
+                TextColumn::make('downloadable.name')
+                    ->label(__('download::download.fields.item'))
+                    ->searchable()
                     ->sortable(),
 
                 TextColumn::make('status')
@@ -55,8 +61,8 @@ final class DownloadsTable
                         'completed' => __('download::download.statuses.completed'),
                         'failed' => __('download::download.statuses.failed'),
                     ]),
-                SelectFilter::make('site')
-                    ->options(fn () => \Modules\Download\Models\DownloadModel::query()->distinct()->pluck('site', 'site')->toArray()),
+                SelectFilter::make('site_source')
+                    ->options(fn () => DownloadModel::query()->distinct()->pluck('site_source', 'site_source')->toArray()),
             ])
             ->recordActions([
                 ViewAction::make(),

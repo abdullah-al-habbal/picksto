@@ -7,6 +7,7 @@ use App\Providers\Filament\AdminPanelProvider;
 use App\Providers\Filament\ClientPanelProvider;
 use App\Providers\ScrambleServiceProvider;
 use Modules\Analytics\Providers\AnalyticsServiceProvider;
+use Modules\Auth\Providers\AuthServiceProvider;
 use Modules\Currency\Providers\CurrencyServiceProvider;
 use Modules\Download\Providers\DownloadServiceProvider;
 use Modules\Language\Providers\LanguageServiceProvider;
@@ -25,6 +26,7 @@ use Modules\User\Providers\UserServiceProvider;
 use Modules\Verification\Providers\VerificationServiceProvider;
 
 return [
+    AuthServiceProvider::class,
     ApplicationServiceProvider::class,
     AdminPanelProvider::class,
     ClientPanelProvider::class,

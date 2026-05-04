@@ -7,6 +7,8 @@ namespace Modules\Download\Filament\Admin\Resources\Schemas;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use Modules\Product\Models\ProductModel;
+use Modules\Package\Models\PackageModel;
 
 final class DownloadForm
 {
@@ -25,15 +27,35 @@ final class DownloadForm
                     ->required()
                     ->maxLength(255),
 
-                TextInput::make('source_url')
-                    ->label(__('download::download.fields.source_url'))
+                TextInput::make('original_url')
+                    ->label(__('download::download.fields.original_url'))
                     ->required()
                     ->url()
                     ->maxLength(2048),
 
-                TextInput::make('site')
-                    ->label(__('download::download.fields.site'))
+                TextInput::make('site_source')
+                    ->label(__('download::download.fields.site_source'))
                     ->maxLength(255),
+
+                Select::make('downloadable_type')
+                    ->options([
+                        'product' => 'Product',
+                        'package' => 'Package',
+                    ])
+                    ->live(),
+
+                Select::make('downloadable_id')
+                    ->options(function (callable $get) {
+                        $type = $get('downloadable_type');
+                        if ($type === 'product') {
+                            return ProductModel::pluck('name', 'id');
+                        }
+                        if ($type === 'package') {
+                            return PackageModel::pluck('name', 'id');
+                        }
+                        return [];
+                    })
+                    ->searchable(),
 
                 Select::make('status')
                     ->label(__('download::download.fields.status'))

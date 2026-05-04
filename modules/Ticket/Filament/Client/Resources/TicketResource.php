@@ -16,7 +16,7 @@ use Modules\Ticket\Filament\Client\Schemas\TicketForm;
 use Modules\Ticket\Filament\Client\Schemas\TicketInfolist;
 use Modules\Ticket\Filament\Client\Tables\TicketsTable;
 
-final class MyTicketResource extends Resource
+final class TicketResource extends Resource
 {
     protected static ?string $model = TicketModel::class;
 

@@ -1,5 +1,5 @@
 <?php
-
+// picksto-laravel-service\modules\Analytics\Providers\AnalyticsServiceProvider.php
 declare(strict_types=1);
 
 namespace Modules\Analytics\Providers;

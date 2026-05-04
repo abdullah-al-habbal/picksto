@@ -19,20 +19,23 @@ final class DownloadInfolist
                 TextEntry::make('file_name')
                     ->label(__('download::download.fields.file_name')),
 
-                TextEntry::make('source_url')
-                    ->label(__('download::download.fields.source_url'))
+                TextEntry::make('original_url')
+                    ->label(__('download::download.fields.original_url'))
                     ->url()
                     ->openUrlInNewTab(),
 
-                TextEntry::make('site')
-                    ->label(__('download::download.fields.site'))
+                TextEntry::make('site_source')
+                    ->label(__('download::download.fields.site_source'))
                     ->badge()
                     ->color('gray'),
+
+                TextEntry::make('downloadable.name')
+                    ->label(__('download::download.fields.item')),
 
                 TextEntry::make('status')
                     ->label(__('download::download.fields.status'))
                     ->badge()
-                    ->color(fn (string $state): string => match ($state) {
+                    ->color(fn(string $state): string => match ($state) {
                         'completed' => 'success',
                         'pending' => 'warning',
                         'failed' => 'danger',

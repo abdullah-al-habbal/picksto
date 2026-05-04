@@ -1,3 +1,4 @@
+<!-- picksto-laravel-service\modules\Analytics\resources\views\widgets\download-stats-widget.blade.php -->
 <x-filament-widgets::widget>
     <x-filament::section>
         <x-slot name="heading">
@@ -5,7 +6,6 @@
         </x-slot>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            {{-- Today Stats --}}
             <div class="p-4 bg-gray-50 dark:bg-white/5 rounded-xl border border-gray-100 dark:border-white/10">
                 <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
                     {{ __('analytics::analytics.widgets.download_stats.today') }}
@@ -16,7 +16,6 @@
                 </div>
             </div>
 
-            {{-- Month Stats --}}
             <div class="p-4 bg-gray-50 dark:bg-white/5 rounded-xl border border-gray-100 dark:border-white/10">
                 <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
                     {{ __('analytics::analytics.widgets.download_stats.month') }}
@@ -27,7 +26,6 @@
                 </div>
             </div>
 
-            {{-- Total Stats --}}
             <div class="p-4 bg-gray-50 dark:bg-white/5 rounded-xl border border-gray-100 dark:border-white/10">
                 <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
                     {{ __('analytics::analytics.widgets.download_stats.total') }}
