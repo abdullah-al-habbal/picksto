@@ -13,12 +13,13 @@ use Modules\Language\Filament\Admin\Resources\Pages\EditLanguage;
 use Modules\Language\Filament\Admin\Resources\Pages\ListLanguages;
 use Modules\Language\Filament\Admin\Resources\Schemas\LanguageForm;
 use Modules\Language\Filament\Admin\Resources\Tables\LanguagesTable;
+use BackedEnum;
 
 class LanguageResource extends Resource
 {
     protected static ?string $model = LanguageModel::class;
 
-    protected static \BackedEnum|string|null $navigationIcon = 'heroicon-o-language';
+    protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-language';
 
     protected static ?int $navigationSort = 100;
 

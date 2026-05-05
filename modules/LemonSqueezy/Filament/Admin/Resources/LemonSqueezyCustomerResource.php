@@ -7,16 +7,17 @@ namespace Modules\LemonSqueezy\Filament\Admin\Resources;
 use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 use Modules\LemonSqueezy\Filament\Admin\Resources\Pages\ListLemonSqueezyCustomers;
 use Modules\LemonSqueezy\Filament\Admin\Resources\Pages\ViewLemonSqueezyCustomer;
 use Modules\LemonSqueezy\Filament\Admin\Resources\Schemas\LemonSqueezyCustomerForm;
 use Modules\LemonSqueezy\Filament\Admin\Resources\Schemas\LemonSqueezyCustomerInfolist;
 use Modules\LemonSqueezy\Filament\Admin\Resources\Tables\LemonSqueezyCustomersTable;
-
+use BackedEnum;
 final class LemonSqueezyCustomerResource extends Resource
 {
     protected static ?string $model = null;
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-users';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-users';
 
     public static function getNavigationGroup(): ?string
     {
@@ -38,6 +39,20 @@ final class LemonSqueezyCustomerResource extends Resource
     public static function getPluralModelLabel(): string
     {
         return __('lemonsqueezy::lemonsqueezy.customers.labels.plural');
+    }
+
+    public static function getRecordTitle(?Model $record): string
+    {
+        if (!$record) {
+            return static::getModelLabel();
+        }
+
+        return $record->name ?? $record->email ?? (string) $record->id;
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return null;
     }
 
     public static function form(Schema $schema): Schema

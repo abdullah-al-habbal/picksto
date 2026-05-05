@@ -8,13 +8,12 @@ use Filament\Schemas\Schema;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Illuminate\Support\Facades\Storage;
-use Modules\User\Models\User;
 use Modules\User\Repositories\UserRepository;
 use Modules\User\Filament\Client\Schemas\ProfileForm;
-
+use BackedEnum;
 final class ProfilePage extends Page
 {
-    protected static \BackedEnum|string|null $navigationIcon = 'heroicon-o-user-circle';
+    protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-user-circle';
     protected static ?string $navigationLabel = 'Profile';
     protected static ?int $navigationSort = 1;
     protected string $view = 'user::filament.pages.profile';

@@ -8,6 +8,7 @@ use BackedEnum;
 use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 use Modules\LemonSqueezy\Filament\Admin\Resources\Pages\ListLemonSqueezyProducts;
 use Modules\LemonSqueezy\Filament\Admin\Resources\Pages\ViewLemonSqueezyProduct;
 use Modules\LemonSqueezy\Filament\Admin\Resources\Schemas\LemonSqueezyProductForm;
@@ -39,6 +40,20 @@ final class LemonSqueezyProductResource extends Resource
     public static function getPluralModelLabel(): string
     {
         return __('lemonsqueezy::lemonsqueezy.products.labels.plural');
+    }
+
+    public static function getRecordTitle(?Model $record): string
+    {
+        if (!$record) {
+            return static::getModelLabel();
+        }
+
+        return $record->name ?? (string) $record->id;
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return null;
     }
 
     public static function form(Schema $schema): Schema

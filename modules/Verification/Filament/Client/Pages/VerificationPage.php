@@ -7,10 +7,11 @@ namespace Modules\Verification\Filament\Client\Pages;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Modules\Verification\Repositories\VerificationRepository;
+use BackedEnum;
 
 final class VerificationPage extends Page
 {
-    protected static \BackedEnum|string|null $navigationIcon = 'heroicon-o-shield-check';
+    protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-shield-check';
     protected static ?string $navigationLabel = 'Verification';
     protected static ?int $navigationSort = 10;
     protected string $view = 'verification::filament.pages.verification';
@@ -35,7 +36,7 @@ final class VerificationPage extends Page
     public function sendEmailCode(VerificationRepository $repository): void
     {
         $result = $repository->sendEmailVerification(auth()->id(), 'user_verification');
-        
+
         if ($result['success']) {
             Notification::make()
                 ->success()
@@ -52,7 +53,7 @@ final class VerificationPage extends Page
     public function sendPhoneCode(VerificationRepository $repository): void
     {
         $result = $repository->sendWhatsAppVerification(auth()->id(), 'user_verification');
-        
+
         if ($result['success']) {
             Notification::make()
                 ->success()
@@ -69,7 +70,7 @@ final class VerificationPage extends Page
     public function verifyEmail(VerificationRepository $repository): void
     {
         $result = $repository->verifyCode(auth()->id(), $this->emailCode, 'email');
-        
+
         if ($result['success']) {
             $this->emailVerified = true;
             $this->emailCode = '';
@@ -88,7 +89,7 @@ final class VerificationPage extends Page
     public function verifyPhone(VerificationRepository $repository): void
     {
         $result = $repository->verifyCode(auth()->id(), $this->phoneCode, 'whatsapp');
-        
+
         if ($result['success']) {
             $this->phoneVerified = true;
             $this->phoneCode = '';
