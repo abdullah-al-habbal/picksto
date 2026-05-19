@@ -25,6 +25,7 @@ use Modules\Analytics\Filament\Admin\Widgets\PackagePerformanceWidget;
 use Modules\Analytics\Filament\Admin\Widgets\RevenueTrendChart;
 use Modules\Analytics\Filament\Admin\Widgets\StatsOverview;
 use Modules\User\Filament\Admin\Pages\EditProfile;
+use Modules\User\Http\Middleware\CheckUserBanMiddleware;
 
 final class AdminPanelProvider extends PanelProvider
 {
@@ -68,6 +69,7 @@ final class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                CheckUserBanMiddleware::class,
             ]);
 
         $modulesPath = base_path('modules');

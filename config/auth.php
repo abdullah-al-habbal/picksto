@@ -6,8 +6,8 @@ declare(strict_types=1);
 return [
     'return_otp_in_response' => env('RETURN_OTP_IN_RESPONSE'),
     'defaults' => [
-        'guard' => env('AUTH_GUARD'),
-        'passwords' => env('AUTH_PASSWORD_BROKER'),
+        'guard' => env('AUTH_GUARD', 'web'),
+        'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
     ],
     'guards' => [
         'web' => [
@@ -18,7 +18,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL'),
+            'model' => env('AUTH_MODEL', 'Modules\\User\\Models\\UserModel'),
         ],
     ],
     'passwords' => [

@@ -12,12 +12,12 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+use BezhanSalleh\LanguageSwitch\LanguageSwitch;
 use Illuminate\Validation\Rules\Password;
 
 class ApplicationServiceProvider extends ServiceProvider
 {
-    protected array $policies = [
-    ];
+    protected array $policies = [];
 
     public function register(): void {}
 
@@ -30,6 +30,20 @@ class ApplicationServiceProvider extends ServiceProvider
         });
         $this->configureModelProtections();
         $this->configureDatabase();
+        $this->configureLanguageSwitch();
+    }
+
+    protected function configureLanguageSwitch(): void
+    {
+        LanguageSwitch::configureUsing(function (LanguageSwitch $switch): void {
+            $switch
+                ->locales(['en', 'ar'])
+                ->labels([
+                    'en' => 'English',
+                    'ar' => 'العربية',
+                ])
+                ->visible(insidePanels: true, outsidePanels: false);
+        });
     }
 
     protected function registerPolicies(): void
@@ -65,6 +79,7 @@ class ApplicationServiceProvider extends ServiceProvider
         } else {
             DB::listen(function ($query) {
                 if ($query->time > 500) {
+                    // fix
                     logger()->warning('Slow query detected', [
                         'sql' => $query->sql,
                         'bindings' => $query->bindings,

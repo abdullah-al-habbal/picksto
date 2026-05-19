@@ -19,6 +19,8 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
+use Modules\User\Filament\Client\Pages\ProfilePage;
+use Modules\User\Http\Middleware\CheckUserBanMiddleware;
 
 final class ClientPanelProvider extends PanelProvider
 {
@@ -28,6 +30,7 @@ final class ClientPanelProvider extends PanelProvider
             ->id(config('panels.client.id', 'client'))
             ->path(config('panels.client.path', 'client'))
             ->login()
+            ->profile(ProfilePage::class)
             ->colors([
                 'primary' => Color::Sky,
             ])
@@ -53,6 +56,7 @@ final class ClientPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+                CheckUserBanMiddleware::class,
             ]);
 
         $modulesPath = base_path('modules');

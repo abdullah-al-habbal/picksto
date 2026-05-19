@@ -56,7 +56,14 @@ final class TicketResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return (string) cache()->remember('filament.resource.ticket.count', now()->addMinutes(5), fn () => static::getModel()::count());
+        // fix
+        $count = (int) cache()->remember(
+            'filament.resource.ticket.open_count',
+            now()->addMinutes(5),
+            fn() => static::getModel()::query()->whereIn('status', ['open', 'pending'])->count(),
+        );
+
+        return $count > 0 ? (string) $count : null;
     }
 
     public static function getNavigationBadgeColor(): string|array|null

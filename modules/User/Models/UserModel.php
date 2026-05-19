@@ -93,7 +93,6 @@ final class UserModel extends Authenticatable implements FilamentUser, HasAvatar
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
             'last_login_at' => 'datetime',
             'phone_verified' => 'boolean',
             'email_verified' => 'boolean',

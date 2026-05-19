@@ -16,6 +16,7 @@ return [
         'created' => 'Product created successfully',
         'updated' => 'Product updated successfully',
         'deleted' => 'Product deleted successfully',
+        'catalog_empty' => 'No products are available at the moment.',
     ],
     'errors' => [
         'create_failed' => 'Failed to create product',
@@ -24,6 +25,7 @@ return [
     ],
     'labels' => [
         'products' => 'Products',
+        'catalog' => 'Product Catalog',
         'plural' => 'Products',
         'singular' => 'Product',
     ],

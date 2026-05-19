@@ -13,7 +13,18 @@ return [
             'referral' => 'Referral',
             'support' => 'Support',
             'system' => 'System',
+            'account' => 'Account',
+            'growth' => 'Growth',
+            'billing' => 'Billing',
         ],
+    ],
+    'actions' => [
+        'save' => 'Save',
+        'cancel' => 'Cancel',
+        'submit' => 'Submit',
+    ],
+    'fields' => [
+        'created_at' => 'Created At',
     ],
     'resources' => [
         'user' => [

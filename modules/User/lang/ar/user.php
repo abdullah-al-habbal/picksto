@@ -52,6 +52,7 @@ return [
         'email' => 'البريد الإلكتروني',
         'phone' => 'رقم الهاتف',
         'profession' => 'المهنة',
+        'company_size' => 'حجم الشركة',
         'companySize' => 'حجم الشركة',
         'role' => 'الدور',
         'status' => 'الحالة',

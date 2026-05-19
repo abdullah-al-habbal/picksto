@@ -52,6 +52,7 @@ return [
         'email' => 'Email Address',
         'phone' => 'Phone Number',
         'profession' => 'Profession',
+        'company_size' => 'Company Size',
         'companySize' => 'Company Size',
         'role' => 'Role',
         'status' => 'Status',

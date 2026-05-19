@@ -55,7 +55,14 @@ final class SubscriptionRequestResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return (string) cache()->remember('filament.resource.subreq.count', now()->addMinutes(5), fn () => static::getModel()::count());
+        // fix
+        $count = (int) cache()->remember(
+            'filament.resource.subreq.pending_count',
+            now()->addMinutes(5),
+            fn() => static::getModel()::query()->where('status', 'pending')->count(),
+        );
+
+        return $count > 0 ? (string) $count : null;
     }
 
     public static function getNavigationBadgeColor(): string|array|null

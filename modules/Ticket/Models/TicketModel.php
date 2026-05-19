@@ -9,6 +9,7 @@ namespace Modules\Ticket\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
@@ -44,9 +45,7 @@ final class TicketModel extends Model
 
     protected function casts(): array
     {
-        return [
-            'is_admin' => 'boolean',
-        ];
+        return [];
     }
 
     protected static function newFactory(): TicketModelFactory
@@ -54,7 +53,7 @@ final class TicketModel extends Model
         return TicketModelFactory::new();
     }
 
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(UserModel::class);
     }

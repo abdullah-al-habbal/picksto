@@ -49,6 +49,7 @@ return [
         'pending_requests' => 'Pending Requests',
         'payment_gateways' => 'Payment Gateways',
         'request_subscription' => 'Request Subscription',
+        'view_requests' => 'View my requests',
     ],
     'fields' => [
         'name' => 'Name',

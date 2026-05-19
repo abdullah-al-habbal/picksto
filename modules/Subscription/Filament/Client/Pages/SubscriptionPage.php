@@ -16,7 +16,6 @@ final class SubscriptionPage extends Page implements HasTable
     use InteractsWithTable;
 
     protected static BackedEnum|string|null $navigationIcon = 'heroicon-o-credit-card';
-    protected static ?string $navigationLabel = 'Subscriptions';
     protected static ?int $navigationSort = 2;
     protected string $view = 'subscription::filament.pages.subscription';
 
@@ -30,8 +29,18 @@ final class SubscriptionPage extends Page implements HasTable
             );
     }
 
+    public static function getNavigationLabel(): string
+    {
+        return __('subscription::subscription.labels.subscriptions');
+    }
+
+    public function getHeading(): string
+    {
+        return __('subscription::subscription.labels.subscriptions');
+    }
+
     public static function getNavigationGroup(): ?string
     {
-        return 'Billing';
+        return __('dashboard.navigation.groups.billing');
     }
 }

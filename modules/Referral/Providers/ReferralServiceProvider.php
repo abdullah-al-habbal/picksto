@@ -19,6 +19,16 @@ final class ReferralServiceProvider extends ServiceProvider
         $this->loadRoutes();
         $this->loadMigrations();
         $this->loadTranslations();
+        $this->loadViews();
+    }
+
+    private function loadViews(): void
+    {
+        $path = __DIR__ . '/../resources/views';
+
+        if (File::isDirectory($path)) {
+            $this->loadViewsFrom($path, 'referral');
+        }
     }
 
     private function loadRoutes(): void

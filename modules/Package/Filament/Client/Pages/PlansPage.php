@@ -7,6 +7,7 @@ namespace Modules\Package\Filament\Client\Pages;
 use BackedEnum;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Schemas\Schema;
@@ -14,6 +15,7 @@ use Modules\Package\Repositories\PackageRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Modules\Payment\Filament\Client\Schemas\RequestSubscriptionForm;
 use Modules\Payment\Repositories\PaymentRepository;
+use Modules\SubscriptionRequest\Filament\Client\Resources\MySubscriptionRequestResource;
 
 final class PlansPage extends Page implements HasForms
 {
@@ -58,6 +60,11 @@ final class PlansPage extends Page implements HasForms
             Notification::make()
                 ->success()
                 ->title(__('payment::payment.messages.request_submitted'))
+                ->actions([
+                    Action::make('view_requests')
+                        ->label(__('payment::payment.labels.view_requests'))
+                        ->url(MySubscriptionRequestResource::getUrl(panel: 'client')),
+                ])
                 ->send();
 
             $this->dispatch('close-modal', id: 'request-subscription-modal');

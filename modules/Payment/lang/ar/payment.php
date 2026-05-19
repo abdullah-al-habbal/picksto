@@ -49,6 +49,7 @@ return [
         'pending_requests' => 'الطلبات المعلقة',
         'payment_gateways' => 'بوابات الدفع',
         'request_subscription' => 'طلب اشتراك',
+        'view_requests' => 'عرض طلباتي',
     ],
     'fields' => [
         'name' => 'الاسم',

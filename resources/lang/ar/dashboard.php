@@ -13,7 +13,18 @@ return [
             'referral'        => 'الإحالات',
             'support'         => 'الدعم الفني',
             'system'          => 'النظام',
+            'account'         => 'الحساب',
+            'growth'          => 'النمو',
+            'billing'         => 'الفوترة',
         ],
+    ],
+    'actions' => [
+        'save' => 'حفظ',
+        'cancel' => 'إلغاء',
+        'submit' => 'إرسال',
+    ],
+    'fields' => [
+        'created_at' => 'تاريخ الإنشاء',
     ],
     'resources' => [
         'user' => [

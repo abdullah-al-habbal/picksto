@@ -1,7 +1,9 @@
-# 🎯 Picksto Project Consolidation Report
+# Picksto Project Consolidation Report
+
+> **Superseded:** This report is historical (May 2026). For current architecture, Filament coverage, and backlog see [`CLAUDE.md`](../CLAUDE.md) and [`docs/specs/`](specs/).
 
 **Date:** May 1, 2026  
-**Status:** Phase 1 Complete (Admin) | Phase 2 In Progress (Client)  
+**Status:** Phase 1 Complete (Admin) | Phase 2 In Progress (Client) — *see specs for updated status*  
 **Framework:** Laravel 12 + Filament v5
 
 ---
