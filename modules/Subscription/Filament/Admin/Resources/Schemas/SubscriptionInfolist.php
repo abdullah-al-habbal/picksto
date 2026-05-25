@@ -50,6 +50,11 @@ final class SubscriptionInfolist
                 TextEntry::make('transaction_id')
                     ->label(__('subscription::subscription.fields.transaction_id')),
 
+                TextEntry::make('last_download_date')
+                    ->label(__('subscription::subscription.fields.last_download_date'))
+                    ->dateTime()
+                    ->placeholder('-'),
+
                 TextEntry::make('created_at')
                     ->label(__('dashboard.fields.created_at'))
                     ->dateTime(),

@@ -27,9 +27,19 @@ final class CurrencyRepository
     }
     public function updateUserCurrencySetting(int $userId, array $data): void
     {
+        $currencyId = $data['currency_id'] ?? null;
+
+        // Form sends 'currency' as a code string (e.g. 'USD'); resolve to ID
+        if (!$currencyId && isset($data['currency'])) {
+            $currency = $this->model->newQuery()
+                ->where('code', $data['currency'])
+                ->first();
+            $currencyId = $currency?->id;
+        }
+
         UserSettingModel::updateOrCreate(
             ['user_id' => $userId],
-            ['currency_id' => $data['currency_id'] ?? null]
+            ['currency_id' => $currencyId]
         );
     }
 

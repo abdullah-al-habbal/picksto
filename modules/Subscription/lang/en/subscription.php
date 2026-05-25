@@ -58,6 +58,7 @@ return [
         'downloads_month' => 'Downloads This Month',
         'payment_method' => 'Payment Method',
         'transaction_id' => 'Transaction ID',
+        'last_download_date' => 'Last Download Date',
     ],
     'statuses' => [
         'active' => 'Active',
