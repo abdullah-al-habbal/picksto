@@ -51,12 +51,13 @@ return [
     ],
     'fields' => [
         'user' => 'المستخدم',
-        'referrer' => 'المحيل',
-        'referred' => 'المستخدم المحال',
+        'referrer' => 'المُحيل',
+        'referred' => 'المُحال',
         'status' => 'الحالة',
         'earned_at' => 'تاريخ الاستحقاق',
         'expires_at' => 'تاريخ الانتهاء',
-        'claimed_at' => 'تاريخ الاستلام',
+        'claimed_at' => 'تاريخ المطالبة',
+        'registered_at' => 'تاريخ التسجيل',
     ],
     'statuses' => [
         'pending' => 'قيد الانتظار',

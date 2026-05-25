@@ -33,11 +33,14 @@ return [
     'fields' => [
         'user' => 'المستخدم',
         'file_name' => 'اسم الملف',
+        'original_url' => 'رابط المصدر',
         'source_url' => 'رابط المصدر',
         'file_path' => 'مسار الملف',
+        'site_source' => 'الموقع',
         'site' => 'الموقع',
         'status' => 'الحالة',
         'ip_address' => 'عنوان IP',
+        'item' => 'العنصر',
     ],
     'statuses' => [
         'pending' => 'قيد التنفيذ',

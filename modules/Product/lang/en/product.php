@@ -32,6 +32,8 @@ return [
     'fields' => [
         'name' => 'Name',
         'price' => 'Price',
+        'currency' => 'Currency',
+        'sort_order' => 'Sort Order',
         'is_active' => 'Active',
         'description' => 'Description',
         'image' => 'Image',

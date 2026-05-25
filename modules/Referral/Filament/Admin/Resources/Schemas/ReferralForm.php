@@ -26,23 +26,9 @@ final class ReferralForm
                     ->searchable()
                     ->required(),
 
-                Select::make('status')
-                    ->label(__('referral::referral.fields.status'))
-                    ->options([
-                        'pending' => __('referral::referral.statuses.pending'),
-                        'claimed' => __('referral::referral.statuses.claimed'),
-                        'expired' => __('referral::referral.statuses.expired'),
-                    ])
-                    ->required(),
-
-                DateTimePicker::make('earned_at')
-                    ->label(__('referral::referral.fields.earned_at')),
-
-                DateTimePicker::make('claimed_at')
-                    ->label(__('referral::referral.fields.claimed_at')),
-
-                DateTimePicker::make('expires_at')
-                    ->label(__('referral::referral.fields.expires_at')),
+                DateTimePicker::make('registered_at')
+                    ->label(__('referral::referral.fields.registered_at'))
+                    ->default(now()),
             ]);
     }
 }

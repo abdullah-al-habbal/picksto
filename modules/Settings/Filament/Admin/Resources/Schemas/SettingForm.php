@@ -13,7 +13,7 @@ final class SettingForm
     {
         return $schema
             ->components([
-                TextInput::make('key')
+                TextInput::make('key_name')
                     ->label(__('settings::settings.fields.key'))
                     ->required()
                     ->disabled()
@@ -26,6 +26,10 @@ final class SettingForm
                 TextInput::make('group')
                     ->label(__('settings::settings.fields.group'))
                     ->maxLength(255),
+
+                TextInput::make('description')
+                    ->label(__('settings::settings.fields.description'))
+                    ->maxLength(500),
             ]);
     }
 }

@@ -38,5 +38,6 @@ return [
         'key' => 'Key',
         'value' => 'Value',
         'group' => 'Group',
+        'description' => 'Description',
     ],
 ];

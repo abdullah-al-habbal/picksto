@@ -26,10 +26,20 @@ final class ProductForm
                     ->numeric()
                     ->required(),
 
-                FileUpload::make('image')
+                TextInput::make('currency')
+                    ->label(__('product::product.fields.currency'))
+                    ->default('SAR')
+                    ->maxLength(3),
+
+                FileUpload::make('image_url')
                     ->label(__('product::product.fields.image'))
                     ->image()
                     ->directory('products'),
+
+                TextInput::make('sort_order')
+                    ->label(__('product::product.fields.sort_order'))
+                    ->numeric()
+                    ->default(0),
 
                 Toggle::make('is_active')
                     ->label(__('product::product.fields.is_active'))

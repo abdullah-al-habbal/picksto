@@ -25,7 +25,7 @@ class LanguageResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
-        return __('Settings');
+        return __('dashboard.navigation.groups.settings');
     }
 
     public static function form(Schema $schema): Schema

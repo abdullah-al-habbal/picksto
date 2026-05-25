@@ -13,7 +13,7 @@ final class SettingInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('key')
+                TextEntry::make('key_name')
                     ->label(__('settings::settings.fields.key')),
 
                 TextEntry::make('value')
@@ -21,6 +21,9 @@ final class SettingInfolist
 
                 TextEntry::make('group')
                     ->label(__('settings::settings.fields.group')),
+
+                TextEntry::make('description')
+                    ->label(__('settings::settings.fields.description')),
 
                 TextEntry::make('created_at')
                     ->label(__('dashboard.fields.created_at'))

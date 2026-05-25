@@ -33,12 +33,19 @@ return [
         'user' => 'المستخدم',
         'subject' => 'الموضوع',
         'priority' => 'الأولوية',
+        'message' => 'الرسالة',
     ],
     'statuses' => [
         'open' => 'مفتوحة',
+        'pending' => 'قيد المعالجة',
         'in_progress' => 'قيد المعالجة',
         'closed' => 'مغلقة',
         'resolved' => 'تم الحل',
+    ],
+    'priorities' => [
+        'low' => 'منخفض',
+        'medium' => 'متوسط',
+        'high' => 'عالي',
     ],
     'labels' => [
         'tickets' => 'التذاكر',

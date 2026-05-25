@@ -33,11 +33,14 @@ return [
     'fields' => [
         'user' => 'User',
         'file_name' => 'File Name',
+        'original_url' => 'Source URL',
         'source_url' => 'Source URL',
         'file_path' => 'File Path',
+        'site_source' => 'Site',
         'site' => 'Site',
         'status' => 'Status',
         'ip_address' => 'IP Address',
+        'item' => 'Item',
     ],
     'statuses' => [
         'pending' => 'Pending',

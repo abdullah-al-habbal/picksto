@@ -57,6 +57,7 @@ return [
         'earned_at' => 'Earned At',
         'expires_at' => 'Expires At',
         'claimed_at' => 'Claimed At',
+        'registered_at' => 'Registered At',
     ],
     'statuses' => [
         'pending' => 'Pending',
