@@ -33,7 +33,7 @@ final class DownloadRepository
 
         $download = $this->create([
             'user_id' => $userId,
-            'source_url' => $url,
+            'original_url' => $url,
             'site_source' => $siteSource,
             'status' => 'pending',
         ]);
