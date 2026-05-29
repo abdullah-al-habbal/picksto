@@ -61,6 +61,7 @@ final class DownloadForm
                     ->label(__('download::download.fields.status'))
                     ->options([
                         'pending' => __('download::download.statuses.pending'),
+                        'processing' => __('download::download.statuses.processing'),
                         'completed' => __('download::download.statuses.completed'),
                         'failed' => __('download::download.statuses.failed'),
                     ])

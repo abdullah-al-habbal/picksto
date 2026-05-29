@@ -22,10 +22,10 @@ class PackagesTable
                 TextColumn::make('price')
                     ->money('USD')
                     ->sortable(),
-                TextColumn::make('duration')
+                TextColumn::make('duration_days')
                     ->suffix(' days')
                     ->sortable(),
-                TextColumn::make('downloads_per_day')
+                TextColumn::make('daily_limit')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('created_at')

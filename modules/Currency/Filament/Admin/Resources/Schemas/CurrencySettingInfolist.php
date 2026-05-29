@@ -39,10 +39,6 @@ final class CurrencySettingInfolist
                     ->label(__('currency::currency.fields.space_between'))
                     ->boolean(),
 
-                IconEntry::make('is_active')
-                    ->label(__('currency::currency.fields.is_active'))
-                    ->boolean(),
-
                 TextEntry::make('created_at')
                     ->label(__('dashboard.fields.created_at'))
                     ->dateTime(),

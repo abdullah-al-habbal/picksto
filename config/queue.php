@@ -1,6 +1,6 @@
 <?php
 
-// filePath:
+// filePath: config/queue.php
 declare(strict_types=1);
 
 return [

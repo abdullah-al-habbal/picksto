@@ -58,9 +58,7 @@ final class CurrencySettingForm
                     ->label(__('currency::currency.fields.space_between'))
                     ->default(true),
 
-                Toggle::make('is_active')
-                    ->label(__('currency::currency.fields.is_active'))
-                    ->default(true),
+
             ]);
     }
 }

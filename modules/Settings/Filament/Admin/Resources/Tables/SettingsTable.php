@@ -16,7 +16,7 @@ final class SettingsTable
     {
         return $table
             ->columns([
-                TextColumn::make('key')
+                TextColumn::make('key_name')
                     ->label(__('settings::settings.fields.key'))
                     ->searchable()
                     ->sortable(),

@@ -23,5 +23,5 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
-    'force_https' => false,
+    'force_https' => env('APP_FORCE_HTTPS', false),
 ];

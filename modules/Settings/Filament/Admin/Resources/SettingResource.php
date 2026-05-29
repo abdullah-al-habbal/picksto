@@ -50,7 +50,7 @@ final class SettingResource extends Resource
             return static::getModelLabel();
         }
 
-        return $record->key;
+        return $record->key_name;
     }
 
     public static function getNavigationBadge(): ?string

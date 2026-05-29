@@ -30,11 +30,6 @@ final class CurrencySettingsTable
                     ->searchable()
                     ->sortable(),
 
-                IconColumn::make('is_active')
-                    ->label(__('currency::currency.fields.is_active'))
-                    ->boolean()
-                    ->sortable(),
-
                 TextColumn::make('created_at')
                     ->label(__('dashboard.fields.created_at'))
                     ->dateTime()

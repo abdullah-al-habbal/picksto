@@ -44,6 +44,7 @@ return [
     ],
     'statuses' => [
         'pending' => 'Pending',
+        'processing' => 'Processing',
         'completed' => 'Completed',
         'failed' => 'Failed',
     ],

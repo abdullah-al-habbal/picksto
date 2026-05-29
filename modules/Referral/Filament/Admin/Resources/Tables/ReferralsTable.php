@@ -8,7 +8,6 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 final class ReferralsTable
@@ -27,19 +26,8 @@ final class ReferralsTable
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('status')
-                    ->label(__('referral::referral.fields.status'))
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'claimed' => 'success',
-                        'pending' => 'warning',
-                        'expired' => 'danger',
-                        default => 'gray',
-                    })
-                    ->sortable(),
-
-                TextColumn::make('earned_at')
-                    ->label(__('referral::referral.fields.earned_at'))
+                TextColumn::make('registered_at')
+                    ->label(__('referral::referral.fields.registered_at'))
                     ->dateTime()
                     ->sortable(),
 
@@ -49,14 +37,7 @@ final class ReferralsTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                SelectFilter::make('status')
-                    ->options([
-                        'pending' => __('referral::referral.statuses.pending'),
-                        'claimed' => __('referral::referral.statuses.claimed'),
-                        'expired' => __('referral::referral.statuses.expired'),
-                    ]),
-            ])
+            ->filters([])
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),

@@ -42,10 +42,16 @@ return [
         'status' => 'Status',
         'expires_at' => 'Expires At',
         'verified_at' => 'Verified At',
+        'purpose' => 'Purpose',
+        'is_used' => 'Used',
     ],
     'types' => [
         'email' => 'Email',
         'whatsapp' => 'WhatsApp',
+    ],
+    'purposes' => [
+        'registration' => 'Registration',
+        'reset' => 'Password Reset',
     ],
     'statuses' => [
         'pending' => 'Pending',

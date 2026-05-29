@@ -44,6 +44,7 @@ return [
     ],
     'statuses' => [
         'pending' => 'قيد التنفيذ',
+        'processing' => 'قيد المعالجة',
         'completed' => 'مكتمل',
         'failed' => 'فشل',
     ],

@@ -22,7 +22,7 @@ final class ProductInfolist
                     ->label(__('product::product.fields.price'))
                     ->money('USD'),
 
-                ImageEntry::make('image')
+                ImageEntry::make('image_url')
                     ->label(__('product::product.fields.image')),
 
                 IconEntry::make('is_active')

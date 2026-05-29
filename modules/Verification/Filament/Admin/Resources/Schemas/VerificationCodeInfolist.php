@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Verification\Filament\Admin\Resources\Schemas;
 
+use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -25,23 +26,18 @@ final class VerificationCodeInfolist
                     ->label(__('verification::verification.fields.code'))
                     ->copyable(),
 
-                TextEntry::make('status')
-                    ->label(__('verification::verification.fields.status'))
+                TextEntry::make('purpose')
+                    ->label(__('verification::verification.fields.purpose'))
                     ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'verified' => 'success',
-                        'pending' => 'warning',
-                        'expired' => 'danger',
-                        default => 'gray',
-                    }),
+                    ->color('gray'),
 
                 TextEntry::make('expires_at')
                     ->label(__('verification::verification.fields.expires_at'))
                     ->dateTime(),
 
-                TextEntry::make('verified_at')
-                    ->label(__('verification::verification.fields.verified_at'))
-                    ->dateTime(),
+                IconEntry::make('is_used')
+                    ->label(__('verification::verification.fields.is_used'))
+                    ->boolean(),
 
                 TextEntry::make('created_at')
                     ->label(__('dashboard.fields.created_at'))

@@ -44,10 +44,16 @@ return [
         'status' => 'الحالة',
         'expires_at' => 'تاريخ الانتهاء',
         'verified_at' => 'تاريخ التحقق',
+        'purpose' => 'الغرض',
+        'is_used' => 'مستخدم',
     ],
     'types' => [
         'email' => 'بريد إلكتروني',
         'whatsapp' => 'واتساب',
+    ],
+    'purposes' => [
+        'registration' => 'تسجيل',
+        'reset' => 'إعادة تعيين كلمة المرور',
     ],
     'statuses' => [
         'pending' => 'قيد الانتظار',

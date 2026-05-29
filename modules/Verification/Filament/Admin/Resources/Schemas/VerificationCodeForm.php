@@ -7,6 +7,7 @@ namespace Modules\Verification\Filament\Admin\Resources\Schemas;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
 final class VerificationCodeForm
@@ -34,12 +35,11 @@ final class VerificationCodeForm
                     ->required()
                     ->length(6),
 
-                Select::make('status')
-                    ->label(__('verification::verification.fields.status'))
+                Select::make('purpose')
+                    ->label(__('verification::verification.fields.purpose'))
                     ->options([
-                        'pending' => __('verification::verification.statuses.pending'),
-                        'verified' => __('verification::verification.statuses.verified'),
-                        'expired' => __('verification::verification.statuses.expired'),
+                        'registration' => __('verification::verification.purposes.registration'),
+                        'reset' => __('verification::verification.purposes.reset'),
                     ])
                     ->required(),
 
@@ -47,8 +47,9 @@ final class VerificationCodeForm
                     ->label(__('verification::verification.fields.expires_at'))
                     ->required(),
 
-                DateTimePicker::make('verified_at')
-                    ->label(__('verification::verification.fields.verified_at')),
+                Toggle::make('is_used')
+                    ->label(__('verification::verification.fields.is_used'))
+                    ->default(false),
             ]);
     }
 }

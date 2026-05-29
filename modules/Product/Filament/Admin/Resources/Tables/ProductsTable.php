@@ -18,7 +18,7 @@ final class ProductsTable
     {
         return $table
             ->columns([
-                ImageColumn::make('image')
+                ImageColumn::make('image_url')
                     ->label(__('product::product.fields.image')),
 
                 TextColumn::make('name')

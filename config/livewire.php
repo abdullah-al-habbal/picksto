@@ -58,7 +58,7 @@ return [
     'inject_morph_markers' => true,
     'smart_wire_keys' => true,
     'pagination_theme' => 'tailwind',
-    'release_token' => 'a',
+    'release_token' => env('LIVEWIRE_RELEASE_TOKEN', 'a'),
     'csp_safe' => false,
     'payload' => [
         'max_size' => 1024 * 1024,
