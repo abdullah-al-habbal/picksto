@@ -1,0 +1,67 @@
+<?php
+
+return [
+    'nav.home' => 'الرئيسية',
+    'nav.packages' => 'الباقات',
+    'nav.about' => 'عن الشركة',
+    'nav.services' => 'خدماتنا',
+    'nav.support' => 'الدعم',
+    'nav.pages' => 'الصفحات',
+    'nav.login' => 'تسجيل الدخول',
+    'nav.dashboard' => 'لوحة التحكم',
+
+    'hero.title' => 'حمّل أصول التصميم المميزة بسهولة',
+    'hero.subtitle' => 'احصل على آلاف الصور عالية الجودة والمتجهات والقوالب من أفضل الأسواق. اشتراك واحد، إلهام لا حدود له.',
+    'hero.cta' => 'تصفح الباقات',
+
+    'features.title' => 'لماذا تختار Picksto',
+    'features.subtitle' => 'كل ما تحتاجه لتسريع سير عملك الإبداعي',
+
+    'packages.title' => 'باقاتنا',
+    'packages.subtitle' => 'اختر الخطة التي تناسب احتياجاتك الإبداعية',
+    'packages.learn_more' => 'اعرف المزيد',
+    'packages.view_all' => 'عرض كل الباقات',
+    'packages.daily_limit' => 'الحد اليومي',
+    'packages.monthly_limit' => 'الحد الشهري',
+    'packages.duration_days' => 'المدة',
+    'packages.days' => 'يوم',
+    'packages.allowed_sites' => 'المواقع المدعومة',
+    'packages.price' => 'السعر',
+    'packages.sort_by' => 'ترتيب حسب',
+    'packages.sort_default' => 'افتراضي',
+    'packages.sort_price_low' => 'السعر: من الأقل للأعلى',
+    'packages.sort_price_high' => 'السعر: من الأعلى للأقل',
+    'packages.filter_site' => 'تصفية حسب الموقع',
+    'packages.all_sites' => 'جميع المواقع',
+    'packages.no_results' => 'لم يتم العثور على باقات.',
+    'packages.subscribe' => 'اشترك الآن',
+    'packages.login_required' => 'يرجى تسجيل الدخول للاشتراك',
+    'packages.back' => 'عودة للباقات',
+
+    'cta.title' => 'هل أنت مستعد للبدء؟',
+    'cta.subtitle' => 'انضم إلى آلاف المصممين الذين يثقون في Picksto لأصولهم الإبداعية.',
+    'cta.button' => 'ابدأ الآن',
+
+    'footer.rights' => 'جميع الحقوق محفوظة.',
+    'footer.follow_us' => 'تابعنا',
+    'footer.contact_us' => 'اتصل بنا',
+
+    'support.title' => 'اتصل بالدعم',
+    'support.subtitle' => 'لديك سؤال أو مشكلة؟ نحن هنا للمساعدة.',
+    'support.name' => 'الاسم',
+    'support.email' => 'البريد الإلكتروني',
+    'support.subject' => 'الموضوع',
+    'support.message' => 'رسالتك',
+    'support.submit' => 'إرسال الرسالة',
+    'support.success' => 'شكراً لك! تم إرسال رسالتك. سنتواصل معك قريباً.',
+
+    'support.validation.name_required' => 'الرجاء إدخال اسمك.',
+    'support.validation.email_required' => 'الرجاء إدخال بريدك الإلكتروني.',
+    'support.validation.email_valid' => 'الرجاء إدخال بريد إلكتروني صحيح.',
+    'support.validation.subject_required' => 'الرجاء إدخال الموضوع.',
+    'support.validation.message_required' => 'الرجاء إدخال رسالتك.',
+
+    'page.not_found' => 'الصفحة غير موجودة',
+    'page.not_found_desc' => 'الصفحة التي تبحث عنها غير موجودة.',
+    'page.back_home' => 'العودة للرئيسية',
+];

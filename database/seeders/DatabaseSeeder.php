@@ -17,6 +17,7 @@ use Modules\Ticket\Database\Seeders\TicketSeeder;
 use Modules\User\Database\Seeders\UserSeeder;
 use Modules\User\Database\Seeders\UserSettingSeeder;
 use Modules\Verification\Database\Seeders\VerificationSeeder;
+use Modules\Website\Database\Seeders\WebsitePageSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -37,6 +38,7 @@ class DatabaseSeeder extends Seeder
             SubscriptionSeeder::class,
             DownloadSeeder::class,
             AnalyticsSeeder::class,
+            WebsitePageSeeder::class,
         ]);
     }
 }

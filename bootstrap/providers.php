@@ -24,6 +24,7 @@ use Modules\Ticket\Providers\TicketServiceProvider;
 use Modules\Upload\Providers\UploadServiceProvider;
 use Modules\User\Providers\UserServiceProvider;
 use Modules\Verification\Providers\VerificationServiceProvider;
+use Modules\Website\Providers\WebsiteServiceProvider;
 
 return [
     AuthServiceProvider::class,
@@ -48,4 +49,5 @@ return [
     LanguageServiceProvider::class,
     UserServiceProvider::class,
     VerificationServiceProvider::class,
+    WebsiteServiceProvider::class,
 ];

@@ -1,3 +1,4 @@
+<!-- filePath: /home/lenovo/work/projects/the_picksto/picksto/modules/Settings/README.md -->
 # Settings Module
 
 ## Purpose

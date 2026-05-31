@@ -1,0 +1,67 @@
+<?php
+
+return [
+    'nav.home' => 'Home',
+    'nav.packages' => 'Packages',
+    'nav.about' => 'About',
+    'nav.services' => 'Services',
+    'nav.support' => 'Support',
+    'nav.pages' => 'Pages',
+    'nav.login' => 'Login',
+    'nav.dashboard' => 'Dashboard',
+
+    'hero.title' => 'Download Premium Design Assets with Ease',
+    'hero.subtitle' => 'Access thousands of high-quality images, vectors, and templates from top marketplaces. One subscription, unlimited inspiration.',
+    'hero.cta' => 'View Packages',
+
+    'features.title' => 'Why Choose Picksto',
+    'features.subtitle' => 'Everything you need to accelerate your creative workflow',
+
+    'packages.title' => 'Our Packages',
+    'packages.subtitle' => 'Choose the plan that fits your creative needs',
+    'packages.learn_more' => 'Learn More',
+    'packages.view_all' => 'View All Packages',
+    'packages.daily_limit' => 'Daily Limit',
+    'packages.monthly_limit' => 'Monthly Limit',
+    'packages.duration_days' => 'Duration',
+    'packages.days' => 'days',
+    'packages.allowed_sites' => 'Supported Sites',
+    'packages.price' => 'Price',
+    'packages.sort_by' => 'Sort by',
+    'packages.sort_default' => 'Default',
+    'packages.sort_price_low' => 'Price: Low to High',
+    'packages.sort_price_high' => 'Price: High to Low',
+    'packages.filter_site' => 'Filter by site',
+    'packages.all_sites' => 'All Sites',
+    'packages.no_results' => 'No packages found.',
+    'packages.subscribe' => 'Subscribe Now',
+    'packages.login_required' => 'Please log in to subscribe',
+    'packages.back' => 'Back to Packages',
+
+    'cta.title' => 'Ready to Get Started?',
+    'cta.subtitle' => 'Join thousands of designers who trust Picksto for their creative assets.',
+    'cta.button' => 'Get Started Now',
+
+    'footer.rights' => 'All rights reserved.',
+    'footer.follow_us' => 'Follow Us',
+    'footer.contact_us' => 'Contact Us',
+
+    'support.title' => 'Contact Support',
+    'support.subtitle' => 'Have a question or issue? We\'re here to help.',
+    'support.name' => 'Your Name',
+    'support.email' => 'Your Email',
+    'support.subject' => 'Subject',
+    'support.message' => 'Your Message',
+    'support.submit' => 'Send Message',
+    'support.success' => 'Thank you! Your message has been sent. We\'ll get back to you soon.',
+
+    'support.validation.name_required' => 'Please enter your name.',
+    'support.validation.email_required' => 'Please enter your email address.',
+    'support.validation.email_valid' => 'Please enter a valid email address.',
+    'support.validation.subject_required' => 'Please enter a subject.',
+    'support.validation.message_required' => 'Please enter your message.',
+
+    'page.not_found' => 'Page Not Found',
+    'page.not_found_desc' => 'The page you are looking for does not exist.',
+    'page.back_home' => 'Back to Home',
+];
